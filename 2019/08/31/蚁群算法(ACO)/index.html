@@ -21,7 +21,7 @@
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%952.png">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%954.png">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/%E8%BD%AE%E7%9B%98%E8%B5%8C%E9%80%89%E6%8B%A9%E6%B3%95.jpeg">
-<meta property="og:updated_time" content="2019-12-07T06:56:53.645Z">
+<meta property="og:updated_time" content="2019-12-07T07:00:15.846Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="蚁群算法一些学习记录">
 <meta name="twitter:description" content="基本原理   基本流程路径构建$$\begin{equation}    P_{ij}(t) =   \begin{cases}   \frac{[\tau_{ij}(t)]^\alpha \times [\eta_{ij}(t)]^\beta}{\sum\limits_{k\in allowed_k }[\tau_{ik}(t)]^\alpha \times [\eta_{ik}(t)]^\be">
@@ -282,6 +282,8 @@ var _hmt = _hmt || [];
 <h2 id="信息素更新-1"><a href="#信息素更新-1" class="headerlink" title="信息素更新"></a>信息素更新</h2><p>每只蚂蚁走过的路径长度：$C_1=3+4+2+1=10;C_2=4+2+1+3=10;C_3=2+1+5+4=12。$</p>
 <p>每条边信息素的更新如下:<br>$$<br>\tau_{AB}=（1-\rho)\times\tau_{AB} + \sum_{k=1}^3\Delta\tau_{AB}^k=0.5\times0.3+(\frac{1}{10}+\frac{1}{10})=0.35\\<br>\tau_{AC}=（1-\rho)\times\tau_{AC} + \sum_{k=1}^3\Delta\tau_{AC}^k=0.5\times0.3+(\frac{1}{12})=0.16\\<br>\tau_{AD},\tau_{BC}…<br>$$<br>在$\tau_{AB}$的计算中蚂蚁3并未走过路径<strong>AB</strong>，所以$\tau_{AB}^3=0$。</p>
 <h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><p>如果满足结束条件，则输出全局最优结果并结束程序，否则，则转向步骤2继续执行。</p>
+<p>references</p>
+<p><a href="https://www.cnblogs.com/asxinyu/p/Path_Optimization_Tsp_Problem_Ant_System_CSharp.html#opennewwindow" target="_blank" rel="noopener">https://www.cnblogs.com/asxinyu/p/Path_Optimization_Tsp_Problem_Ant_System_CSharp.html#opennewwindow</a></p>
 
       
 
@@ -378,20 +380,6 @@ var _hmt = _hmt || [];
 </article>
 
   
-<nav id="article-nav">
-  
-    <a href="/2019/12/05/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Hello World
-        
-      </div>
-    </a>
-  
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
