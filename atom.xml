@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Levi的博客</title>
+  <icon>https://www.gravatar.com/avatar/8e1d42746ba8522f6052068579e4a9e9</icon>
+  <subtitle>Nothing replaces hard work</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="//georgeju95.github.io/"/>
+  <updated>2019-12-06T03:45:44.148Z</updated>
+  <id>//georgeju95.github.io/</id>
+  
+  <author>
+    <name>Levi Liu</name>
+    <email>980998863@qq.com</email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="//georgeju95.github.io/2019/12/06/test%20math/"/>
+    <id>//georgeju95.github.io/2019/12/06/test math/</id>
+    <published>2019-12-06T03:42:20.655Z</published>
+    <updated>2019-12-06T03:45:44.148Z</updated>
+    
+    <content type="html"><![CDATA[<p>$$</p><p>\frac{\partial u}{\partial t}<br>= h^2 \left( \frac{\partial^2 u}{\partial x^2} +<br>\frac{\partial^2 u}{\partial y^2} +<br>\frac{\partial^2 u}{\partial z^2}\right)<br>$$</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Simple inline $a = b + c$.</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;$$&lt;/p&gt;
+&lt;p&gt;\frac{\partial u}{\partial t}&lt;br&gt;= h^2 \left( \frac{\partial^2 u}{\partial x^2} +&lt;br&gt;\frac{\partial^2 u}{\partial y^2} +&lt;br&gt;\fr
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="//georgeju95.github.io/2019/12/05/hello-world/"/>
+    <id>//georgeju95.github.io/2019/12/05/hello-world/</id>
+    <published>2019-12-05T08:06:28.081Z</published>
+    <updated>2019-12-05T08:06:28.082Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>3D重建的一些学习记录</title>
+    <link href="//georgeju95.github.io/2019/08/31/%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95(ACO)/"/>
+    <id>//georgeju95.github.io/2019/08/31/蚁群算法(ACO)/</id>
+    <published>2019-08-31T08:56:36.000Z</published>
+    <updated>2019-12-07T03:59:30.598Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="路径构建"><a href="#路径构建" class="headerlink" title="路径构建"></a>路径构建</h3><p>$$<br>\begin{equation}<br>    P_{ij}(t) =<br>   \begin{cases}<br>   \frac{[\tau_{ij}(t)]^\alpha \times [\eta_{ij}(t)]^\beta}{\sum\limits_{k\in allowed_k }[\tau_{ik}(t)]^\alpha \times [\eta_{ik}(t)]^\beta}&amp;<br>   {if \quad j \in allowed_k}\<br>   \qquad 0&amp;<br>   others<br>   \end{cases}<br>  \end{equation}<br>$$</p><hr><ul><li>$i,j$分别为起点和终点</li><li>$\eta_{ij} = \frac{1}{d_{ij}}$为能见度，是两点$i、j$间的导数</li><li>$\tau_{ij}(t)$为时间$t$时由$i$到$j$的信息素强度</li><li>$allowed_k$为从$i$出发可访问到节点的集合</li><li>$\alpha,\beta$为两常数，分别是信息素和能见度的加权值</li></ul><p>结果表示<strong>当前点到每个可能的下个节点的概率</strong></p><h3 id="信息素更新"><a href="#信息素更新" class="headerlink" title="信息素更新"></a>信息素更新</h3><p>蚂蚁的信息素释放量$C(0)$,如果太小则容易导致局部最优。为什么？</p><p>如果太大，则对搜索方向的导向作用降低。一般用贪婪算法获取一个路径值$Cnn$，然后根据蚂蚁个数来计算$C(0) = m/Cnn$,$m$为蚂蚁个数。</p><p>信息素更新如下：</p><p>$$<br>\tau(t)=(1-p)\tau_{ij}+\sum_{k=1}^m\Delta\tau_{ij}^k<br>$$<br>$m$:蚂蚁个数，$0&lt;\rho&lt;=1$:信息素蒸发率,$\Delta\tau_{ij}^k$:第$k$只蚂蚁在路径$i$到 $j$ 所留下的信息素<br>$$<br>\begin{equation}<br>\Delta\tau_{ij}^k=<br>\begin{cases}<br>(c_k)^{-1}&amp;\quad 第k^{th}只蚂蚁经过路径(i，j)\<br>0&amp;\quad others</p><p>\end{cases}<br>\end{equation}<br>$$<br>信息素挥发(evaporation):避免算法过快地向局部最优区域集中，有助于搜索区域的扩展。</p><p>信息素增强(reinforcement):指引最优路径的指南。</p><h3 id="迭代与停止"><a href="#迭代与停止" class="headerlink" title="迭代与停止"></a>迭代与停止</h3><p>算法每次迭代：<strong>每次迭代的m只蚂蚁都完成了自己的路径过程，回到原点后的整个过程。</strong></p><p>停止：指定迭代次数或达成指定的最优解条件</p><h2 id="蚁群算法的实例"><a href="#蚁群算法的实例" class="headerlink" title="蚁群算法的实例"></a>蚁群算法的实例</h2><p><img src="/Assets/BlogImg/%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%954.png" alt="蚁群算法4"></p><p>假设共$m=3$只蚂蚁，参数$\alpha=1,\beta=2,\rho=0.5$</p><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>首先使用贪婪算法得到路径的<strong>(ACDBA)</strong>, 则$C_{nn}=1+2+4+3=10$,求得$\tau_0=m\div C_{nn}=0.3$<br>$$<br>\tau(0)=<br>\begin{bmatrix}<br>0&amp;0.3&amp;0.3&amp;0.3\<br>0.3&amp;0&amp;0.3&amp;0.3\<br>0.3&amp;0.3&amp;0&amp;0.3\<br>0.3&amp;0.3&amp;0.3&amp;0<br>\end{bmatrix}<br>$$</p><h3 id="出发地"><a href="#出发地" class="headerlink" title="出发地"></a>出发地</h3><p>为每个蚂蚁随机选择出发城市，假设蚂蚁1选择城市A，蚂蚁2选择城市B，蚂蚁3选择城市D。</p><h3 id="访问地"><a href="#访问地" class="headerlink" title="访问地"></a>访问地</h3><p>以蚂蚁1为例，当前城市$i=A$,可访问城市集合$J_1 (i)={B,C,D}$</p><p>计算蚂蚁1访问各个城市的概率<br>$$<br>A \Rightarrow<br>\begin{cases}<br>B:\tau_{AB}^a\times\eta_{AB}^\beta=0.3^1\times\frac{1}{3}^2=0.033\<br>C:\tau_{AC}^a\times\eta_{AC}^\beta=0.3^1\times\frac{1}{1}^2=0.300\<br>D:\tau_{AD}^a\times\eta_{AD}^\beta=0.3^1\times\frac{1}{2}^2=0.075\<br>\end{cases}<br>$$</p><p>$$<br>P(B)=\frac{0.033}{0.033+0.3+0.075}=0.08\<br>P(C)=\frac{0.03}{0.033+0.3+0.075}=0.74\<br>P(D)=\frac{0.075}{0.033+0.3+0.075}=0.18<br>$$</p><img src="E:\Rocky1ee.github.io\image\轮盘赌选择法.jpeg" style="zoom:80%;"><p>轮盘赌法：选择累积概率超过随机值的第一个个体。</p><p>用轮盘赌法选择下一个访问城市。假设产生的随机值$r=0.05$，则蚂蚁<strong>1</strong>会选择城市<strong>B</strong><br>同样，假设蚂蚁<strong>2</strong>选择城市<strong>D</strong>，蚂蚁<strong>3</strong>选择城市<strong>A</strong>。</p><p>现在蚂蚁<strong>1</strong>已经来到<strong>B</strong>了，路径记忆向量$R^l=(AB)$,可访问城市集合$J_i(i)={C,D}$</p><p>蚂蚁<strong>1</strong>访问<strong>C，D</strong>城市的概率：<br>$$<br>B\Rightarrow<br>\begin{cases}<br>C:\tau_{BC}^\alpha\times\eta_{BC}^\beta=0.3^1\times\frac{1}{5}^2=0.012\<br>D:\tau_{BD}^\alpha\times\eta_{BD}^\beta=0.3^1\times\frac{1}{4}^2=0.019<br>\end{cases}\<br>P(C)=\frac{0.012}{0.012+0.019}=0.39\<br>P(D)=\frac{0.019}{0.012+0.019}=0.61<br>$$<br>用轮盘赌法选择下一个访问城市。假设产生的随机数$r=0.67$，则蚂蚁<strong>1</strong>会选择城市<strong>D</strong><br>同样，假设蚂蚁<strong>2</strong>选择城市<strong>C</strong>，蚂蚁<strong>3</strong>选择城市<strong>D</strong>。</p><p>最终，所有蚂蚁选择的路径为：</p><p>蚂蚁1：ABDCA</p><p>蚂蚁2：BDCAB</p><p>蚂蚁3：DACBD</p><h3 id="信息素更新-1"><a href="#信息素更新-1" class="headerlink" title="信息素更新"></a>信息素更新</h3><p>每只蚂蚁走过的路径长度：$C_1=3+4+2+1=10;C_2=4+2+1+3=10;C_3=2+1+5+4=12。$</p><p>每条边信息素的更新如下:<br>$$<br>\tau_{AB}=（1-\rho)\times\tau_{AB} + \sum_{k=1}^3\Delta\tau_{AB}^k=0.5\times0.3+(\frac{1}{10}+\frac{1}{10})=0.35\<br>\tau_{AC}=（1-\rho)\times\tau_{AC} + \sum_{k=1}^3\Delta\tau_{AC}^k=0.5\times0.3+(\frac{1}{12})=0.16\<br>\tau_{AD},\tau_{BC}…<br>$$<br>在$\tau_{AB}$的计算中蚂蚁3并未走过路径<strong>AB</strong>，所以$\tau_{AB}^3=0$。</p><h3 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h3><p>如果满足结束条件，则输出全局最优结果并结束程序，否则，则转向步骤2继续执行。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;路径构建&quot;&gt;&lt;a href=&quot;#路径构建&quot; class=&quot;headerlink&quot; title=&quot;路径构建&quot;&gt;&lt;/a&gt;路径构建&lt;/h3&gt;&lt;p&gt;$$&lt;br&gt;\begin{equation}&lt;br&gt;    P_{ij}(t) =&lt;br&gt;   \begin{cases}&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="蚁群算法" scheme="//georgeju95.github.io/tags/%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+</feed>
