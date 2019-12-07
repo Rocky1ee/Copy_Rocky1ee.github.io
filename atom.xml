@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Rocky1ee的博客</title>
   <icon>https://www.gravatar.com/avatar/cdf2628d43f941c34796949e0857e3a5</icon>
-  <subtitle>Nothing replaces hard work</subtitle>
+  
   <link href="/atom.xml" rel="self"/>
   
   <link href="//Rocky1ee.github.io/"/>
