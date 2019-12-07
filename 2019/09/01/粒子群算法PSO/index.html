@@ -6,19 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="//Rocky1ee.github.io">
-  <title>Archives: 2019/12 | Rocky1ee的博客</title>
+  <title>粒子群算法 | Rocky1ee的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="学习中">
-<meta name="keywords" content="程序猿,极客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Rocky1ee的博客">
-<meta property="og:url" content="//Rocky1ee.github.io/archives/2019/12/index.html">
+  <meta name="description" content="算法思路 基本思想 粒子群算法-particle swarm optimization。粒子群优化算法的基本思想是：通过群体中个体之间的协作和信息共享来寻找最优解。 我们可以设想这样的一个场景，一群鸟在随机搜寻食物。这个区域里只有一块食物。所有的鸟都不知道食物再哪里，但他们知道目前距离食物还有多远，那么找到食物的最佳策略是什么？ 1.找寻距离食物最近的鸟之周围区域 2.根据自己本身飞行的">
+<meta name="keywords" content="粒子群算法,智能算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="粒子群算法">
+<meta property="og:url" content="//Rocky1ee.github.io/2019/09/01/粒子群算法PSO/index.html">
 <meta property="og:site_name" content="Rocky1ee的博客">
-<meta property="og:description" content="学习中">
+<meta property="og:description" content="算法思路 基本思想 粒子群算法-particle swarm optimization。粒子群优化算法的基本思想是：通过群体中个体之间的协作和信息共享来寻找最优解。 我们可以设想这样的一个场景，一群鸟在随机搜寻食物。这个区域里只有一块食物。所有的鸟都不知道食物再哪里，但他们知道目前距离食物还有多远，那么找到食物的最佳策略是什么？ 1.找寻距离食物最近的鸟之周围区域 2.根据自己本身飞行的">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/粒子群算法1.png">
+<meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/粒子群算法2.png">
+<meta property="og:updated_time" content="2019-12-07T13:43:03.399Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rocky1ee的博客">
-<meta name="twitter:description" content="学习中">
+<meta name="twitter:title" content="粒子群算法">
+<meta name="twitter:description" content="算法思路 基本思想 粒子群算法-particle swarm optimization。粒子群优化算法的基本思想是：通过群体中个体之间的协作和信息共享来寻找最优解。 我们可以设想这样的一个场景，一群鸟在随机搜寻食物。这个区域里只有一块食物。所有的鸟都不知道食物再哪里，但他们知道目前距离食物还有多远，那么找到食物的最佳策略是什么？ 1.找寻距离食物最近的鸟之周围区域 2.根据自己本身飞行的">
+<meta name="twitter:image" content="//rocky1ee.github.io/Assets/BlogImg/粒子群算法1.png">
   
     <link rel="alternative" href="/atom.xml" title="Rocky1ee的博客" type="application/atom+xml">
   
@@ -166,43 +170,388 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-粒子群算法PSO" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      粒子群算法
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/07/粒子群算法PSO/" class="archive-article-date">
-  	<time datetime="2019-12-07T07:48:17.595Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-07</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+        
+        <a href="/2019/09/01/粒子群算法PSO/" class="archive-article-date">
+  	<time datetime="2019-09-01T08:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-01</time>
+</a>
+        <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.6k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">7分</span>
+      </span>
+    </span>
+</div>
+          
+        <!-- 添加完成 -->
+        
+      </header>
+    
+<!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+  <div id="toc-article" class="toc-article">
+      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#算法思路"><span class="toc-number">1.</span> <span class="toc-text">算法思路</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本思想"><span class="toc-number">1.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数学定义"><span class="toc-number">1.2.</span> <span class="toc-text">数学定义</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#算法基本内容"><span class="toc-number">2.</span> <span class="toc-text">算法基本内容</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#初始化"><span class="toc-number">2.1.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新"><span class="toc-number">2.2.</span> <span class="toc-text">更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引入惯性权重因子"><span class="toc-number">2.3.</span> <span class="toc-text">引入惯性权重因子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态权重因子"><span class="toc-number">2.4.</span> <span class="toc-text">动态权重因子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#全局最优法"><span class="toc-number">2.5.</span> <span class="toc-text">全局最优法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#局部最优法"><span class="toc-number">2.6.</span> <span class="toc-text">局部最优法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#算法流程"><span class="toc-number">2.7.</span> <span class="toc-text">算法流程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实例应用"><span class="toc-number">3.</span> <span class="toc-text">实例应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#初始化-1"><span class="toc-number">3.1.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#粒子速度和位置更新"><span class="toc-number">3.2.</span> <span class="toc-text">粒子速度和位置更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新粒子的历史最优位置和全局最优位置"><span class="toc-number">3.3.</span> <span class="toc-text">更新粒子的历史最优位置和全局最优位置：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迭代"><span class="toc-number">3.4.</span> <span class="toc-text">迭代</span></a></li></ol></li></ol>
+         </div>
+   <script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+    };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+    };
+   </script>
+         
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="算法思路">算法思路</h1>
+<h2 id="基本思想">基本思想</h2>
+<p>粒子群算法-particle swarm optimization。粒子群优化算法的基本思想是：通过群体中个体之间的协作和信息共享来寻找最优解。</p>
+<p>我们可以设想这样的一个场景，一群鸟在随机搜寻食物。这个区域里只有一块食物。所有的鸟都不知道食物再哪里，但他们知道目前距离食物还有多远，那么找到食物的最佳策略是什么？</p>
+<p><strong>1.找寻距离食物最近的鸟之周围区域</strong></p>
+<p><strong>2.根据自己本身飞行的经验判断食物的所在</strong></p>
+<p>在PSO中，每个优化问题的潜在解都可以想象成<span class="math inline">\(N\)</span>维搜索空间上的一个点，我们称之为“粒子”（Particle），由目标函数决定每个粒子的适应值，每个粒子还有一个速度决定他们运动的方向和距离，然后粒子们就追随当前的最优粒子在解空间中搜索。</p>
+<h2 id="数学定义">数学定义</h2>
+<p>粒子<span class="math inline">\(i\)</span>在<span class="math inline">\(N\)</span>维空间的位置为： <span class="math display">\[
+X_i = (x_1,x_2,...,x_N)
+\]</span> 运动速度表示为： <span class="math display">\[
+V_i=(v_1,v_2,...,v_N)
+\]</span> 每个粒子都有一个由目标函数决定的<strong>适应值</strong>，并且知道自己到目前为止的最好位置<span class="math inline">\((pbest_i)\)</span>和现在所在的位置<span class="math inline">\(X_i\)</span>．这个可以看作是粒子自己的运动经验。同时，每个粒子还知道到目前整个群体中位置最好的粒子<span class="math inline">\((gbest) (gbest是pbest_i中的最好值)\)</span>．这个可以看作是粒子同伴的经验。粒子就是通过自己的经验和同伴中最好的经验来决定下一步的运动。</p>
+<h1 id="算法基本内容">算法基本内容</h1>
+<h2 id="初始化">初始化</h2>
+<p>对于每个粒子的位置<span class="math inline">\(X_i\)</span>和运动速度<span class="math inline">\(V_i\)</span>进行随机初始化</p>
+<h2 id="更新">更新</h2>
+<p>粒子速度的更新： <span class="math display">\[
+V_i = V_i+c_1\times rand()\times(pbest_i-X_i) + c_2\times rand()\times(gbest-X_i)\qquad公式(1)
+\]</span> 位置的更新： <span class="math display">\[
+X_i = X_i+V_i\qquad 公式(2)
+\]</span> 假设种群中粒子的总数为<span class="math inline">\(M\)</span>。<span class="math inline">\(i \in [1,M]\)</span>。</p>
+<p>随机数<span class="math inline">\(rand() \in (0,1)\)</span>。</p>
+<p>学习因子：<span class="math inline">\(c_1和c_2\)</span></p>
+<p>假设空间的维度为<span class="math inline">\(N\)</span>,在每一维度上，<span class="math inline">\(v_d的上界为v_{dmax},d \in [1,N]\)</span></p>
+<p>公式（1）的第一部分称为<strong>记忆项</strong>，表示上次速度大小和方向的影响；</p>
+<p>第二部分称为<strong>自身认知项</strong>，是从当前点指向粒子自身最好点的一个矢量，粒子自身经验所决定的运动；</p>
+<p>第三部分称为<strong>群体认知项</strong>，是从当前点指向种群最好点的矢量，反映了粒子间的协同合作。</p>
+<p>粒子通过自身的经验和同伴中最好的经验来决定下一步的运动。</p>
+<div class="figure">
+<img src="/Assets/BlogImg/粒子群算法1.png" alt="粒子群算法1">
+<p class="caption">粒子群算法1</p>
+</div>
+<h2 id="引入惯性权重因子">引入惯性权重因子</h2>
+<p>为了完善算法引入惯性权重因子:<span class="math inline">\(\omega \geq 0\)</span>,公式(2)变为： <span class="math display">\[
+V_i = \omega \times V_i+c_1\times rand()\times(pbest_i-X_i) + c_2\times rand()\times(gbest-X_i)\qquad公式(3)
+\]</span> 当<span class="math inline">\(\omega\)</span>越大，越倾向于寻找全局最优。当<span class="math inline">\(\omega\)</span>越小越倾向于寻找局部最优。</p>
+<h2 id="动态权重因子">动态权重因子</h2>
+<p>试验发现动态权重因子比固定权重因子更有效。目前经常采用线性递减权值策略（linearly decreasing weight，LDW） <span class="math display">\[
+\omega=(\omega_{ini}-\omega_{end})(G_k-g)/G_k+\omega_{end}
+\]</span> <span class="math display">\[
+\omega_{ini}:初始惯性权值， \omega_{end}:迭代至最大数时惯性权值，G_k:最大迭代数， g:当前迭代数，
+\]</span></p>
+<p>公式(3)被称为标准PSO。</p>
+<h2 id="全局最优法">全局最优法</h2>
+<p>当<span class="math inline">\(c_1=0\)</span>时，粒子没有了认知能力，变为<strong>只有社会的模型(social-only)</strong>： <span class="math display">\[
+V_i = \omega \times V_i + c_2\times rand()\times(gbest-X_i)\qquad公式(4)
+\]</span> 被称为<strong>全局PSO算法</strong>。粒子有扩展搜索空间能力，具有较快收敛速度，由于缺少局部搜索，对于复杂问题比标准PSO 更易陷入局部最优。</p>
+<h2 id="局部最优法">局部最优法</h2>
+<p>当<span class="math inline">\(c_2=0\)</span>时，则粒子之间没有社会信息，模型变为<strong>只有自我(cognition-only)模型</strong>： <span class="math display">\[
+V_i = \omega \times V_i+c_1\times rand()\times(pbest_i-X_i) \qquad公式(5)
+\]</span> 被称为<strong>局部PSO算法</strong>。由于个体之间没有信息的交流，整个群体相当于多个粒子进行盲目的随机搜索，收敛速度慢，因而得到最优解的可能性小。</p>
+<h2 id="算法流程">算法流程</h2>
+<div class="figure">
+<img src="/Assets/BlogImg/粒子群算法2.png" alt="粒子群算法2">
+<p class="caption">粒子群算法2</p>
+</div>
+<h1 id="实例应用">实例应用</h1>
+<p>用粒子群算法求解<span class="math inline">\(y=f(x_1,x_2)=x_1^2+x_2^2,-10&lt;x_1,x_2&lt;10\)</span>的最小值。已知当<span class="math inline">\(x_1=x_2=0\)</span>时<span class="math inline">\(y\)</span>取最小值。现在用粒子群算法求解。</p>
+<h2 id="初始化-1">初始化</h2>
+<p>设种群大小<span class="math inline">\(M=3\)</span>;惯性权重<span class="math inline">\(\omega=0.5\)</span>;<span class="math inline">\(c_1=c_2=2\)</span>;<span class="math inline">\(r_1,r_2是[0,1]\)</span>内随机数。</p>
+<p>假设个体的初始位置和速度分别为： <span class="math display">\[
+p_1=
+\begin{cases}
+v_1=(3,2)&amp;\\
+x_1=(8,-5)
+\end{cases}
+p_2=
+\begin{cases}
+v_1=(-3,-2)&amp;\\
+x_1=(-5,9)
+\end{cases}
+p_3=
+\begin{cases}
+v_1=(5,2)&amp;\\
+x_1=(-7,-8)
+\end{cases}
+\]</span> 计算适应函数值，并且得到粒子的历史最优位置和群体的全局最优位置 <span class="math display">\[
+\begin{cases}
+f_1=8^2+(-5)^2=89&amp;\\
+pbest=x_1=(8,-5)
+\end{cases}
+\begin{cases}
+f_2=(-5)^2+9^2=106&amp;\\
+pbest=x_2=(-5,9)
+\end{cases}
+\begin{cases}
+f_3=(-7)^2+(-8)^2=113&amp;\\
+pbest=x_3=(-7,-8)
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+gbest=pbest=(8,-5)
+\]</span></p>
+<h2 id="粒子速度和位置更新">粒子速度和位置更新</h2>
+<p><strong>根据自身的历史最优位置和全局最优位置，更新每个粒子的速度和位置：</strong> <span class="math display">\[
+p1=\begin{cases}
+V_1 = \omega \times V_1+c_1\times r_1\times(pbest_1-X_1) + c_2\times r_2\times(gbest-X_1)&amp;\\
+\Rightarrow v_1=\begin{cases}0.5\times3+0+0=1.5 &amp;\\
+0.5\times2+0+0=1
+\end{cases}&amp;\\
+x_1=x_1+v_1=(8,-5)+(1.5,1)=(9.5,-4)
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+p2=\begin{cases}
+V_2 = \omega \times V_2+c_1\times r_1\times(pbest_2-X_2) + c_2\times r_2\times(gbest-X_2)&amp;\\
+\Rightarrow v_2=\begin{cases}0.5\times-3+0+2\times0.3\times(8-(-5))=6.1 &amp;\\
+0.5\times2+0+2\times0.3\times(-5-9)=1.8
+\end{cases}&amp;\\
+x_2=x_2+v_2=(-5,9)+(6.1,1.8)=(1.1,10)
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+p3=\begin{cases}
+V_3 = \omega \times V_3+c_1\times r_1\times(pbest_3-X_3) + c_2\times r_2\times(gbest-X_3)&amp;\\
+\Rightarrow v_2=\begin{cases}0.5\times5+0+2\times0.3\times(8-(-7))=11.5 &amp;\\
+0.5\times3+0+2\times0.3\times(-5-(-8))=3.3
+\end{cases}&amp;\\
+x_3=x_3+v_3=(-7,-8)+(11.5,3.3)=(4.5,-4.7)
+\end{cases}
+\]</span></p>
+<h2 id="更新粒子的历史最优位置和全局最优位置">更新粒子的历史最优位置和全局最优位置：</h2>
+<p><span class="math display">\[
+f_1^*=9.5^2+(-4)^2=106.25&gt;f_1=89\\
+\begin{cases}
+f_1=89&amp;\\
+pbest_1=(8,-5)
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+f_2^*=1.1^2+10^2=101.21&lt;f_2=106\\
+\begin{cases}
+f_2=f_2^*=101.32&amp;\\
+pbest_2=(1.1,10)
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+f_3^*=4.5^2+(-4.7)^2=42.34&lt;f_3=113\\
+\begin{cases}
+f_3=f_3^*=42.34&amp;\\
+pbest_3=(4.5,-4.7)
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+gbest=pbest_3=(4.5,-4.7)
+\]</span></p>
+<h2 id="迭代">迭代</h2>
+<p>如果满足结束条件，则输出全局最优结果并结束程序，否则，转向第二步继续执行。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">粒子群算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">智能算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/算法学习//" class="article-tag-list-link color5">算法学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://Rocky1ee.github.io/2019/09/01/粒子群算法PSO/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/08/31/蚁群算法(ACO)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">蚁群算法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#算法思路"><span class="toc-number">1.</span> <span class="toc-text">算法思路</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本思想"><span class="toc-number">1.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数学定义"><span class="toc-number">1.2.</span> <span class="toc-text">数学定义</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#算法基本内容"><span class="toc-number">2.</span> <span class="toc-text">算法基本内容</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#初始化"><span class="toc-number">2.1.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新"><span class="toc-number">2.2.</span> <span class="toc-text">更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引入惯性权重因子"><span class="toc-number">2.3.</span> <span class="toc-text">引入惯性权重因子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态权重因子"><span class="toc-number">2.4.</span> <span class="toc-text">动态权重因子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#全局最优法"><span class="toc-number">2.5.</span> <span class="toc-text">全局最优法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#局部最优法"><span class="toc-number">2.6.</span> <span class="toc-text">局部最优法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#算法流程"><span class="toc-number">2.7.</span> <span class="toc-text">算法流程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实例应用"><span class="toc-number">3.</span> <span class="toc-text">实例应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#初始化-1"><span class="toc-number">3.1.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#粒子速度和位置更新"><span class="toc-number">3.2.</span> <span class="toc-text">粒子速度和位置更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新粒子的历史最优位置和全局最优位置"><span class="toc-number">3.3.</span> <span class="toc-text">更新粒子的历史最优位置和全局最优位置：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迭代"><span class="toc-number">3.4.</span> <span class="toc-text">迭代</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'true'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
 
 
           </div>
@@ -225,8 +574,8 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
@@ -318,11 +667,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">蚁群算法</a>
+                <a href="javascript:void(0)" class="js-tag color1">粒子群算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">蚁群算法</a>
               </li>
             
             <div class="clearfix"></div>
