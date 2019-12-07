@@ -168,6 +168,205 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-粒子群算法PSO" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+<!-- 目录内容 -->
+   
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>title: 粒子群算法 date: 2019-09-01 16:56:36 categories: 算法学习 toc: true tags: [粒子群算法,智能算法]</p>
+<p>粒子群算法-particle swarm optimization</p>
+<h1 id="算法思路">算法思路</h1>
+<h2 id="基本思想">基本思想</h2>
+<p>粒子群优化算法的基本思想是：通过群体中个体之间的协作和信息共享来寻找最优解。</p>
+<p>我们可以设想这样的一个场景，一群鸟在随机搜寻食物。这个区域里只有一块食物。所有的鸟都不知道食物再哪里，但他们知道目前距离食物还有多远，那么找到食物的最佳策略是什么？</p>
+<p><strong>1.找寻距离食物最近的鸟之周围区域</strong></p>
+<p><strong>2.根据自己本身飞行的经验判断食物的所在</strong></p>
+<p>在PSO中，每个优化问题的潜在解都可以想象成<span class="math inline">\(N\)</span>维搜索空间上的一个点，我们称之为“粒子”（Particle），由目标函数决定每个粒子的适应值，每个粒子还有一个速度决定他们运动的方向和距离，然后粒子们就追随当前的最优粒子在解空间中搜索。</p>
+<h2 id="数学定义">数学定义</h2>
+<p>粒子<span class="math inline">\(i\)</span>在<span class="math inline">\(N\)</span>维空间的位置为： <span class="math display">\[
+X_i = (x_1,x_2,...,x_N)
+\]</span> 运动速度表示为： <span class="math display">\[
+V_i=(v_1,v_2,...,v_N)
+\]</span> 每个粒子都有一个由目标函数决定的<strong>适应值</strong>，并且知道自己到目前为止的最好位置<span class="math inline">\((pbest)\)</span>和现在所在的位置<span class="math inline">\(X_i\)</span>．这个可以看作是粒子自己的运动经验。同时，每个粒子还知道到目前整个群体中位置最好的粒子<span class="math inline">\((gbest) (gbest是pbest中的最好值)\)</span>．这个可以看作是粒子同伴的经验。粒子就是通过自己的经验和同伴中最好的经验来决定下一步的运动。</p>
+<h1 id="算法基本内容">算法基本内容</h1>
+<h2 id="初始化">初始化</h2>
+<p>对于每个粒子的位置<span class="math inline">\(X_i\)</span>和运动速度<span class="math inline">\(V_i\)</span>进行随机初始化</p>
+<h2 id="更新">更新</h2>
+<p>粒子速度的更新： <span class="math display">\[
+V_i = V_i+c_1\times rand()\times(pbest_i-X_i) + c_2\times rand()\times(gbest-X_i)\qquad公式(1)
+\]</span> 位置的更新： <span class="math display">\[
+X_i = X_i+V_i\qquad 公式(2)
+\]</span> 假设种群中粒子的总数为<span class="math inline">\(M\)</span>。<span class="math inline">\(i \in [1,M]\)</span>。</p>
+<p>随机数<span class="math inline">\(rand() \in (0,1)\)</span>。</p>
+<p>学习因子：<span class="math inline">\(c_1和c_2\)</span></p>
+<p>假设空间的维度为<span class="math inline">\(N\)</span>,在每一维度上，<span class="math inline">\(v_d的上界为v_{dmax},d \in [1,N]\)</span></p>
+<p>公式（1）的第一部分称为<strong>记忆项</strong>，表示上次速度大小和方向的影响；</p>
+<p>第二部分称为<strong>自身认知项</strong>，是从当前点指向粒子自身最好点的一个矢量，粒子自身经验所决定的运动；</p>
+<p>第三部分称为<strong>群体认知项</strong>，是从当前点指向种群最好点的矢量，反映了粒子间的协同合作。</p>
+<p>粒子通过自身的经验和同伴中最好的经验来决定下一步的运动。</p>
+<div class="figure">
+<img src="/Assets/BlogImg/粒子群算法1.png" alt="粒子群算法1">
+<p class="caption">粒子群算法1</p>
+</div>
+<h2 id="引入惯性权重因子">引入惯性权重因子</h2>
+<p>为了完善算法引入惯性权重因子:<span class="math inline">\(\omega \geq 0\)</span>,公式(2)变为： <span class="math display">\[
+V_i = \omega \times V_i+c_1\times rand()\times(pbest_i-X_i) + c_2\times rand()\times(gbest-X_i)\qquad公式(3)
+\]</span> 当<span class="math inline">\(\omega\)</span>越大，越倾向于寻找全局最优。当<span class="math inline">\(\omega\)</span>越小越倾向于寻找局部最优。</p>
+<h2 id="动态权重因子">动态权重因子</h2>
+<p>试验发现动态权重因子比固定权重因子更有效。目前经常采用线性递减权值策略（linearly decreasing weight，LDW） <span class="math display">\[
+\omega=(\omega_{ini}-\omega_{end})(G_k-g)/G_k+\omega_{end}
+\]</span> <span class="math display">\[
+\omega_{ini}:初始惯性权值， \omega_{end}:迭代至最大数时惯性权值，G_k:最大迭代数， g:当前迭代数，
+\]</span></p>
+<p>公式(3)被称为标准PSO。</p>
+<h2 id="全局最优法">全局最优法</h2>
+<p>当<span class="math inline">\(c_1=0\)</span>时，粒子没有了认知能力，变为<strong>只有社会的模型(social-only)</strong>： <span class="math display">\[
+V_i = \omega \times V_i + c_2\times rand()\times(gbest-X_i)\qquad公式(4)
+\]</span> 被称为<strong>全局PSO算法</strong>。粒子有扩展搜索空间能力，具有较快收敛速度，由于缺少局部搜索，对于复杂问题比标准PSO 更易陷入局部最优。</p>
+<h2 id="局部最优法">局部最优法</h2>
+<p>当<span class="math inline">\(c_2=0\)</span>时，则粒子之间没有社会信息，模型变为<strong>只有自我(cognition-only)模型</strong>： <span class="math display">\[
+V_i = \omega \times V_i+c_1\times rand()\times(pbest_i-X_i) \qquad公式(5)
+\]</span> 被称为<strong>局部PSO算法</strong>。由于个体之间没有信息的交流，整个群体相当于多个粒子进行盲目的随机搜索，收敛速度慢，因而得到最优解的可能性小。</p>
+<h2 id="算法流程">算法流程</h2>
+<div class="figure">
+<img src="/Assets/BlogImg/粒子群算法2.png" alt="粒子群算法2">
+<p class="caption">粒子群算法2</p>
+</div>
+<h1 id="实例应用">实例应用</h1>
+<p>用粒子群算法求解<span class="math inline">\(y=f(x_1,x_2)=x_1^2+x_2^2,-10&lt;x_1,x_2&lt;10\)</span>的最小值。已知当<span class="math inline">\(x_1=x_2=0\)</span>时<span class="math inline">\(y\)</span>取最小值。现在用粒子群算法求解。</p>
+<h2 id="初始化-1">初始化</h2>
+<p>设种群大小<span class="math inline">\(M=3\)</span>;惯性权重<span class="math inline">\(\omega=0.5\)</span>;<span class="math inline">\(c_1=c_2=2\)</span>;<span class="math inline">\(r_1,r_2是[0,1]\)</span>内随机数。</p>
+<p>假设个体的初始位置和速度分别为： <span class="math display">\[
+p_1=
+\begin{cases}
+v_1=(3,2)&amp;\\
+x_1=(8,-5)
+\end{cases}
+p_2=
+\begin{cases}
+v_1=(-3,-2)&amp;\\
+x_1=(-5,9)
+\end{cases}
+p_3=
+\begin{cases}
+v_1=(5,2)&amp;\\
+x_1=(-7,-8)
+\end{cases}
+\]</span> 计算适应函数值，并且得到粒子的历史最优位置和群体的全局最优位置 $$</p>
+<span class="math display">\[\begin{cases}
+f_1=8^2+(-5)^2=89&amp;\\
+pbest=x_1=(8,-5)
+\end{cases}\begin{cases}
+f_2=(-5)^2+9^2=106&amp;\\
+pbest=x_2=(-5,9)
+\end{cases}\begin{cases}
+f_3=(-7)^2+(-8)^2=113&amp;\\
+pbest=x_3=(-7,-8)
+\end{cases}\]</span>
+<p>$$</p>
+<p><span class="math display">\[
+gbest=pbest=(8,-5)
+\]</span></p>
+<h2 id="粒子速度和位置更新">粒子速度和位置更新</h2>
+<p><strong>根据自身的历史最优位置和全局最优位置，更新每个粒子的速度和位置：</strong> <span class="math display">\[
+p1=\begin{cases}
+V_1 = \omega \times V_1+c_1\times r_1\times(pbest_1-X_1) + c_2\times r_2\times(gbest-X_1)&amp;\\
+\Rightarrow v_1=\begin{cases}0.5\times3+0+0=1.5 &amp;\\
+0.5\times2+0+0=1
+\end{cases}&amp;\\
+x_1=x_1+v_1=(8,-5)+(1.5,1)=(9.5,-4)
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+p2=\begin{cases}
+V_2 = \omega \times V_2+c_1\times r_1\times(pbest_2-X_2) + c_2\times r_2\times(gbest-X_2)&amp;\\
+\Rightarrow v_2=\begin{cases}0.5\times-3+0+2\times0.3\times(8-(-5))=6.1 &amp;\\
+0.5\times2+0+2\times0.3\times(-5-9)=1.8
+\end{cases}&amp;\\
+x_2=x_2+v_2=(-5,9)+(6.1,1.8)=(1.1,10)
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+p3=\begin{cases}
+V_3 = \omega \times V_3+c_1\times r_1\times(pbest_3-X_3) + c_2\times r_2\times(gbest-X_3)&amp;\\
+\Rightarrow v_2=\begin{cases}0.5\times5+0+2\times0.3\times(8-(-7))=11.5 &amp;\\
+0.5\times3+0+2\times0.3\times(-5-(-8))=3.3
+\end{cases}&amp;\\
+x_3=x_3+v_3=(-7,-8)+(11.5,3.3)=(4.5,-4.7)
+\end{cases}
+\]</span></p>
+<h2 id="更新粒子的历史最优位置和全局最优位置">更新粒子的历史最优位置和全局最优位置：</h2>
+<p><span class="math display">\[
+f_1^*=9.5^2+(-4)^2=106.25&gt;f_1=89\\
+\begin{cases}
+f_1=89&amp;\\
+pbest_1=(8,-5)
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+f_2^*=1.1^2+10^2=101.21&lt;f_2=106\\
+\begin{cases}
+f_2=f_2^*=101.32&amp;\\
+pbest_2=(1.1,10)
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+f_3^*=4.5^2+(-4.7)^2=42.34&lt;f_3=113\\
+\begin{cases}
+f_3=f_3^*=42.34&amp;\\
+pbest_3=(4.5,-4.7)
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+gbest=pbest_3=(4.5,-4.7)
+\]</span></p>
+<h2 id="迭代">迭代</h2>
+<p>如果满足结束条件，则输出全局最优结果并结束程序，否则，转向第二步继续执行。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/07/粒子群算法PSO/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-蚁群算法(ACO)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -175,7 +374,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/31/蚁群算法(ACO)/">蚁群算法一些学习记录</a>
+      <a class="article-title" href="/2019/08/31/蚁群算法(ACO)/">蚁群算法</a>
     </h1>
   
 
@@ -278,9 +477,9 @@ var _hmt = _hmt || [];
 <p>首先使用贪婪算法得到路径的<strong>(ACDBA)</strong>, 则<span class="math inline">\(C_{nn}=1+2+4+3=10\)</span>,求得<span class="math inline">\(\tau_0=m\div C_{nn}=0.3\)</span> <span class="math display">\[
 \tau(0)=
 \begin{bmatrix}
-0&amp;0.3&amp;0.3&amp;0.3 \\\\
-0.3&amp;0&amp;0.3&amp;0.3 \\\\
-0.3&amp;0.3&amp;0&amp;0.3 \\\\
+0&amp;0.3&amp;0.3&amp;0.3 \\
+0.3&amp;0&amp;0.3&amp;0.3 \\
+0.3&amp;0.3&amp;0&amp;0.3 \\
 0.3&amp;0.3&amp;0.3&amp;0
 \end{bmatrix}
 \]</span></p>
