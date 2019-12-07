@@ -9,7 +9,7 @@
   <title>蚁群算法一些学习记录 | Rocky1ee的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="路径构建$$\begin{equation}    P_{ij}(t) =   \begin{cases}   \frac{[\tau_{ij}(t)]^\alpha \times [\eta_{ij}(t)]^\beta}{\sum\limits_{k\in allowed_k }[\tau_{ik}(t)]^\alpha \times [\eta_{ik}(t)]^\beta}&amp;amp;">
-<meta name="keywords" content="蚁群算法,算法学习,傻逼">
+<meta name="keywords" content="蚁群算法,智能算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="蚁群算法一些学习记录">
 <meta property="og:url" content="//Rocky1ee.github.io/2019/08/31/蚁群算法(ACO)/index.html">
@@ -17,8 +17,8 @@
 <meta property="og:description" content="路径构建$$\begin{equation}    P_{ij}(t) =   \begin{cases}   \frac{[\tau_{ij}(t)]^\alpha \times [\eta_{ij}(t)]^\beta}{\sum\limits_{k\in allowed_k }[\tau_{ik}(t)]^\alpha \times [\eta_{ik}(t)]^\beta}&amp;amp;">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%954.png">
-<meta property="og:image" content="e:/Rocky1ee.github.io/image/轮盘赌选择法.jpeg">
-<meta property="og:updated_time" content="2019-12-07T04:48:20.605Z">
+<meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/%E8%BD%AE%E7%9B%98%E8%B5%8C%E9%80%89%E6%8B%A9%E6%B3%95.jpeg">
+<meta property="og:updated_time" content="2019-12-07T05:54:11.683Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="蚁群算法一些学习记录">
 <meta name="twitter:description" content="路径构建$$\begin{equation}    P_{ij}(t) =   \begin{cases}   \frac{[\tau_{ij}(t)]^\alpha \times [\eta_{ij}(t)]^\beta}{\sum\limits_{k\in allowed_k }[\tau_{ik}(t)]^\alpha \times [\eta_{ik}(t)]^\beta}&amp;amp;">
@@ -265,9 +265,8 @@ var _hmt = _hmt || [];
 <h3 id="访问地"><a href="#访问地" class="headerlink" title="访问地"></a>访问地</h3><p>以蚂蚁1为例，当前城市$i=A$,可访问城市集合$J_1 (i)={B,C,D}$</p>
 <p>计算蚂蚁1访问各个城市的概率<br>$$<br>A \Rightarrow<br>\begin{cases}<br>B:\tau_{AB}^a\times\eta_{AB}^\beta=0.3^1\times\frac{1}{3}^2=0.033\<br>C:\tau_{AC}^a\times\eta_{AC}^\beta=0.3^1\times\frac{1}{1}^2=0.300\<br>D:\tau_{AD}^a\times\eta_{AD}^\beta=0.3^1\times\frac{1}{2}^2=0.075\<br>\end{cases}<br>$$</p>
 <p>$$<br>P(B)=\frac{0.033}{0.033+0.3+0.075}=0.08\<br>P(C)=\frac{0.03}{0.033+0.3+0.075}=0.74\<br>P(D)=\frac{0.075}{0.033+0.3+0.075}=0.18<br>$$</p>
-<img src="E:\Rocky1ee.github.io\image\轮盘赌选择法.jpeg" style="zoom:80%;">
-
-<p>轮盘赌法：选择累积概率超过随机值的第一个个体。</p>
+<p><img src="/Assets/BlogImg/%E8%BD%AE%E7%9B%98%E8%B5%8C%E9%80%89%E6%8B%A9%E6%B3%95.jpeg" alt="轮盘赌选择法"></p>
+<p>轮盘赌选择法：选择累积概率超过随机值的第一个个体。</p>
 <p>用轮盘赌法选择下一个访问城市。假设产生的随机值$r=0.05$，则蚂蚁<strong>1</strong>会选择城市<strong>B</strong><br>同样，假设蚂蚁<strong>2</strong>选择城市<strong>D</strong>，蚂蚁<strong>3</strong>选择城市<strong>A</strong>。</p>
 <p>现在蚂蚁<strong>1</strong>已经来到<strong>B</strong>了，路径记忆向量$R^l=(AB)$,可访问城市集合$J_i(i)={C,D}$</p>
 <p>蚂蚁<strong>1</strong>访问<strong>C，D</strong>城市的概率：<br>$$<br>B\Rightarrow<br>\begin{cases}<br>C:\tau_{BC}^\alpha\times\eta_{BC}^\beta=0.3^1\times\frac{1}{5}^2=0.012\<br>D:\tau_{BD}^\alpha\times\eta_{BD}^\beta=0.3^1\times\frac{1}{4}^2=0.019<br>\end{cases}\<br>P(C)=\frac{0.012}{0.012+0.019}=0.39\<br>P(D)=\frac{0.019}{0.012+0.019}=0.61<br>$$<br>用轮盘赌法选择下一个访问城市。假设产生的随机数$r=0.67$，则蚂蚁<strong>1</strong>会选择城市<strong>D</strong><br>同样，假设蚂蚁<strong>2</strong>选择城市<strong>C</strong>，蚂蚁<strong>3</strong>选择城市<strong>D</strong>。</p>
@@ -295,11 +294,7 @@ var _hmt = _hmt || [];
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">算法学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">傻逼</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">智能算法</a>
         		</li>
       		
 		</ul>
@@ -568,11 +563,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">算法学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">傻逼</a>
+                <a href="javascript:void(0)" class="js-tag color5">智能算法</a>
               </li>
             
             <div class="clearfix"></div>
