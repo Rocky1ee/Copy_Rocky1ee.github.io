@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="//Rocky1ee.github.io/"/>
-  <updated>2019-12-07T13:43:03.399Z</updated>
+  <updated>2019-12-08T02:30:32.237Z</updated>
   <id>//Rocky1ee.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>进化算法</title>
+    <link href="//Rocky1ee.github.io/2019/09/11/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95GA/"/>
+    <id>//Rocky1ee.github.io/2019/09/11/遗传算法GA/</id>
+    <published>2019-09-11T05:56:36.000Z</published>
+    <updated>2019-12-08T02:30:32.237Z</updated>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        
+
+      
+    
+    </summary>
+    
+      <category term="算法学习" scheme="//Rocky1ee.github.io/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="智能算法" scheme="//Rocky1ee.github.io/tags/%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="进化算法" scheme="//Rocky1ee.github.io/tags/%E8%BF%9B%E5%8C%96%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>粒子群算法</title>
