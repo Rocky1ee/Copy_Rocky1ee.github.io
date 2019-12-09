@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="//Rocky1ee.github.io/"/>
-  <updated>2019-12-08T02:30:32.237Z</updated>
+  <updated>2019-12-09T03:22:27.217Z</updated>
   <id>//Rocky1ee.github.io/</id>
   
   <author>
@@ -17,30 +17,26 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>进化算法</title>
-    <link href="//Rocky1ee.github.io/2019/09/11/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95GA/"/>
-    <id>//Rocky1ee.github.io/2019/09/11/遗传算法GA/</id>
-    <published>2019-09-11T05:56:36.000Z</published>
-    <updated>2019-12-08T02:30:32.237Z</updated>
+    <title></title>
+    <link href="//Rocky1ee.github.io/2019/12/08/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95GA/"/>
+    <id>//Rocky1ee.github.io/2019/12/08/遗传算法GA/</id>
+    <published>2019-12-08T02:19:48.592Z</published>
+    <updated>2019-12-09T03:22:27.217Z</updated>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<hr><hr><h1 id="abstract">Abstract</h1><p>Swarm-based optimization tend to suffer from premature convergence in the high dimensional problem space. thus，proposing simplified swarm optimization (SSO) algorithm to overcome the above convergence problem by incorporating it with the new <strong>local search strategy</strong> named ELS(Exchange Local Search).</p><h1 id="introduction">Introduction</h1><p>The ELS strategy is introduced to find a better solution from the neighbourhood of the current solution which is produced by SSO. It allows the particles to better explore the search space, and preserves swarm diversity which is important in preventing premature convergence of the particles.</p><h1 id="particle-swarm-optimization-and-simplified-swarm-optimization.">Particle Swarm Optimization and Simplified Swarm Optimization.</h1><h2 id="pso">PSO</h2><p><span class="math display">\[v_{id}^t = \omega\cdot v_{id}^{t-1}+c_1\cdot rand_1\cdot (p_{id}-x_{id}^{t-1})+c_2\cdot rand_2\cdot(p_{gd}-x_{id}^{t-1}) \quad (1)\]</span></p><p><span class="math display">\[x_{id}^t = x_{id}^{t-1}+v_{id}^t \quad (2)\]</span></p><p>The algorithm of the standard PSO is presented as follows:</p><ol style="list-style-type: decimal"><li>Initialize a population of particles with random positions and velocities.</li><li>Evaluate the fitness value of each particle in the population.</li><li>Get the <span class="math inline">\(pbest\)</span> value. If the fitness value of the particle <span class="math inline">\(i\)</span> is better than its <span class="math inline">\(pbest\)</span> fitness value, and then set the fitness value as a new <span class="math inline">\(pbest\)</span> of particle <span class="math inline">\(i\)</span>.</li><li>Get the <span class="math inline">\(gbest\)</span> value. If any <span class="math inline">\(pbest\)</span> is updated and it is better than the current <span class="math inline">\(gbest\)</span>, and then set <span class="math inline">\(gbest\)</span> to the current <span class="math inline">\(pbest\)</span> value of particle <span class="math inline">\(i\)</span>.</li><li>Update particle’s velocity and position according to (1) and (2).</li><li>Stop iteration if the best fitness value or the maximum generation is met; otherwise go back to step 2.</li></ol><h2 id="sso">SSO</h2><p>In every generation, the particle’s position value in each dimension will be kept or be updated by its <span class="math inline">\(pbest\)</span> value or by the <span class="math inline">\(gbest\)</span> value or be replaced by new random value according to this procedure. <span class="math display">\[x_{id} = \begin{cases}x_{id}^{t-1},\quad if\quad rand() \in[0,C_\omega]&amp;\\p_{id}^{t-1},\quad if\quad rand() \in[C_\omega,C_p]&amp;\\g_{id}^{t-1},\quad if\quad rand() \in[C_p,C_g]&amp;\\x ,\qquad if\quad rand()\in[C_g,1]&amp;\\\end{cases}\quad (3)\]</span> <span class="math inline">\(C_w\)</span> , <span class="math inline">\(C_p\)</span> and <span class="math inline">\(C_g\)</span> are three predetermined positive constants with <span class="math inline">\(C_w &lt; C_p &lt; C_g\)</span> .</p><div class="figure"><img src="/Assets/BlogImg/SSO1.png" alt="Flowchart of SSO algorithm"><p class="caption">Flowchart of SSO algorithm</p></div><p><strong>根据随机概率对粒子的位置进行更新。从而增强模型的随机性，防止提前收敛。</strong></p><h1 id="the-proposed-sso-els-data-mining-algorithm">The Proposed SSO-ELS Data Mining Algorithm</h1><p>SSO-ELS:Simplified Swarm Optimization (SSO) with Exchange Local Search scheme.</p><h2 id="the-rule-mining-encoding">The rule mining encoding</h2><p><span class="math display">\[LowerBound=x-rand()*(max(X_i)-min(X_i))\quad (4)\]</span></p><p><span class="math display">\[UpperBound=x+rand()*(max(X_i)-min(X_i))\quad (5)\]</span></p><p><strong>$ (max(X_i ) − min(X_i ))$ is the range value of the data source in each attribute.???</strong></p><h2 id="rule-evaluation">Rule evaluation</h2><p>P,N: What's your judgement about the sample?</p><p>T,F: Is your judgement right(True) or not(False)?</p><div class="figure"><img src="/Assets/BlogImg/ROC1.png" alt="Confusion matrix"><p class="caption">Confusion matrix</p></div><p>Evaluation index:</p><p><img src="/Assets/BlogImg/ROC2.png" alt="evaluation index-w60"> <span class="math display">\[The \quad rule\quad quality = sensitivety\times specifigity=\frac{TP}{TP+FN}\times \frac{TN}{TN+FP}\]</span></p><h2 id="rule-pruning">Rule pruning</h2><p><span class="math display">\[Prediction\quad value +=a*rule\quad quality +\beta*percentage\quad of\quad the \quad rule \quad covered\]</span></p><h2 id="the-proposed-exchange-local-search-strategy">The proposed exchange local search strategy</h2><p>The principle of the ELS applied in SSO and PSO rule mining is to exchange the lower bound and upper bound value for one selected attribute from the neighbour particle, re-evaluate the fitness value of the target particle, and then try to find out the new <span class="math inline">\(pbest\)</span> of the target particle or new <span class="math inline">\(gbest\)</span> in the swarm.</p><p>Step 1 Pre-determine local search time <span class="math inline">\((T)\)</span> which will only be used for <span class="math inline">\(gbest\)</span>.</p><p>Step 2 Choose a target particle$ (P_t )$. In this phase, <span class="math inline">\(gbest\)</span> will be the first target particle to be run in <span class="math inline">\(T\)</span> times’ of local search. Later, the other <span class="math inline">\(pbest\)</span> will be sequentially selected as target particles and they will only be run once in local search.</p><p>Step 3 Randomly select one attribute from the rule set in the dataset. This process is called exchangeAttribute.</p><p>Step 4 Randomly select two different neighbour particles, <span class="math inline">\(P_x\)</span> and <span class="math inline">\(P_y\)</span> from the population.</p><p>Step 5 Get a <span class="math inline">\(LowerBound(x)\)</span> of the selected attribute (selected from Step 3) of $P_x $, and get an <span class="math inline">\(UpperBound(y)\)</span> of the selected attribute of <span class="math inline">\(P_y\)</span> .</p><p>Step 6 Temporarily replace the corresponding <span class="math inline">\(LowerBound\)</span> and <span class="math inline">\(UpperBound\)</span> of the tar- get particle with <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p><p>Step 7 Re-evaluate the fitness value of the target particle.</p><p>Step 8 Check whether the fitness value is better than the current <span class="math inline">\(pbest\)</span> of the target particle or better than <span class="math inline">\(gbest\)</span>. If it is better, <span class="math inline">\(pbest\)</span> and <span class="math inline">\(gbest\)</span> will be updated,and the exchange value for the target particle will be kept; otherwise, the original <span class="math inline">\(LowerBound\)</span> and <span class="math inline">\(UpperBound\)</span> values will be positioned back to the target particle.</p><div class="figure"><img src="/Assets/BlogImg/ELS.png" alt="The process of the ELS"><p class="caption">The process of the ELS</p></div><div class="figure"><img src="/Assets/BlogImg/exchange%20Attribute.png" alt="The UpperBound and LowerBound exchange strategy for one selected attribute in each generation (note: UB = UpperBound, LB = LowerBound)"><p class="caption">The UpperBound and LowerBound exchange strategy for one selected attribute in each generation (note: UB = UpperBound, LB = LowerBound)</p></div><h1 id="conclusions">Conclusions</h1><p>The main idea of exchange local search is to improve and refine the searching process by exchanging the <span class="math inline">\(LowerBound\)</span> and <span class="math inline">\(UpperBound\)</span> for one selected attribute into the <span class="math inline">\(LowerBound\)</span> and <span class="math inline">\(UpperBound\)</span> of the corresponding target particle.</p><p>reference</p><p>precision and recall,ROC,AUC</p><p>https://towardsdatascience.com/beyond-accuracy-precision-and-recall-3da06bea9f6c</p><p>A new simplified swarm optimization (SSO) using exchange local search scheme</p>]]></content>
     
     <summary type="html">
     
       
       
-        
-
+        &lt;hr&gt;
+&lt;hr&gt;
+&lt;h1 id=&quot;abstract&quot;&gt;Abstract&lt;/h1&gt;
+&lt;p&gt;Swarm-based optimization tend to suffer from premature convergence in the high dimensional p
       
     
     </summary>
     
-      <category term="算法学习" scheme="//Rocky1ee.github.io/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="智能算法" scheme="//Rocky1ee.github.io/tags/%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="进化算法" scheme="//Rocky1ee.github.io/tags/%E8%BF%9B%E5%8C%96%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
