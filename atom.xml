@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="//Rocky1ee.github.io/"/>
-  <updated>2019-12-09T03:22:27.217Z</updated>
+  <updated>2019-12-09T05:44:22.908Z</updated>
   <id>//Rocky1ee.github.io/</id>
   
   <author>
@@ -18,21 +18,19 @@
   
   <entry>
     <title></title>
-    <link href="//Rocky1ee.github.io/2019/12/08/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95GA/"/>
-    <id>//Rocky1ee.github.io/2019/12/08/遗传算法GA/</id>
-    <published>2019-12-08T02:19:48.592Z</published>
-    <updated>2019-12-09T03:22:27.217Z</updated>
+    <link href="//Rocky1ee.github.io/2019/12/09/%E8%92%99%E7%89%B9%E5%8D%A1%E7%BD%97%E7%AE%97%E6%B3%95/"/>
+    <id>//Rocky1ee.github.io/2019/12/09/蒙特卡罗算法/</id>
+    <published>2019-12-09T05:44:22.908Z</published>
+    <updated>2019-12-09T05:44:22.908Z</updated>
     
-    <content type="html"><![CDATA[<hr><hr><h1 id="abstract">Abstract</h1><p>Swarm-based optimization tend to suffer from premature convergence in the high dimensional problem space. thus，proposing simplified swarm optimization (SSO) algorithm to overcome the above convergence problem by incorporating it with the new <strong>local search strategy</strong> named ELS(Exchange Local Search).</p><h1 id="introduction">Introduction</h1><p>The ELS strategy is introduced to find a better solution from the neighbourhood of the current solution which is produced by SSO. It allows the particles to better explore the search space, and preserves swarm diversity which is important in preventing premature convergence of the particles.</p><h1 id="particle-swarm-optimization-and-simplified-swarm-optimization.">Particle Swarm Optimization and Simplified Swarm Optimization.</h1><h2 id="pso">PSO</h2><p><span class="math display">\[v_{id}^t = \omega\cdot v_{id}^{t-1}+c_1\cdot rand_1\cdot (p_{id}-x_{id}^{t-1})+c_2\cdot rand_2\cdot(p_{gd}-x_{id}^{t-1}) \quad (1)\]</span></p><p><span class="math display">\[x_{id}^t = x_{id}^{t-1}+v_{id}^t \quad (2)\]</span></p><p>The algorithm of the standard PSO is presented as follows:</p><ol style="list-style-type: decimal"><li>Initialize a population of particles with random positions and velocities.</li><li>Evaluate the fitness value of each particle in the population.</li><li>Get the <span class="math inline">\(pbest\)</span> value. If the fitness value of the particle <span class="math inline">\(i\)</span> is better than its <span class="math inline">\(pbest\)</span> fitness value, and then set the fitness value as a new <span class="math inline">\(pbest\)</span> of particle <span class="math inline">\(i\)</span>.</li><li>Get the <span class="math inline">\(gbest\)</span> value. If any <span class="math inline">\(pbest\)</span> is updated and it is better than the current <span class="math inline">\(gbest\)</span>, and then set <span class="math inline">\(gbest\)</span> to the current <span class="math inline">\(pbest\)</span> value of particle <span class="math inline">\(i\)</span>.</li><li>Update particle’s velocity and position according to (1) and (2).</li><li>Stop iteration if the best fitness value or the maximum generation is met; otherwise go back to step 2.</li></ol><h2 id="sso">SSO</h2><p>In every generation, the particle’s position value in each dimension will be kept or be updated by its <span class="math inline">\(pbest\)</span> value or by the <span class="math inline">\(gbest\)</span> value or be replaced by new random value according to this procedure. <span class="math display">\[x_{id} = \begin{cases}x_{id}^{t-1},\quad if\quad rand() \in[0,C_\omega]&amp;\\p_{id}^{t-1},\quad if\quad rand() \in[C_\omega,C_p]&amp;\\g_{id}^{t-1},\quad if\quad rand() \in[C_p,C_g]&amp;\\x ,\qquad if\quad rand()\in[C_g,1]&amp;\\\end{cases}\quad (3)\]</span> <span class="math inline">\(C_w\)</span> , <span class="math inline">\(C_p\)</span> and <span class="math inline">\(C_g\)</span> are three predetermined positive constants with <span class="math inline">\(C_w &lt; C_p &lt; C_g\)</span> .</p><div class="figure"><img src="/Assets/BlogImg/SSO1.png" alt="Flowchart of SSO algorithm"><p class="caption">Flowchart of SSO algorithm</p></div><p><strong>根据随机概率对粒子的位置进行更新。从而增强模型的随机性，防止提前收敛。</strong></p><h1 id="the-proposed-sso-els-data-mining-algorithm">The Proposed SSO-ELS Data Mining Algorithm</h1><p>SSO-ELS:Simplified Swarm Optimization (SSO) with Exchange Local Search scheme.</p><h2 id="the-rule-mining-encoding">The rule mining encoding</h2><p><span class="math display">\[LowerBound=x-rand()*(max(X_i)-min(X_i))\quad (4)\]</span></p><p><span class="math display">\[UpperBound=x+rand()*(max(X_i)-min(X_i))\quad (5)\]</span></p><p><strong>$ (max(X_i ) − min(X_i ))$ is the range value of the data source in each attribute.???</strong></p><h2 id="rule-evaluation">Rule evaluation</h2><p>P,N: What's your judgement about the sample?</p><p>T,F: Is your judgement right(True) or not(False)?</p><div class="figure"><img src="/Assets/BlogImg/ROC1.png" alt="Confusion matrix"><p class="caption">Confusion matrix</p></div><p>Evaluation index:</p><p><img src="/Assets/BlogImg/ROC2.png" alt="evaluation index-w60"> <span class="math display">\[The \quad rule\quad quality = sensitivety\times specifigity=\frac{TP}{TP+FN}\times \frac{TN}{TN+FP}\]</span></p><h2 id="rule-pruning">Rule pruning</h2><p><span class="math display">\[Prediction\quad value +=a*rule\quad quality +\beta*percentage\quad of\quad the \quad rule \quad covered\]</span></p><h2 id="the-proposed-exchange-local-search-strategy">The proposed exchange local search strategy</h2><p>The principle of the ELS applied in SSO and PSO rule mining is to exchange the lower bound and upper bound value for one selected attribute from the neighbour particle, re-evaluate the fitness value of the target particle, and then try to find out the new <span class="math inline">\(pbest\)</span> of the target particle or new <span class="math inline">\(gbest\)</span> in the swarm.</p><p>Step 1 Pre-determine local search time <span class="math inline">\((T)\)</span> which will only be used for <span class="math inline">\(gbest\)</span>.</p><p>Step 2 Choose a target particle$ (P_t )$. In this phase, <span class="math inline">\(gbest\)</span> will be the first target particle to be run in <span class="math inline">\(T\)</span> times’ of local search. Later, the other <span class="math inline">\(pbest\)</span> will be sequentially selected as target particles and they will only be run once in local search.</p><p>Step 3 Randomly select one attribute from the rule set in the dataset. This process is called exchangeAttribute.</p><p>Step 4 Randomly select two different neighbour particles, <span class="math inline">\(P_x\)</span> and <span class="math inline">\(P_y\)</span> from the population.</p><p>Step 5 Get a <span class="math inline">\(LowerBound(x)\)</span> of the selected attribute (selected from Step 3) of $P_x $, and get an <span class="math inline">\(UpperBound(y)\)</span> of the selected attribute of <span class="math inline">\(P_y\)</span> .</p><p>Step 6 Temporarily replace the corresponding <span class="math inline">\(LowerBound\)</span> and <span class="math inline">\(UpperBound\)</span> of the tar- get particle with <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p><p>Step 7 Re-evaluate the fitness value of the target particle.</p><p>Step 8 Check whether the fitness value is better than the current <span class="math inline">\(pbest\)</span> of the target particle or better than <span class="math inline">\(gbest\)</span>. If it is better, <span class="math inline">\(pbest\)</span> and <span class="math inline">\(gbest\)</span> will be updated,and the exchange value for the target particle will be kept; otherwise, the original <span class="math inline">\(LowerBound\)</span> and <span class="math inline">\(UpperBound\)</span> values will be positioned back to the target particle.</p><div class="figure"><img src="/Assets/BlogImg/ELS.png" alt="The process of the ELS"><p class="caption">The process of the ELS</p></div><div class="figure"><img src="/Assets/BlogImg/exchange%20Attribute.png" alt="The UpperBound and LowerBound exchange strategy for one selected attribute in each generation (note: UB = UpperBound, LB = LowerBound)"><p class="caption">The UpperBound and LowerBound exchange strategy for one selected attribute in each generation (note: UB = UpperBound, LB = LowerBound)</p></div><h1 id="conclusions">Conclusions</h1><p>The main idea of exchange local search is to improve and refine the searching process by exchanging the <span class="math inline">\(LowerBound\)</span> and <span class="math inline">\(UpperBound\)</span> for one selected attribute into the <span class="math inline">\(LowerBound\)</span> and <span class="math inline">\(UpperBound\)</span> of the corresponding target particle.</p><p>reference</p><p>precision and recall,ROC,AUC</p><p>https://towardsdatascience.com/beyond-accuracy-precision-and-recall-3da06bea9f6c</p><p>A new simplified swarm optimization (SSO) using exchange local search scheme</p>]]></content>
+    <content type="html"><![CDATA[]]></content>
     
     <summary type="html">
     
       
       
-        &lt;hr&gt;
-&lt;hr&gt;
-&lt;h1 id=&quot;abstract&quot;&gt;Abstract&lt;/h1&gt;
-&lt;p&gt;Swarm-based optimization tend to suffer from premature convergence in the high dimensional p
+        
+
       
     
     </summary>
@@ -41,23 +39,273 @@
   </entry>
   
   <entry>
+    <title>简化粒子群</title>
+    <link href="//Rocky1ee.github.io/2019/09/03/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95GA/"/>
+    <id>//Rocky1ee.github.io/2019/09/03/遗传算法GA/</id>
+    <published>2019-09-03T07:56:36.000Z</published>
+    <updated>2019-12-09T12:02:33.732Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="abstract">Abstract</h1><p>Swarm-based optimization tend to suffer from premature convergence in the high dimensional problem space. thus，proposing simplified swarm optimization (SSO) algorithm to overcome the above convergence problem by incorporating it with the new <strong>local search strategy</strong> named ELS(Exchange Local Search).</p><h1 id="introduction">Introduction</h1><p>The ELS strategy is introduced to find a better solution from the neighbourhood of the current solution which is produced by SSO. It allows the particles to better explore the search space, and preserves swarm diversity which is important in preventing premature convergence of the particles.</p><h1 id="particle-swarm-optimization-and-simplified-swarm-optimization.">Particle Swarm Optimization and Simplified Swarm Optimization.</h1><h2 id="pso">PSO</h2><p><span class="math display">\[v_{id}^t = \omega\cdot v_{id}^{t-1}+c_1\cdot rand_1\cdot (p_{id}-x_{id}^{t-1})+c_2\cdot rand_2\cdot(p_{gd}-x_{id}^{t-1}) \quad (1)\]</span></p><p><span class="math display">\[x_{id}^t = x_{id}^{t-1}+v_{id}^t \quad (2)\]</span></p><p>The algorithm of the standard PSO is presented as follows:</p><ol style="list-style-type: decimal"><li>Initialize a population of particles with random positions and velocities.</li><li>Evaluate the fitness value of each particle in the population.</li><li>Get the <span class="math inline">\(pbest\)</span> value. If the fitness value of the particle <span class="math inline">\(i\)</span> is better than its <span class="math inline">\(pbest\)</span> fitness value, and then set the fitness value as a new <span class="math inline">\(pbest\)</span> of particle <span class="math inline">\(i\)</span>.</li><li>Get the <span class="math inline">\(gbest\)</span> value. If any <span class="math inline">\(pbest\)</span> is updated and it is better than the current <span class="math inline">\(gbest\)</span>, and then set <span class="math inline">\(gbest\)</span> to the current <span class="math inline">\(pbest\)</span> value of particle <span class="math inline">\(i\)</span>.</li><li>Update particle’s velocity and position according to (1) and (2).</li><li>Stop iteration if the best fitness value or the maximum generation is met; otherwise go back to step 2.</li></ol><h2 id="sso">SSO</h2><p>In every generation, the particle’s position value in each dimension will be kept or be updated by its <span class="math inline">\(pbest\)</span> value or by the <span class="math inline">\(gbest\)</span> value or be replaced by new random value according to this procedure. <span class="math display">\[x_{id} = \begin{cases}x_{id}^{t-1},\quad if\quad rand() \in[0,C_\omega]&amp;\\p_{id}^{t-1},\quad if\quad rand() \in[C_\omega,C_p]&amp;\\g_{id}^{t-1},\quad if\quad rand() \in[C_p,C_g]&amp;\\x ,\qquad if\quad rand()\in[C_g,1]&amp;\\\end{cases}\quad (3)\]</span> <span class="math inline">\(C_w\)</span> , <span class="math inline">\(C_p\)</span> and <span class="math inline">\(C_g\)</span> are three predetermined positive constants with <span class="math inline">\(C_w &lt; C_p &lt; C_g\)</span> .</p><div class="figure"><img src="/Assets/BlogImg/SSO1.png" alt="Flowchart of SSO algorithm"><p class="caption">Flowchart of SSO algorithm</p></div><p><strong>根据随机概率对粒子的位置进行更新。从而增强模型的随机性，防止提前收敛。</strong></p><h1 id="the-proposed-sso-els-data-mining-algorithm">The Proposed SSO-ELS Data Mining Algorithm</h1><p>SSO-ELS:Simplified Swarm Optimization (SSO) with Exchange Local Search scheme.</p><h2 id="the-rule-mining-encoding">The rule mining encoding</h2><p><span class="math display">\[LowerBound=x-rand()*(max(X_i)-min(X_i))\quad (4)\]</span></p><p><span class="math display">\[UpperBound=x+rand()*(max(X_i)-min(X_i))\quad (5)\]</span></p><p><strong>$ (max(X_i ) − min(X_i ))$ is the range value of the data source in each attribute.???</strong></p><h2 id="rule-evaluation">Rule evaluation</h2><p>P,N: What's your judgement about the sample?</p><p>T,F: Is your judgement right(True) or not(False)?</p><div class="figure"><img src="/Assets/BlogImg/ROC1.png" alt="Confusion matrix"><p class="caption">Confusion matrix</p></div><p>Evaluation index:</p><p><img src="/Assets/BlogImg/ROC2.png" alt="evaluation index-w60"> <span class="math display">\[The \quad rule\quad quality = sensitivety\times specifigity=\frac{TP}{TP+FN}\times \frac{TN}{TN+FP}\]</span></p><h2 id="rule-pruning">Rule pruning</h2><p><span class="math display">\[Prediction\quad value +=a*rule\quad quality +\beta*percentage\quad of\quad the \quad rule \quad covered\]</span></p><h2 id="the-proposed-exchange-local-search-strategy">The proposed exchange local search strategy</h2><p>The principle of the ELS applied in SSO and PSO rule mining is to exchange the lower bound and upper bound value for one selected attribute from the neighbour particle, re-evaluate the fitness value of the target particle, and then try to find out the new <span class="math inline">\(pbest\)</span> of the target particle or new <span class="math inline">\(gbest\)</span> in the swarm.</p><p>Step 1 Pre-determine local search time <span class="math inline">\((T)\)</span> which will only be used for <span class="math inline">\(gbest\)</span>.</p><p>Step 2 Choose a target particle$ (P_t )$. In this phase, <span class="math inline">\(gbest\)</span> will be the first target particle to be run in <span class="math inline">\(T\)</span> times’ of local search. Later, the other <span class="math inline">\(pbest\)</span> will be sequentially selected as target particles and they will only be run once in local search.</p><p>Step 3 Randomly select one attribute from the rule set in the dataset. This process is called exchangeAttribute.</p><p>Step 4 Randomly select two different neighbour particles, <span class="math inline">\(P_x\)</span> and <span class="math inline">\(P_y\)</span> from the population.</p><p>Step 5 Get a <span class="math inline">\(LowerBound(x)\)</span> of the selected attribute (selected from Step 3) of $P_x $, and get an <span class="math inline">\(UpperBound(y)\)</span> of the selected attribute of <span class="math inline">\(P_y\)</span> .</p><p>Step 6 Temporarily replace the corresponding <span class="math inline">\(LowerBound\)</span> and <span class="math inline">\(UpperBound\)</span> of the tar- get particle with <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p><p>Step 7 Re-evaluate the fitness value of the target particle.</p><p>Step 8 Check whether the fitness value is better than the current <span class="math inline">\(pbest\)</span> of the target particle or better than <span class="math inline">\(gbest\)</span>. If it is better, <span class="math inline">\(pbest\)</span> and <span class="math inline">\(gbest\)</span> will be updated,and the exchange value for the target particle will be kept; otherwise, the original <span class="math inline">\(LowerBound\)</span> and <span class="math inline">\(UpperBound\)</span> values will be positioned back to the target particle.</p><div class="figure"><img src="/Assets/BlogImg/ELS.png" alt="The process of the ELS"><p class="caption">The process of the ELS</p></div><div class="figure"><img src="/Assets/BlogImg/exchange%20Attribute.png" alt="The UpperBound and LowerBound exchange strategy for one selected attribute in each generation (note: UB = UpperBound, LB = LowerBound)"><p class="caption">The UpperBound and LowerBound exchange strategy for one selected attribute in each generation (note: UB = UpperBound, LB = LowerBound)</p></div><h1 id="conclusions">Conclusions</h1><p>The main idea of exchange local search is to improve and refine the searching process by exchanging the <span class="math inline">\(LowerBound\)</span> and <span class="math inline">\(UpperBound\)</span> for one selected attribute into the <span class="math inline">\(LowerBound\)</span> and <span class="math inline">\(UpperBound\)</span> of the corresponding target particle.</p><p>reference</p><p>precision and recall,ROC,AUC</p><p>https://towardsdatascience.com/beyond-accuracy-precision-and-recall-3da06bea9f6c</p><p>A new simplified swarm optimization (SSO) using exchange local search scheme</p><a id="more"></a>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;abstract&quot;&gt;Abstract&lt;/h1&gt;
+&lt;p&gt;Swarm-based optimization tend to suffer from premature convergence in the high dimensional problem space. thus，proposing simplified swarm optimization (SSO) algorithm to overcome the above convergence problem by incorporating it with the new &lt;strong&gt;local search strategy&lt;/strong&gt; named ELS(Exchange Local Search).&lt;/p&gt;
+&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;The ELS strategy is introduced to find a better solution from the neighbourhood of the current solution which is produced by SSO. It allows the particles to better explore the search space, and preserves swarm diversity which is important in preventing premature convergence of the particles.&lt;/p&gt;
+&lt;h1 id=&quot;particle-swarm-optimization-and-simplified-swarm-optimization.&quot;&gt;Particle Swarm Optimization and Simplified Swarm Optimization.&lt;/h1&gt;
+&lt;h2 id=&quot;pso&quot;&gt;PSO&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;\[
+v_{id}^t = \omega\cdot v_{id}^{t-1}+c_1\cdot rand_1\cdot (p_{id}-x_{id}^{t-1})+c_2\cdot rand_2\cdot(p_{gd}-x_{id}^{t-1}) \quad (1)
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;\[
+x_{id}^t = x_{id}^{t-1}+v_{id}^t \quad (2)
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The algorithm of the standard PSO is presented as follows:&lt;/p&gt;
+&lt;ol style=&quot;list-style-type: decimal&quot;&gt;
+&lt;li&gt;Initialize a population of particles with random positions and velocities.&lt;/li&gt;
+&lt;li&gt;Evaluate the fitness value of each particle in the population.&lt;/li&gt;
+&lt;li&gt;Get the &lt;span class=&quot;math inline&quot;&gt;\(pbest\)&lt;/span&gt; value. If the fitness value of the particle &lt;span class=&quot;math inline&quot;&gt;\(i\)&lt;/span&gt; is better than its &lt;span class=&quot;math inline&quot;&gt;\(pbest\)&lt;/span&gt; fitness value, and then set the fitness value as a new &lt;span class=&quot;math inline&quot;&gt;\(pbest\)&lt;/span&gt; of particle &lt;span class=&quot;math inline&quot;&gt;\(i\)&lt;/span&gt;.&lt;/li&gt;
+&lt;li&gt;Get the &lt;span class=&quot;math inline&quot;&gt;\(gbest\)&lt;/span&gt; value. If any &lt;span class=&quot;math inline&quot;&gt;\(pbest\)&lt;/span&gt; is updated and it is better than the current &lt;span class=&quot;math inline&quot;&gt;\(gbest\)&lt;/span&gt;, and then set &lt;span class=&quot;math inline&quot;&gt;\(gbest\)&lt;/span&gt; to the current &lt;span class=&quot;math inline&quot;&gt;\(pbest\)&lt;/span&gt; value of particle &lt;span class=&quot;math inline&quot;&gt;\(i\)&lt;/span&gt;.&lt;/li&gt;
+&lt;li&gt;Update particle’s velocity and position according to (1) and (2).&lt;/li&gt;
+&lt;li&gt;Stop iteration if the best fitness value or the maximum generation is met; otherwise go back to step 2.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;sso&quot;&gt;SSO&lt;/h2&gt;
+&lt;p&gt;In every generation, the particle’s position value in each dimension will be kept or be updated by its &lt;span class=&quot;math inline&quot;&gt;\(pbest\)&lt;/span&gt; value or by the &lt;span class=&quot;math inline&quot;&gt;\(gbest\)&lt;/span&gt; value or be replaced by new random value according to this procedure. &lt;span class=&quot;math display&quot;&gt;\[
+x_{id} = 
+\begin{cases}
+x_{id}^{t-1},\quad if\quad rand() \in[0,C_\omega]&amp;amp;\\
+p_{id}^{t-1},\quad if\quad rand() \in[C_\omega,C_p]&amp;amp;\\
+g_{id}^{t-1},\quad if\quad rand() \in[C_p,C_g]&amp;amp;\\
+x ,\qquad if\quad rand()\in[C_g,1]&amp;amp;\\
+\end{cases}\quad (3)
+\]&lt;/span&gt; &lt;span class=&quot;math inline&quot;&gt;\(C_w\)&lt;/span&gt; , &lt;span class=&quot;math inline&quot;&gt;\(C_p\)&lt;/span&gt; and &lt;span class=&quot;math inline&quot;&gt;\(C_g\)&lt;/span&gt; are three predetermined positive constants with &lt;span class=&quot;math inline&quot;&gt;\(C_w &amp;lt; C_p &amp;lt; C_g\)&lt;/span&gt; .&lt;/p&gt;
+&lt;div class=&quot;figure&quot;&gt;
+&lt;img src=&quot;/Assets/BlogImg/SSO1.png&quot; alt=&quot;Flowchart of SSO algorithm&quot;&gt;
+&lt;p class=&quot;caption&quot;&gt;Flowchart of SSO algorithm&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;根据随机概率对粒子的位置进行更新。从而增强模型的随机性，防止提前收敛。&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;the-proposed-sso-els-data-mining-algorithm&quot;&gt;The Proposed SSO-ELS Data Mining Algorithm&lt;/h1&gt;
+&lt;p&gt;SSO-ELS:Simplified Swarm Optimization (SSO) with Exchange Local Search scheme.&lt;/p&gt;
+&lt;h2 id=&quot;the-rule-mining-encoding&quot;&gt;The rule mining encoding&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;\[
+LowerBound=x-rand()*(max(X_i)-min(X_i))\quad (4)
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;\[
+UpperBound=x+rand()*(max(X_i)-min(X_i))\quad (5)
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;$ (max(X_i ) − min(X_i ))$ is the range value of the data source in each attribute.???&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;rule-evaluation&quot;&gt;Rule evaluation&lt;/h2&gt;
+&lt;p&gt;P,N: What&#39;s your judgement about the sample?&lt;/p&gt;
+&lt;p&gt;T,F: Is your judgement right(True) or not(False)?&lt;/p&gt;
+&lt;div class=&quot;figure&quot;&gt;
+&lt;img src=&quot;/Assets/BlogImg/ROC1.png&quot; alt=&quot;Confusion matrix&quot;&gt;
+&lt;p class=&quot;caption&quot;&gt;Confusion matrix&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Evaluation index:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/Assets/BlogImg/ROC2.png&quot; alt=&quot;evaluation index-w60&quot;&gt; &lt;span class=&quot;math display&quot;&gt;\[
+The \quad rule\quad quality = sensitivety\times specifigity=\frac{TP}{TP+FN}\times \frac{TN}{TN+FP}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&quot;rule-pruning&quot;&gt;Rule pruning&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;\[
+Prediction\quad value +=a*rule\quad quality +\beta*percentage\quad of\quad the \quad rule \quad covered
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&quot;the-proposed-exchange-local-search-strategy&quot;&gt;The proposed exchange local search strategy&lt;/h2&gt;
+&lt;p&gt;The principle of the ELS applied in SSO and PSO rule mining is to exchange the lower bound and upper bound value for one selected attribute from the neighbour particle, re-evaluate the fitness value of the target particle, and then try to find out the new &lt;span class=&quot;math inline&quot;&gt;\(pbest\)&lt;/span&gt; of the target particle or new &lt;span class=&quot;math inline&quot;&gt;\(gbest\)&lt;/span&gt; in the swarm.&lt;/p&gt;
+&lt;p&gt;Step 1 Pre-determine local search time &lt;span class=&quot;math inline&quot;&gt;\((T)\)&lt;/span&gt; which will only be used for &lt;span class=&quot;math inline&quot;&gt;\(gbest\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Step 2 Choose a target particle$ (P_t )$. In this phase, &lt;span class=&quot;math inline&quot;&gt;\(gbest\)&lt;/span&gt; will be the first target particle to be run in &lt;span class=&quot;math inline&quot;&gt;\(T\)&lt;/span&gt; times’ of local search. Later, the other &lt;span class=&quot;math inline&quot;&gt;\(pbest\)&lt;/span&gt; will be sequentially selected as target particles and they will only be run once in local search.&lt;/p&gt;
+&lt;p&gt;Step 3 Randomly select one attribute from the rule set in the dataset. This process is called exchangeAttribute.&lt;/p&gt;
+&lt;p&gt;Step 4 Randomly select two different neighbour particles, &lt;span class=&quot;math inline&quot;&gt;\(P_x\)&lt;/span&gt; and &lt;span class=&quot;math inline&quot;&gt;\(P_y\)&lt;/span&gt; from the population.&lt;/p&gt;
+&lt;p&gt;Step 5 Get a &lt;span class=&quot;math inline&quot;&gt;\(LowerBound(x)\)&lt;/span&gt; of the selected attribute (selected from Step 3) of $P_x $, and get an &lt;span class=&quot;math inline&quot;&gt;\(UpperBound(y)\)&lt;/span&gt; of the selected attribute of &lt;span class=&quot;math inline&quot;&gt;\(P_y\)&lt;/span&gt; .&lt;/p&gt;
+&lt;p&gt;Step 6 Temporarily replace the corresponding &lt;span class=&quot;math inline&quot;&gt;\(LowerBound\)&lt;/span&gt; and &lt;span class=&quot;math inline&quot;&gt;\(UpperBound\)&lt;/span&gt; of the tar- get particle with &lt;span class=&quot;math inline&quot;&gt;\(x\)&lt;/span&gt; and &lt;span class=&quot;math inline&quot;&gt;\(y\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Step 7 Re-evaluate the fitness value of the target particle.&lt;/p&gt;
+&lt;p&gt;Step 8 Check whether the fitness value is better than the current &lt;span class=&quot;math inline&quot;&gt;\(pbest\)&lt;/span&gt; of the target particle or better than &lt;span class=&quot;math inline&quot;&gt;\(gbest\)&lt;/span&gt;. If it is better, &lt;span class=&quot;math inline&quot;&gt;\(pbest\)&lt;/span&gt; and &lt;span class=&quot;math inline&quot;&gt;\(gbest\)&lt;/span&gt; will be updated,and the exchange value for the target particle will be kept; otherwise, the original &lt;span class=&quot;math inline&quot;&gt;\(LowerBound\)&lt;/span&gt; and &lt;span class=&quot;math inline&quot;&gt;\(UpperBound\)&lt;/span&gt; values will be positioned back to the target particle.&lt;/p&gt;
+&lt;div class=&quot;figure&quot;&gt;
+&lt;img src=&quot;/Assets/BlogImg/ELS.png&quot; alt=&quot;The process of the ELS&quot;&gt;
+&lt;p class=&quot;caption&quot;&gt;The process of the ELS&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;figure&quot;&gt;
+&lt;img src=&quot;/Assets/BlogImg/exchange%20Attribute.png&quot; alt=&quot;The UpperBound and LowerBound exchange strategy for one selected attribute in each generation (note: UB = UpperBound, LB = LowerBound)&quot;&gt;
+&lt;p class=&quot;caption&quot;&gt;The UpperBound and LowerBound exchange strategy for one selected attribute in each generation (note: UB = UpperBound, LB = LowerBound)&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id=&quot;conclusions&quot;&gt;Conclusions&lt;/h1&gt;
+&lt;p&gt;The main idea of exchange local search is to improve and refine the searching process by exchanging the &lt;span class=&quot;math inline&quot;&gt;\(LowerBound\)&lt;/span&gt; and &lt;span class=&quot;math inline&quot;&gt;\(UpperBound\)&lt;/span&gt; for one selected attribute into the &lt;span class=&quot;math inline&quot;&gt;\(LowerBound\)&lt;/span&gt; and &lt;span class=&quot;math inline&quot;&gt;\(UpperBound\)&lt;/span&gt; of the corresponding target particle.&lt;/p&gt;
+&lt;p&gt;reference&lt;/p&gt;
+&lt;p&gt;precision and recall,ROC,AUC&lt;/p&gt;
+&lt;p&gt;https://towardsdatascience.com/beyond-accuracy-precision-and-recall-3da06bea9f6c&lt;/p&gt;
+&lt;p&gt;A new simplified swarm optimization (SSO) using exchange local search scheme&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="算法学习" scheme="//Rocky1ee.github.io/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="粒子群算法" scheme="//Rocky1ee.github.io/tags/%E7%B2%92%E5%AD%90%E7%BE%A4%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="智能算法" scheme="//Rocky1ee.github.io/tags/%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
     <title>粒子群算法</title>
     <link href="//Rocky1ee.github.io/2019/09/01/%E7%B2%92%E5%AD%90%E7%BE%A4%E7%AE%97%E6%B3%95PSO/"/>
     <id>//Rocky1ee.github.io/2019/09/01/粒子群算法PSO/</id>
     <published>2019-09-01T08:56:36.000Z</published>
-    <updated>2019-12-07T13:43:03.399Z</updated>
+    <updated>2019-12-09T12:01:37.171Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="算法思路">算法思路</h1><h2 id="基本思想">基本思想</h2><p>粒子群算法-particle swarm optimization。粒子群优化算法的基本思想是：通过群体中个体之间的协作和信息共享来寻找最优解。</p><p>我们可以设想这样的一个场景，一群鸟在随机搜寻食物。这个区域里只有一块食物。所有的鸟都不知道食物再哪里，但他们知道目前距离食物还有多远，那么找到食物的最佳策略是什么？</p><p><strong>1.找寻距离食物最近的鸟之周围区域</strong></p><p><strong>2.根据自己本身飞行的经验判断食物的所在</strong></p><p>在PSO中，每个优化问题的潜在解都可以想象成<span class="math inline">\(N\)</span>维搜索空间上的一个点，我们称之为“粒子”（Particle），由目标函数决定每个粒子的适应值，每个粒子还有一个速度决定他们运动的方向和距离，然后粒子们就追随当前的最优粒子在解空间中搜索。</p><h2 id="数学定义">数学定义</h2><p>粒子<span class="math inline">\(i\)</span>在<span class="math inline">\(N\)</span>维空间的位置为： <span class="math display">\[X_i = (x_1,x_2,...,x_N)\]</span> 运动速度表示为： <span class="math display">\[V_i=(v_1,v_2,...,v_N)\]</span> 每个粒子都有一个由目标函数决定的<strong>适应值</strong>，并且知道自己到目前为止的最好位置<span class="math inline">\((pbest_i)\)</span>和现在所在的位置<span class="math inline">\(X_i\)</span>．这个可以看作是粒子自己的运动经验。同时，每个粒子还知道到目前整个群体中位置最好的粒子<span class="math inline">\((gbest) (gbest是pbest_i中的最好值)\)</span>．这个可以看作是粒子同伴的经验。粒子就是通过自己的经验和同伴中最好的经验来决定下一步的运动。</p><h1 id="算法基本内容">算法基本内容</h1><h2 id="初始化">初始化</h2><p>对于每个粒子的位置<span class="math inline">\(X_i\)</span>和运动速度<span class="math inline">\(V_i\)</span>进行随机初始化</p><h2 id="更新">更新</h2><p>粒子速度的更新： <span class="math display">\[V_i = V_i+c_1\times rand()\times(pbest_i-X_i) + c_2\times rand()\times(gbest-X_i)\qquad公式(1)\]</span> 位置的更新： <span class="math display">\[X_i = X_i+V_i\qquad 公式(2)\]</span> 假设种群中粒子的总数为<span class="math inline">\(M\)</span>。<span class="math inline">\(i \in [1,M]\)</span>。</p><p>随机数<span class="math inline">\(rand() \in (0,1)\)</span>。</p><p>学习因子：<span class="math inline">\(c_1和c_2\)</span></p><p>假设空间的维度为<span class="math inline">\(N\)</span>,在每一维度上，<span class="math inline">\(v_d的上界为v_{dmax},d \in [1,N]\)</span></p><p>公式（1）的第一部分称为<strong>记忆项</strong>，表示上次速度大小和方向的影响；</p><p>第二部分称为<strong>自身认知项</strong>，是从当前点指向粒子自身最好点的一个矢量，粒子自身经验所决定的运动；</p><p>第三部分称为<strong>群体认知项</strong>，是从当前点指向种群最好点的矢量，反映了粒子间的协同合作。</p><p>粒子通过自身的经验和同伴中最好的经验来决定下一步的运动。</p><div class="figure"><img src="/Assets/BlogImg/粒子群算法1.png" alt="粒子群算法1"><p class="caption">粒子群算法1</p></div><h2 id="引入惯性权重因子">引入惯性权重因子</h2><p>为了完善算法引入惯性权重因子:<span class="math inline">\(\omega \geq 0\)</span>,公式(2)变为： <span class="math display">\[V_i = \omega \times V_i+c_1\times rand()\times(pbest_i-X_i) + c_2\times rand()\times(gbest-X_i)\qquad公式(3)\]</span> 当<span class="math inline">\(\omega\)</span>越大，越倾向于寻找全局最优。当<span class="math inline">\(\omega\)</span>越小越倾向于寻找局部最优。</p><h2 id="动态权重因子">动态权重因子</h2><p>试验发现动态权重因子比固定权重因子更有效。目前经常采用线性递减权值策略（linearly decreasing weight，LDW） <span class="math display">\[\omega=(\omega_{ini}-\omega_{end})(G_k-g)/G_k+\omega_{end}\]</span> <span class="math display">\[\omega_{ini}:初始惯性权值， \omega_{end}:迭代至最大数时惯性权值，G_k:最大迭代数， g:当前迭代数，\]</span></p><p>公式(3)被称为标准PSO。</p><h2 id="全局最优法">全局最优法</h2><p>当<span class="math inline">\(c_1=0\)</span>时，粒子没有了认知能力，变为<strong>只有社会的模型(social-only)</strong>： <span class="math display">\[V_i = \omega \times V_i + c_2\times rand()\times(gbest-X_i)\qquad公式(4)\]</span> 被称为<strong>全局PSO算法</strong>。粒子有扩展搜索空间能力，具有较快收敛速度，由于缺少局部搜索，对于复杂问题比标准PSO 更易陷入局部最优。</p><h2 id="局部最优法">局部最优法</h2><p>当<span class="math inline">\(c_2=0\)</span>时，则粒子之间没有社会信息，模型变为<strong>只有自我(cognition-only)模型</strong>： <span class="math display">\[V_i = \omega \times V_i+c_1\times rand()\times(pbest_i-X_i) \qquad公式(5)\]</span> 被称为<strong>局部PSO算法</strong>。由于个体之间没有信息的交流，整个群体相当于多个粒子进行盲目的随机搜索，收敛速度慢，因而得到最优解的可能性小。</p><h2 id="算法流程">算法流程</h2><div class="figure"><img src="/Assets/BlogImg/粒子群算法2.png" alt="粒子群算法2"><p class="caption">粒子群算法2</p></div><h1 id="实例应用">实例应用</h1><p>用粒子群算法求解<span class="math inline">\(y=f(x_1,x_2)=x_1^2+x_2^2,-10&lt;x_1,x_2&lt;10\)</span>的最小值。已知当<span class="math inline">\(x_1=x_2=0\)</span>时<span class="math inline">\(y\)</span>取最小值。现在用粒子群算法求解。</p><h2 id="初始化-1">初始化</h2><p>设种群大小<span class="math inline">\(M=3\)</span>;惯性权重<span class="math inline">\(\omega=0.5\)</span>;<span class="math inline">\(c_1=c_2=2\)</span>;<span class="math inline">\(r_1,r_2是[0,1]\)</span>内随机数。</p><p>假设个体的初始位置和速度分别为： <span class="math display">\[p_1=\begin{cases}v_1=(3,2)&amp;\\x_1=(8,-5)\end{cases}p_2=\begin{cases}v_1=(-3,-2)&amp;\\x_1=(-5,9)\end{cases}p_3=\begin{cases}v_1=(5,2)&amp;\\x_1=(-7,-8)\end{cases}\]</span> 计算适应函数值，并且得到粒子的历史最优位置和群体的全局最优位置 <span class="math display">\[\begin{cases}f_1=8^2+(-5)^2=89&amp;\\pbest=x_1=(8,-5)\end{cases}\begin{cases}f_2=(-5)^2+9^2=106&amp;\\pbest=x_2=(-5,9)\end{cases}\begin{cases}f_3=(-7)^2+(-8)^2=113&amp;\\pbest=x_3=(-7,-8)\end{cases}\]</span></p><p><span class="math display">\[gbest=pbest=(8,-5)\]</span></p><h2 id="粒子速度和位置更新">粒子速度和位置更新</h2><p><strong>根据自身的历史最优位置和全局最优位置，更新每个粒子的速度和位置：</strong> <span class="math display">\[p1=\begin{cases}V_1 = \omega \times V_1+c_1\times r_1\times(pbest_1-X_1) + c_2\times r_2\times(gbest-X_1)&amp;\\\Rightarrow v_1=\begin{cases}0.5\times3+0+0=1.5 &amp;\\0.5\times2+0+0=1\end{cases}&amp;\\x_1=x_1+v_1=(8,-5)+(1.5,1)=(9.5,-4)\end{cases}\]</span></p><p><span class="math display">\[p2=\begin{cases}V_2 = \omega \times V_2+c_1\times r_1\times(pbest_2-X_2) + c_2\times r_2\times(gbest-X_2)&amp;\\\Rightarrow v_2=\begin{cases}0.5\times-3+0+2\times0.3\times(8-(-5))=6.1 &amp;\\0.5\times2+0+2\times0.3\times(-5-9)=1.8\end{cases}&amp;\\x_2=x_2+v_2=(-5,9)+(6.1,1.8)=(1.1,10)\end{cases}\]</span></p><p><span class="math display">\[p3=\begin{cases}V_3 = \omega \times V_3+c_1\times r_1\times(pbest_3-X_3) + c_2\times r_2\times(gbest-X_3)&amp;\\\Rightarrow v_2=\begin{cases}0.5\times5+0+2\times0.3\times(8-(-7))=11.5 &amp;\\0.5\times3+0+2\times0.3\times(-5-(-8))=3.3\end{cases}&amp;\\x_3=x_3+v_3=(-7,-8)+(11.5,3.3)=(4.5,-4.7)\end{cases}\]</span></p><h2 id="更新粒子的历史最优位置和全局最优位置">更新粒子的历史最优位置和全局最优位置：</h2><p><span class="math display">\[f_1^*=9.5^2+(-4)^2=106.25&gt;f_1=89\\\begin{cases}f_1=89&amp;\\pbest_1=(8,-5)\end{cases}\]</span></p><p><span class="math display">\[f_2^*=1.1^2+10^2=101.21&lt;f_2=106\\\begin{cases}f_2=f_2^*=101.32&amp;\\pbest_2=(1.1,10)\end{cases}\]</span></p><p><span class="math display">\[f_3^*=4.5^2+(-4.7)^2=42.34&lt;f_3=113\\\begin{cases}f_3=f_3^*=42.34&amp;\\pbest_3=(4.5,-4.7)\end{cases}\]</span></p><p><span class="math display">\[gbest=pbest_3=(4.5,-4.7)\]</span></p><h2 id="迭代">迭代</h2><p>如果满足结束条件，则输出全局最优结果并结束程序，否则，转向第二步继续执行。</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="算法思路">算法思路</h1><h2 id="基本思想">基本思想</h2><p>粒子群算法-particle swarm optimization。粒子群优化算法的基本思想是：通过群体中个体之间的协作和信息共享来寻找最优解。</p><p>我们可以设想这样的一个场景，一群鸟在随机搜寻食物。这个区域里只有一块食物。所有的鸟都不知道食物再哪里，但他们知道目前距离食物还有多远，那么找到食物的最佳策略是什么？</p><p><strong>1.找寻距离食物最近的鸟之周围区域</strong></p><p><strong>2.根据自己本身飞行的经验判断食物的所在</strong></p><p>在PSO中，每个优化问题的潜在解都可以想象成<span class="math inline">\(N\)</span>维搜索空间上的一个点，我们称之为“粒子”（Particle），由目标函数决定每个粒子的适应值，每个粒子还有一个速度决定他们运动的方向和距离，然后粒子们就追随当前的最优粒子在解空间中搜索。</p><h2 id="数学定义">数学定义</h2><p>粒子<span class="math inline">\(i\)</span>在<span class="math inline">\(N\)</span>维空间的位置为： <span class="math display">\[X_i = (x_1,x_2,...,x_N)\]</span> 运动速度表示为： <span class="math display">\[V_i=(v_1,v_2,...,v_N)\]</span> 每个粒子都有一个由目标函数决定的<strong>适应值</strong>，并且知道自己到目前为止的最好位置<span class="math inline">\((pbest_i)\)</span>和现在所在的位置<span class="math inline">\(X_i\)</span>．这个可以看作是粒子自己的运动经验。同时，每个粒子还知道到目前整个群体中位置最好的粒子<span class="math inline">\((gbest) (gbest是pbest_i中的最好值)\)</span>．这个可以看作是粒子同伴的经验。粒子就是通过自己的经验和同伴中最好的经验来决定下一步的运动。</p><h1 id="算法基本内容">算法基本内容</h1><h2 id="初始化">初始化</h2><p>对于每个粒子的位置<span class="math inline">\(X_i\)</span>和运动速度<span class="math inline">\(V_i\)</span>进行随机初始化</p><h2 id="更新">更新</h2><p>粒子速度的更新： <span class="math display">\[V_i = V_i+c_1\times rand()\times(pbest_i-X_i) + c_2\times rand()\times(gbest-X_i)\qquad公式(1)\]</span> 位置的更新： <span class="math display">\[X_i = X_i+V_i\qquad 公式(2)\]</span> 假设种群中粒子的总数为<span class="math inline">\(M\)</span>。<span class="math inline">\(i \in [1,M]\)</span>。</p><p>随机数<span class="math inline">\(rand() \in (0,1)\)</span>。</p><p>学习因子：<span class="math inline">\(c_1和c_2\)</span></p><p>假设空间的维度为<span class="math inline">\(N\)</span>,在每一维度上，<span class="math inline">\(v_d的上界为v_{dmax},d \in [1,N]\)</span></p><p>公式（1）的第一部分称为<strong>记忆项</strong>，表示上次速度大小和方向的影响；</p><p>第二部分称为<strong>自身认知项</strong>，是从当前点指向粒子自身最好点的一个矢量，粒子自身经验所决定的运动；</p><p>第三部分称为<strong>群体认知项</strong>，是从当前点指向种群最好点的矢量，反映了粒子间的协同合作。</p><p>粒子通过自身的经验和同伴中最好的经验来决定下一步的运动。</p><div class="figure"><img src="/Assets/BlogImg/粒子群算法1.png" alt="粒子群算法1"><p class="caption">粒子群算法1</p></div><h2 id="引入惯性权重因子">引入惯性权重因子</h2><p>为了完善算法引入惯性权重因子:<span class="math inline">\(\omega \geq 0\)</span>,公式(2)变为： <span class="math display">\[V_i = \omega \times V_i+c_1\times rand()\times(pbest_i-X_i) + c_2\times rand()\times(gbest-X_i)\qquad公式(3)\]</span> 当<span class="math inline">\(\omega\)</span>越大，越倾向于寻找全局最优。当<span class="math inline">\(\omega\)</span>越小越倾向于寻找局部最优。</p><h2 id="动态权重因子">动态权重因子</h2><p>试验发现动态权重因子比固定权重因子更有效。目前经常采用线性递减权值策略（linearly decreasing weight，LDW） <span class="math display">\[\omega=(\omega_{ini}-\omega_{end})(G_k-g)/G_k+\omega_{end}\]</span> <span class="math display">\[\omega_{ini}:初始惯性权值， \omega_{end}:迭代至最大数时惯性权值，G_k:最大迭代数， g:当前迭代数，\]</span></p><p>公式(3)被称为标准PSO。</p><h2 id="全局最优法">全局最优法</h2><p>当<span class="math inline">\(c_1=0\)</span>时，粒子没有了认知能力，变为<strong>只有社会的模型(social-only)</strong>： <span class="math display">\[V_i = \omega \times V_i + c_2\times rand()\times(gbest-X_i)\qquad公式(4)\]</span> 被称为<strong>全局PSO算法</strong>。粒子有扩展搜索空间能力，具有较快收敛速度，由于缺少局部搜索，对于复杂问题比标准PSO 更易陷入局部最优。</p><h2 id="局部最优法">局部最优法</h2><p>当<span class="math inline">\(c_2=0\)</span>时，则粒子之间没有社会信息，模型变为<strong>只有自我(cognition-only)模型</strong>： <span class="math display">\[V_i = \omega \times V_i+c_1\times rand()\times(pbest_i-X_i) \qquad公式(5)\]</span> 被称为<strong>局部PSO算法</strong>。由于个体之间没有信息的交流，整个群体相当于多个粒子进行盲目的随机搜索，收敛速度慢，因而得到最优解的可能性小。</p><h2 id="算法流程">算法流程</h2><div class="figure"><img src="/Assets/BlogImg/粒子群算法2.png" alt="粒子群算法2"><p class="caption">粒子群算法2</p></div><h1 id="实例应用">实例应用</h1><p>用粒子群算法求解<span class="math inline">\(y=f(x_1,x_2)=x_1^2+x_2^2,-10&lt;x_1,x_2&lt;10\)</span>的最小值。已知当<span class="math inline">\(x_1=x_2=0\)</span>时<span class="math inline">\(y\)</span>取最小值。现在用粒子群算法求解。</p><h2 id="初始化-1">初始化</h2><p>设种群大小<span class="math inline">\(M=3\)</span>;惯性权重<span class="math inline">\(\omega=0.5\)</span>;<span class="math inline">\(c_1=c_2=2\)</span>;<span class="math inline">\(r_1,r_2是[0,1]\)</span>内随机数。</p><p>假设个体的初始位置和速度分别为： <span class="math display">\[p_1=\begin{cases}v_1=(3,2)&amp;\\x_1=(8,-5)\end{cases}p_2=\begin{cases}v_1=(-3,-2)&amp;\\x_1=(-5,9)\end{cases}p_3=\begin{cases}v_1=(5,2)&amp;\\x_1=(-7,-8)\end{cases}\]</span> 计算适应函数值，并且得到粒子的历史最优位置和群体的全局最优位置 <span class="math display">\[\begin{cases}f_1=8^2+(-5)^2=89&amp;\\pbest=x_1=(8,-5)\end{cases}\begin{cases}f_2=(-5)^2+9^2=106&amp;\\pbest=x_2=(-5,9)\end{cases}\begin{cases}f_3=(-7)^2+(-8)^2=113&amp;\\pbest=x_3=(-7,-8)\end{cases}\]</span></p><p><span class="math display">\[gbest=pbest=(8,-5)\]</span></p><h2 id="粒子速度和位置更新">粒子速度和位置更新</h2><p><strong>根据自身的历史最优位置和全局最优位置，更新每个粒子的速度和位置：</strong> <span class="math display">\[p1=\begin{cases}V_1 = \omega \times V_1+c_1\times r_1\times(pbest_1-X_1) + c_2\times r_2\times(gbest-X_1)&amp;\\\Rightarrow v_1=\begin{cases}0.5\times3+0+0=1.5 &amp;\\0.5\times2+0+0=1\end{cases}&amp;\\x_1=x_1+v_1=(8,-5)+(1.5,1)=(9.5,-4)\end{cases}\]</span></p><p><span class="math display">\[p2=\begin{cases}V_2 = \omega \times V_2+c_1\times r_1\times(pbest_2-X_2) + c_2\times r_2\times(gbest-X_2)&amp;\\\Rightarrow v_2=\begin{cases}0.5\times-3+0+2\times0.3\times(8-(-5))=6.1 &amp;\\0.5\times2+0+2\times0.3\times(-5-9)=1.8\end{cases}&amp;\\x_2=x_2+v_2=(-5,9)+(6.1,1.8)=(1.1,10)\end{cases}\]</span></p><p><span class="math display">\[p3=\begin{cases}V_3 = \omega \times V_3+c_1\times r_1\times(pbest_3-X_3) + c_2\times r_2\times(gbest-X_3)&amp;\\\Rightarrow v_2=\begin{cases}0.5\times5+0+2\times0.3\times(8-(-7))=11.5 &amp;\\0.5\times3+0+2\times0.3\times(-5-(-8))=3.3\end{cases}&amp;\\x_3=x_3+v_3=(-7,-8)+(11.5,3.3)=(4.5,-4.7)\end{cases}\]</span></p><h2 id="更新粒子的历史最优位置和全局最优位置">更新粒子的历史最优位置和全局最优位置：</h2><p><span class="math display">\[f_1^*=9.5^2+(-4)^2=106.25&gt;f_1=89\\\begin{cases}f_1=89&amp;\\pbest_1=(8,-5)\end{cases}\]</span></p><p><span class="math display">\[f_2^*=1.1^2+10^2=101.21&lt;f_2=106\\\begin{cases}f_2=f_2^*=101.32&amp;\\pbest_2=(1.1,10)\end{cases}\]</span></p><p><span class="math display">\[f_3^*=4.5^2+(-4.7)^2=42.34&lt;f_3=113\\\begin{cases}f_3=f_3^*=42.34&amp;\\pbest_3=(4.5,-4.7)\end{cases}\]</span></p><p><span class="math display">\[gbest=pbest_3=(4.5,-4.7)\]</span></p><h2 id="迭代">迭代</h2><p>如果满足结束条件，则输出全局最优结果并结束程序，否则，转向第二步继续执行。</p><a id="more"></a>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;h1 id=&quot;算法思路&quot;&gt;算法思路&lt;/h1&gt;
+      &lt;h1 id=&quot;算法思路&quot;&gt;算法思路&lt;/h1&gt;
 &lt;h2 id=&quot;基本思想&quot;&gt;基本思想&lt;/h2&gt;
 &lt;p&gt;粒子群算法-particle swarm optimization。粒子群优化算法的基本思想是：通过群体中个体之间的协作和信息共享来寻找最优解。&lt;/p&gt;
-&lt;p&gt;我们可以设想
-      
+&lt;p&gt;我们可以设想这样的一个场景，一群鸟在随机搜寻食物。这个区域里只有一块食物。所有的鸟都不知道食物再哪里，但他们知道目前距离食物还有多远，那么找到食物的最佳策略是什么？&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1.找寻距离食物最近的鸟之周围区域&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.根据自己本身飞行的经验判断食物的所在&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在PSO中，每个优化问题的潜在解都可以想象成&lt;span class=&quot;math inline&quot;&gt;\(N\)&lt;/span&gt;维搜索空间上的一个点，我们称之为“粒子”（Particle），由目标函数决定每个粒子的适应值，每个粒子还有一个速度决定他们运动的方向和距离，然后粒子们就追随当前的最优粒子在解空间中搜索。&lt;/p&gt;
+&lt;h2 id=&quot;数学定义&quot;&gt;数学定义&lt;/h2&gt;
+&lt;p&gt;粒子&lt;span class=&quot;math inline&quot;&gt;\(i\)&lt;/span&gt;在&lt;span class=&quot;math inline&quot;&gt;\(N\)&lt;/span&gt;维空间的位置为： &lt;span class=&quot;math display&quot;&gt;\[
+X_i = (x_1,x_2,...,x_N)
+\]&lt;/span&gt; 运动速度表示为： &lt;span class=&quot;math display&quot;&gt;\[
+V_i=(v_1,v_2,...,v_N)
+\]&lt;/span&gt; 每个粒子都有一个由目标函数决定的&lt;strong&gt;适应值&lt;/strong&gt;，并且知道自己到目前为止的最好位置&lt;span class=&quot;math inline&quot;&gt;\((pbest_i)\)&lt;/span&gt;和现在所在的位置&lt;span class=&quot;math inline&quot;&gt;\(X_i\)&lt;/span&gt;．这个可以看作是粒子自己的运动经验。同时，每个粒子还知道到目前整个群体中位置最好的粒子&lt;span class=&quot;math inline&quot;&gt;\((gbest) (gbest是pbest_i中的最好值)\)&lt;/span&gt;．这个可以看作是粒子同伴的经验。粒子就是通过自己的经验和同伴中最好的经验来决定下一步的运动。&lt;/p&gt;
+&lt;h1 id=&quot;算法基本内容&quot;&gt;算法基本内容&lt;/h1&gt;
+&lt;h2 id=&quot;初始化&quot;&gt;初始化&lt;/h2&gt;
+&lt;p&gt;对于每个粒子的位置&lt;span class=&quot;math inline&quot;&gt;\(X_i\)&lt;/span&gt;和运动速度&lt;span class=&quot;math inline&quot;&gt;\(V_i\)&lt;/span&gt;进行随机初始化&lt;/p&gt;
+&lt;h2 id=&quot;更新&quot;&gt;更新&lt;/h2&gt;
+&lt;p&gt;粒子速度的更新： &lt;span class=&quot;math display&quot;&gt;\[
+V_i = V_i+c_1\times rand()\times(pbest_i-X_i) + c_2\times rand()\times(gbest-X_i)\qquad公式(1)
+\]&lt;/span&gt; 位置的更新： &lt;span class=&quot;math display&quot;&gt;\[
+X_i = X_i+V_i\qquad 公式(2)
+\]&lt;/span&gt; 假设种群中粒子的总数为&lt;span class=&quot;math inline&quot;&gt;\(M\)&lt;/span&gt;。&lt;span class=&quot;math inline&quot;&gt;\(i \in [1,M]\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;随机数&lt;span class=&quot;math inline&quot;&gt;\(rand() \in (0,1)\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;学习因子：&lt;span class=&quot;math inline&quot;&gt;\(c_1和c_2\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;假设空间的维度为&lt;span class=&quot;math inline&quot;&gt;\(N\)&lt;/span&gt;,在每一维度上，&lt;span class=&quot;math inline&quot;&gt;\(v_d的上界为v_{dmax},d \in [1,N]\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;公式（1）的第一部分称为&lt;strong&gt;记忆项&lt;/strong&gt;，表示上次速度大小和方向的影响；&lt;/p&gt;
+&lt;p&gt;第二部分称为&lt;strong&gt;自身认知项&lt;/strong&gt;，是从当前点指向粒子自身最好点的一个矢量，粒子自身经验所决定的运动；&lt;/p&gt;
+&lt;p&gt;第三部分称为&lt;strong&gt;群体认知项&lt;/strong&gt;，是从当前点指向种群最好点的矢量，反映了粒子间的协同合作。&lt;/p&gt;
+&lt;p&gt;粒子通过自身的经验和同伴中最好的经验来决定下一步的运动。&lt;/p&gt;
+&lt;div class=&quot;figure&quot;&gt;
+&lt;img src=&quot;/Assets/BlogImg/粒子群算法1.png&quot; alt=&quot;粒子群算法1&quot;&gt;
+&lt;p class=&quot;caption&quot;&gt;粒子群算法1&lt;/p&gt;
+&lt;/div&gt;
+&lt;h2 id=&quot;引入惯性权重因子&quot;&gt;引入惯性权重因子&lt;/h2&gt;
+&lt;p&gt;为了完善算法引入惯性权重因子:&lt;span class=&quot;math inline&quot;&gt;\(\omega \geq 0\)&lt;/span&gt;,公式(2)变为： &lt;span class=&quot;math display&quot;&gt;\[
+V_i = \omega \times V_i+c_1\times rand()\times(pbest_i-X_i) + c_2\times rand()\times(gbest-X_i)\qquad公式(3)
+\]&lt;/span&gt; 当&lt;span class=&quot;math inline&quot;&gt;\(\omega\)&lt;/span&gt;越大，越倾向于寻找全局最优。当&lt;span class=&quot;math inline&quot;&gt;\(\omega\)&lt;/span&gt;越小越倾向于寻找局部最优。&lt;/p&gt;
+&lt;h2 id=&quot;动态权重因子&quot;&gt;动态权重因子&lt;/h2&gt;
+&lt;p&gt;试验发现动态权重因子比固定权重因子更有效。目前经常采用线性递减权值策略（linearly decreasing weight，LDW） &lt;span class=&quot;math display&quot;&gt;\[
+\omega=(\omega_{ini}-\omega_{end})(G_k-g)/G_k+\omega_{end}
+\]&lt;/span&gt; &lt;span class=&quot;math display&quot;&gt;\[
+\omega_{ini}:初始惯性权值， \omega_{end}:迭代至最大数时惯性权值，G_k:最大迭代数， g:当前迭代数，
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;公式(3)被称为标准PSO。&lt;/p&gt;
+&lt;h2 id=&quot;全局最优法&quot;&gt;全局最优法&lt;/h2&gt;
+&lt;p&gt;当&lt;span class=&quot;math inline&quot;&gt;\(c_1=0\)&lt;/span&gt;时，粒子没有了认知能力，变为&lt;strong&gt;只有社会的模型(social-only)&lt;/strong&gt;： &lt;span class=&quot;math display&quot;&gt;\[
+V_i = \omega \times V_i + c_2\times rand()\times(gbest-X_i)\qquad公式(4)
+\]&lt;/span&gt; 被称为&lt;strong&gt;全局PSO算法&lt;/strong&gt;。粒子有扩展搜索空间能力，具有较快收敛速度，由于缺少局部搜索，对于复杂问题比标准PSO 更易陷入局部最优。&lt;/p&gt;
+&lt;h2 id=&quot;局部最优法&quot;&gt;局部最优法&lt;/h2&gt;
+&lt;p&gt;当&lt;span class=&quot;math inline&quot;&gt;\(c_2=0\)&lt;/span&gt;时，则粒子之间没有社会信息，模型变为&lt;strong&gt;只有自我(cognition-only)模型&lt;/strong&gt;： &lt;span class=&quot;math display&quot;&gt;\[
+V_i = \omega \times V_i+c_1\times rand()\times(pbest_i-X_i) \qquad公式(5)
+\]&lt;/span&gt; 被称为&lt;strong&gt;局部PSO算法&lt;/strong&gt;。由于个体之间没有信息的交流，整个群体相当于多个粒子进行盲目的随机搜索，收敛速度慢，因而得到最优解的可能性小。&lt;/p&gt;
+&lt;h2 id=&quot;算法流程&quot;&gt;算法流程&lt;/h2&gt;
+&lt;div class=&quot;figure&quot;&gt;
+&lt;img src=&quot;/Assets/BlogImg/粒子群算法2.png&quot; alt=&quot;粒子群算法2&quot;&gt;
+&lt;p class=&quot;caption&quot;&gt;粒子群算法2&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id=&quot;实例应用&quot;&gt;实例应用&lt;/h1&gt;
+&lt;p&gt;用粒子群算法求解&lt;span class=&quot;math inline&quot;&gt;\(y=f(x_1,x_2)=x_1^2+x_2^2,-10&amp;lt;x_1,x_2&amp;lt;10\)&lt;/span&gt;的最小值。已知当&lt;span class=&quot;math inline&quot;&gt;\(x_1=x_2=0\)&lt;/span&gt;时&lt;span class=&quot;math inline&quot;&gt;\(y\)&lt;/span&gt;取最小值。现在用粒子群算法求解。&lt;/p&gt;
+&lt;h2 id=&quot;初始化-1&quot;&gt;初始化&lt;/h2&gt;
+&lt;p&gt;设种群大小&lt;span class=&quot;math inline&quot;&gt;\(M=3\)&lt;/span&gt;;惯性权重&lt;span class=&quot;math inline&quot;&gt;\(\omega=0.5\)&lt;/span&gt;;&lt;span class=&quot;math inline&quot;&gt;\(c_1=c_2=2\)&lt;/span&gt;;&lt;span class=&quot;math inline&quot;&gt;\(r_1,r_2是[0,1]\)&lt;/span&gt;内随机数。&lt;/p&gt;
+&lt;p&gt;假设个体的初始位置和速度分别为： &lt;span class=&quot;math display&quot;&gt;\[
+p_1=
+\begin{cases}
+v_1=(3,2)&amp;amp;\\
+x_1=(8,-5)
+\end{cases}
+p_2=
+\begin{cases}
+v_1=(-3,-2)&amp;amp;\\
+x_1=(-5,9)
+\end{cases}
+p_3=
+\begin{cases}
+v_1=(5,2)&amp;amp;\\
+x_1=(-7,-8)
+\end{cases}
+\]&lt;/span&gt; 计算适应函数值，并且得到粒子的历史最优位置和群体的全局最优位置 &lt;span class=&quot;math display&quot;&gt;\[
+\begin{cases}
+f_1=8^2+(-5)^2=89&amp;amp;\\
+pbest=x_1=(8,-5)
+\end{cases}
+\begin{cases}
+f_2=(-5)^2+9^2=106&amp;amp;\\
+pbest=x_2=(-5,9)
+\end{cases}
+\begin{cases}
+f_3=(-7)^2+(-8)^2=113&amp;amp;\\
+pbest=x_3=(-7,-8)
+\end{cases}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;\[
+gbest=pbest=(8,-5)
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&quot;粒子速度和位置更新&quot;&gt;粒子速度和位置更新&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;根据自身的历史最优位置和全局最优位置，更新每个粒子的速度和位置：&lt;/strong&gt; &lt;span class=&quot;math display&quot;&gt;\[
+p1=\begin{cases}
+V_1 = \omega \times V_1+c_1\times r_1\times(pbest_1-X_1) + c_2\times r_2\times(gbest-X_1)&amp;amp;\\
+\Rightarrow v_1=\begin{cases}0.5\times3+0+0=1.5 &amp;amp;\\
+0.5\times2+0+0=1
+\end{cases}&amp;amp;\\
+x_1=x_1+v_1=(8,-5)+(1.5,1)=(9.5,-4)
+\end{cases}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;\[
+p2=\begin{cases}
+V_2 = \omega \times V_2+c_1\times r_1\times(pbest_2-X_2) + c_2\times r_2\times(gbest-X_2)&amp;amp;\\
+\Rightarrow v_2=\begin{cases}0.5\times-3+0+2\times0.3\times(8-(-5))=6.1 &amp;amp;\\
+0.5\times2+0+2\times0.3\times(-5-9)=1.8
+\end{cases}&amp;amp;\\
+x_2=x_2+v_2=(-5,9)+(6.1,1.8)=(1.1,10)
+\end{cases}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;\[
+p3=\begin{cases}
+V_3 = \omega \times V_3+c_1\times r_1\times(pbest_3-X_3) + c_2\times r_2\times(gbest-X_3)&amp;amp;\\
+\Rightarrow v_2=\begin{cases}0.5\times5+0+2\times0.3\times(8-(-7))=11.5 &amp;amp;\\
+0.5\times3+0+2\times0.3\times(-5-(-8))=3.3
+\end{cases}&amp;amp;\\
+x_3=x_3+v_3=(-7,-8)+(11.5,3.3)=(4.5,-4.7)
+\end{cases}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&quot;更新粒子的历史最优位置和全局最优位置&quot;&gt;更新粒子的历史最优位置和全局最优位置：&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;\[
+f_1^*=9.5^2+(-4)^2=106.25&amp;gt;f_1=89\\
+\begin{cases}
+f_1=89&amp;amp;\\
+pbest_1=(8,-5)
+\end{cases}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;\[
+f_2^*=1.1^2+10^2=101.21&amp;lt;f_2=106\\
+\begin{cases}
+f_2=f_2^*=101.32&amp;amp;\\
+pbest_2=(1.1,10)
+\end{cases}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;\[
+f_3^*=4.5^2+(-4.7)^2=42.34&amp;lt;f_3=113\\
+\begin{cases}
+f_3=f_3^*=42.34&amp;amp;\\
+pbest_3=(4.5,-4.7)
+\end{cases}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;\[
+gbest=pbest_3=(4.5,-4.7)
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&quot;迭代&quot;&gt;迭代&lt;/h2&gt;
+&lt;p&gt;如果满足结束条件，则输出全局最优结果并结束程序，否则，转向第二步继续执行。&lt;/p&gt;
     
     </summary>
     
@@ -75,21 +323,130 @@
     <link href="//Rocky1ee.github.io/2019/08/31/%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95(ACO)/"/>
     <id>//Rocky1ee.github.io/2019/08/31/蚁群算法(ACO)/</id>
     <published>2019-08-31T08:56:36.000Z</published>
-    <updated>2019-12-07T13:34:59.404Z</updated>
+    <updated>2019-12-09T12:01:23.462Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="基本原理">基本原理</h1><div class="figure"><img src="/Assets/BlogImg/蚁群算法.png" alt="蚁群算法1"><p class="caption">蚁群算法1</p></div><div class="figure"><img src="/Assets/BlogImg/蚁群算法1.png" alt="蚁群算法2"><p class="caption">蚁群算法2</p></div><div class="figure"><img src="/Assets/BlogImg/蚁群算法2.png" alt="蚁群算法3"><p class="caption">蚁群算法3</p></div><h1 id="基本流程">基本流程</h1><h2 id="路径构建">路径构建</h2><p><span class="math display">\[\begin{equation}    P_{ij}(t) =   \begin{cases}   \frac{[\tau_{ij}(t)]^\alpha \times [\eta_{ij}(t)]^\beta}{\sum\limits_{k\in allowed_k }[\tau_{ik}(t)]^\alpha \times [\eta_{ik}(t)]^\beta}&amp;   {if \quad j \in allowed_k}\\   \qquad 0&amp;   others   \end{cases}  \end{equation}\]</span></p><hr><ul><li><span class="math inline">\(i,j\)</span>分别为起点和终点</li><li><span class="math inline">\(\eta_{ij} = \frac{1}{d_{ij}}\)</span>为能见度，是两点<span class="math inline">\(i、j\)</span>间的导数</li><li><span class="math inline">\(\tau_{ij}(t)\)</span>为时间<span class="math inline">\(t\)</span>时由<span class="math inline">\(i\)</span>到<span class="math inline">\(j\)</span>的信息素强度</li><li><span class="math inline">\(allowed_k\)</span>为从<span class="math inline">\(i\)</span>出发可访问到节点的集合</li><li><span class="math inline">\(\alpha,\beta\)</span>为两常数，分别是信息素和能见度的加权值</li></ul><p>结果表示<strong>当前点到每个可能的下个节点的概率</strong></p><h2 id="信息素更新">信息素更新</h2><p>蚂蚁的信息素释放量<span class="math inline">\(C(0)\)</span>,如果太小则容易导致局部最优。为什么？</p><p>如果太大，则对搜索方向的导向作用降低。一般用贪婪算法获取一个路径值<span class="math inline">\(Cnn\)</span>，然后根据蚂蚁个数来计算<span class="math inline">\(C(0) = m/Cnn\)</span>,<span class="math inline">\(m\)</span>为蚂蚁个数。</p><p>信息素更新如下：</p><p><span class="math display">\[\tau(t)=(1-p)\tau_{ij}+\sum_{k=1}^m\Delta\tau_{ij}^k\]</span> <span class="math inline">\(m\)</span>:蚂蚁个数，<span class="math inline">\(0&lt;\rho&lt;=1\)</span>:信息素蒸发率,<span class="math inline">\(\Delta\tau_{ij}^k\)</span>:第<span class="math inline">\(k\)</span>只蚂蚁在路径<span class="math inline">\(i\)</span>到 <span class="math inline">\(j\)</span> 所留下的信息素 <span class="math display">\[\begin{equation}    \Delta \tau_{ij}^k =   \begin{cases}   (c_k)^{-1}&amp;\quad 第k^{th}只蚂蚁经过路径(i，j)\\\\   0&amp;\quad others   \end{cases}  \end{equation}\]</span> 信息素挥发(evaporation):避免算法过快地向局部最优区域集中，有助于搜索区域的扩展。</p><p>信息素增强(reinforcement):指引最优路径的指南。</p><h2 id="迭代与停止">迭代与停止</h2><p>算法每次迭代：<strong>每次迭代的m只蚂蚁都完成了自己的路径过程，回到原点后的整个过程。</strong></p><p>停止：指定迭代次数或达成指定的最优解条件</p><h1 id="蚁群算法的实例">蚁群算法的实例</h1><div class="figure"><img src="/Assets/BlogImg/蚁群算法4.png" alt="蚁群算法4"><p class="caption">蚁群算法4</p></div><p>假设共<span class="math inline">\(m=3\)</span>只蚂蚁，参数<span class="math inline">\(\alpha=1,\beta=2,\rho=0.5\)</span></p><h2 id="初始化">初始化</h2><p>首先使用贪婪算法得到路径的<strong>(ACDBA)</strong>, 则<span class="math inline">\(C_{nn}=1+2+4+3=10\)</span>,求得<span class="math inline">\(\tau_0=m\div C_{nn}=0.3\)</span> <span class="math display">\[\tau(0)=\begin{bmatrix}0&amp;0.3&amp;0.3&amp;0.3 \\0.3&amp;0&amp;0.3&amp;0.3 \\0.3&amp;0.3&amp;0&amp;0.3 \\0.3&amp;0.3&amp;0.3&amp;0\end{bmatrix}\]</span></p><h2 id="出发地">出发地</h2><p>为每个蚂蚁随机选择出发城市，假设蚂蚁1选择城市A，蚂蚁2选择城市B，蚂蚁3选择城市D。</p><h2 id="访问地">访问地</h2><p>以蚂蚁1为例，当前城市<span class="math inline">\(i=A\)</span>,可访问城市集合<span class="math inline">\(J_1 (i)={B,C,D}\)</span></p><p>计算蚂蚁1访问各个城市的概率 <span class="math display">\[A \Rightarrow \begin{cases}B:\tau_{AB}^a\times\eta_{AB}^\beta=0.3^1\times\frac{1}{3}^2=0.033\\\\C:\tau_{AC}^a\times\eta_{AC}^\beta=0.3^1\times\frac{1}{1}^2=0.300\\\\D:\tau_{AD}^a\times\eta_{AD}^\beta=0.3^1\times\frac{1}{2}^2=0.075\\\\\end{cases}\]</span></p><p><span class="math display">\[P(B)=\frac{0.033}{0.033+0.3+0.075}=0.08 \\\\P(C)=\frac{0.03}{0.033+0.3+0.075}=0.74 \\\\P(D)=\frac{0.075}{0.033+0.3+0.075}=0.1\]</span></p><div class="figure"><img src="/Assets/BlogImg/轮盘赌选择法.jpeg" alt="轮盘赌选择法"><p class="caption">轮盘赌选择法</p></div><p>轮盘赌选择法：选择累积概率超过随机值的第一个个体。</p><p>用轮盘赌法选择下一个访问城市。假设产生的随机值<span class="math inline">\(r=0.05\)</span>，则蚂蚁<strong>1</strong>会选择城市<strong>B</strong> 同样，假设蚂蚁<strong>2</strong>选择城市<strong>D</strong>，蚂蚁<strong>3</strong>选择城市<strong>A</strong>。</p><p>现在蚂蚁<strong>1</strong>已经来到<strong>B</strong>了，路径记忆向量<span class="math inline">\(R^l=(AB)\)</span>,可访问城市集合<span class="math inline">\(J_i(i)={C,D}\)</span></p><p>蚂蚁<strong>1</strong>访问<strong>C，D</strong>城市的概率： <span class="math display">\[B\Rightarrow\begin{cases}C:\tau_{BC}^\alpha\times\eta_{BC}^\beta=0.3^1\times\frac{1}{5}^2=0.012\\\\D:\tau_{BD}^\alpha\times\eta_{BD}^\beta=0.3^1\times\frac{1}{4}^2=0.019\end{cases}\\\\P(C)=\frac{0.012}{0.012+0.019}=0.39\\\\P(D)=\frac{0.019}{0.012+0.019}=0.61\]</span> 用轮盘赌法选择下一个访问城市。假设产生的随机数<span class="math inline">\(r=0.67\)</span>，则蚂蚁<strong>1</strong>会选择城市<strong>D</strong> 同样，假设蚂蚁<strong>2</strong>选择城市<strong>C</strong>，蚂蚁<strong>3</strong>选择城市<strong>D</strong>。</p><p>最终，所有蚂蚁选择的路径为：</p><p>蚂蚁1：ABDCA</p><p>蚂蚁2：BDCAB</p><p>蚂蚁3：DACBD</p><h2 id="信息素更新-1">信息素更新</h2><p>每只蚂蚁走过的路径长度：<span class="math inline">\(C_1=3+4+2+1=10;C_2=4+2+1+3=10;C_3=2+1+5+4=12。\)</span></p><p>每条边信息素的更新如下: <span class="math display">\[\tau_{AB}=（1-\rho)\times\tau_{AB} + \sum_{k=1}^3\Delta\tau_{AB}^k=0.5\times0.3+(\frac{1}{10}+\frac{1}{10})=0.35\\\\\tau_{AC}=（1-\rho)\times\tau_{AC} + \sum_{k=1}^3\Delta\tau_{AC}^k=0.5\times0.3+(\frac{1}{12})=0.16\\\\\tau_{AD},\tau_{BC}...\]</span> 在<span class="math inline">\(\tau_{AB}\)</span>的计算中蚂蚁3并未走过路径<strong>AB</strong>，所以<span class="math inline">\(\tau_{AB}^3=0\)</span>。</p><h2 id="结束">结束</h2><p>如果满足结束条件，则输出全局最优结果并结束程序，否则，则转向步骤2继续执行。</p><p>references</p><p>https://www.cnblogs.com/asxinyu/p/Path_Optimization_Tsp_Problem_Ant_System_CSharp.html#opennewwindow</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="基本原理">基本原理</h1><div class="figure"><img src="/Assets/BlogImg/蚁群算法.png" alt="蚁群算法1"><p class="caption">蚁群算法1</p></div><div class="figure"><img src="/Assets/BlogImg/蚁群算法1.png" alt="蚁群算法2"><p class="caption">蚁群算法2</p></div><div class="figure"><img src="/Assets/BlogImg/蚁群算法2.png" alt="蚁群算法3"><p class="caption">蚁群算法3</p></div><h1 id="基本流程">基本流程</h1><h2 id="路径构建">路径构建</h2><p><span class="math display">\[\begin{equation}    P_{ij}(t) =   \begin{cases}   \frac{[\tau_{ij}(t)]^\alpha \times [\eta_{ij}(t)]^\beta}{\sum\limits_{k\in allowed_k }[\tau_{ik}(t)]^\alpha \times [\eta_{ik}(t)]^\beta}&amp;   {if \quad j \in allowed_k}\\   \qquad 0&amp;   others   \end{cases}  \end{equation}\]</span></p><hr><ul><li><span class="math inline">\(i,j\)</span>分别为起点和终点</li><li><span class="math inline">\(\eta_{ij} = \frac{1}{d_{ij}}\)</span>为能见度，是两点<span class="math inline">\(i、j\)</span>间的导数</li><li><span class="math inline">\(\tau_{ij}(t)\)</span>为时间<span class="math inline">\(t\)</span>时由<span class="math inline">\(i\)</span>到<span class="math inline">\(j\)</span>的信息素强度</li><li><span class="math inline">\(allowed_k\)</span>为从<span class="math inline">\(i\)</span>出发可访问到节点的集合</li><li><span class="math inline">\(\alpha,\beta\)</span>为两常数，分别是信息素和能见度的加权值</li></ul><p>结果表示<strong>当前点到每个可能的下个节点的概率</strong></p><h2 id="信息素更新">信息素更新</h2><p>蚂蚁的信息素释放量<span class="math inline">\(C(0)\)</span>,如果太小则容易导致局部最优。为什么？</p><p>如果太大，则对搜索方向的导向作用降低。一般用贪婪算法获取一个路径值<span class="math inline">\(Cnn\)</span>，然后根据蚂蚁个数来计算<span class="math inline">\(C(0) = m/Cnn\)</span>,<span class="math inline">\(m\)</span>为蚂蚁个数。</p><p>信息素更新如下：</p><p><span class="math display">\[\tau(t)=(1-p)\tau_{ij}+\sum_{k=1}^m\Delta\tau_{ij}^k\]</span> <span class="math inline">\(m\)</span>:蚂蚁个数，<span class="math inline">\(0&lt;\rho&lt;=1\)</span>:信息素蒸发率,<span class="math inline">\(\Delta\tau_{ij}^k\)</span>:第<span class="math inline">\(k\)</span>只蚂蚁在路径<span class="math inline">\(i\)</span>到 <span class="math inline">\(j\)</span> 所留下的信息素 <span class="math display">\[\begin{equation}    \Delta \tau_{ij}^k =   \begin{cases}   (c_k)^{-1}&amp;\quad 第k^{th}只蚂蚁经过路径(i，j)\\\\   0&amp;\quad others   \end{cases}  \end{equation}\]</span> 信息素挥发(evaporation):避免算法过快地向局部最优区域集中，有助于搜索区域的扩展。</p><p>信息素增强(reinforcement):指引最优路径的指南。</p><h2 id="迭代与停止">迭代与停止</h2><p>算法每次迭代：<strong>每次迭代的m只蚂蚁都完成了自己的路径过程，回到原点后的整个过程。</strong></p><p>停止：指定迭代次数或达成指定的最优解条件</p><h1 id="蚁群算法的实例">蚁群算法的实例</h1><div class="figure"><img src="/Assets/BlogImg/蚁群算法4.png" alt="蚁群算法4"><p class="caption">蚁群算法4</p></div><p>假设共<span class="math inline">\(m=3\)</span>只蚂蚁，参数<span class="math inline">\(\alpha=1,\beta=2,\rho=0.5\)</span></p><h2 id="初始化">初始化</h2><p>首先使用贪婪算法得到路径的<strong>(ACDBA)</strong>, 则<span class="math inline">\(C_{nn}=1+2+4+3=10\)</span>,求得<span class="math inline">\(\tau_0=m\div C_{nn}=0.3\)</span> <span class="math display">\[\tau(0)=\begin{bmatrix}0&amp;0.3&amp;0.3&amp;0.3 \\0.3&amp;0&amp;0.3&amp;0.3 \\0.3&amp;0.3&amp;0&amp;0.3 \\0.3&amp;0.3&amp;0.3&amp;0\end{bmatrix}\]</span></p><h2 id="出发地">出发地</h2><p>为每个蚂蚁随机选择出发城市，假设蚂蚁1选择城市A，蚂蚁2选择城市B，蚂蚁3选择城市D。</p><h2 id="访问地">访问地</h2><p>以蚂蚁1为例，当前城市<span class="math inline">\(i=A\)</span>,可访问城市集合<span class="math inline">\(J_1 (i)={B,C,D}\)</span></p><p>计算蚂蚁1访问各个城市的概率 <span class="math display">\[A \Rightarrow \begin{cases}B:\tau_{AB}^a\times\eta_{AB}^\beta=0.3^1\times\frac{1}{3}^2=0.033\\\\C:\tau_{AC}^a\times\eta_{AC}^\beta=0.3^1\times\frac{1}{1}^2=0.300\\\\D:\tau_{AD}^a\times\eta_{AD}^\beta=0.3^1\times\frac{1}{2}^2=0.075\\\\\end{cases}\]</span></p><p><span class="math display">\[P(B)=\frac{0.033}{0.033+0.3+0.075}=0.08 \\\\P(C)=\frac{0.03}{0.033+0.3+0.075}=0.74 \\\\P(D)=\frac{0.075}{0.033+0.3+0.075}=0.1\]</span></p><div class="figure"><img src="/Assets/BlogImg/轮盘赌选择法.jpeg" alt="轮盘赌选择法"><p class="caption">轮盘赌选择法</p></div><p>轮盘赌选择法：选择累积概率超过随机值的第一个个体。</p><p>用轮盘赌法选择下一个访问城市。假设产生的随机值<span class="math inline">\(r=0.05\)</span>，则蚂蚁<strong>1</strong>会选择城市<strong>B</strong> 同样，假设蚂蚁<strong>2</strong>选择城市<strong>D</strong>，蚂蚁<strong>3</strong>选择城市<strong>A</strong>。</p><p>现在蚂蚁<strong>1</strong>已经来到<strong>B</strong>了，路径记忆向量<span class="math inline">\(R^l=(AB)\)</span>,可访问城市集合<span class="math inline">\(J_i(i)={C,D}\)</span></p><p>蚂蚁<strong>1</strong>访问<strong>C，D</strong>城市的概率： <span class="math display">\[B\Rightarrow\begin{cases}C:\tau_{BC}^\alpha\times\eta_{BC}^\beta=0.3^1\times\frac{1}{5}^2=0.012\\\\D:\tau_{BD}^\alpha\times\eta_{BD}^\beta=0.3^1\times\frac{1}{4}^2=0.019\end{cases}\\\\P(C)=\frac{0.012}{0.012+0.019}=0.39\\\\P(D)=\frac{0.019}{0.012+0.019}=0.61\]</span> 用轮盘赌法选择下一个访问城市。假设产生的随机数<span class="math inline">\(r=0.67\)</span>，则蚂蚁<strong>1</strong>会选择城市<strong>D</strong> 同样，假设蚂蚁<strong>2</strong>选择城市<strong>C</strong>，蚂蚁<strong>3</strong>选择城市<strong>D</strong>。</p><p>最终，所有蚂蚁选择的路径为：</p><p>蚂蚁1：ABDCA</p><p>蚂蚁2：BDCAB</p><p>蚂蚁3：DACBD</p><h2 id="信息素更新-1">信息素更新</h2><p>每只蚂蚁走过的路径长度：<span class="math inline">\(C_1=3+4+2+1=10;C_2=4+2+1+3=10;C_3=2+1+5+4=12。\)</span></p><p>每条边信息素的更新如下: <span class="math display">\[\tau_{AB}=（1-\rho)\times\tau_{AB} + \sum_{k=1}^3\Delta\tau_{AB}^k=0.5\times0.3+(\frac{1}{10}+\frac{1}{10})=0.35\\\\\tau_{AC}=（1-\rho)\times\tau_{AC} + \sum_{k=1}^3\Delta\tau_{AC}^k=0.5\times0.3+(\frac{1}{12})=0.16\\\\\tau_{AD},\tau_{BC}...\]</span> 在<span class="math inline">\(\tau_{AB}\)</span>的计算中蚂蚁3并未走过路径<strong>AB</strong>，所以<span class="math inline">\(\tau_{AB}^3=0\)</span>。</p><h2 id="结束">结束</h2><p>如果满足结束条件，则输出全局最优结果并结束程序，否则，则转向步骤2继续执行。</p><p>references</p><p>https://www.cnblogs.com/asxinyu/p/Path_Optimization_Tsp_Problem_Ant_System_CSharp.html#opennewwindow</p><a id="more"></a>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;h1 id=&quot;基本原理&quot;&gt;基本原理&lt;/h1&gt;
+      &lt;h1 id=&quot;基本原理&quot;&gt;基本原理&lt;/h1&gt;
 &lt;div class=&quot;figure&quot;&gt;
 &lt;img src=&quot;/Assets/BlogImg/蚁群算法.png&quot; alt=&quot;蚁群算法1&quot;&gt;
 &lt;p class=&quot;caption&quot;&gt;蚁群算法1&lt;/p&gt;
 &lt;/div&gt;
-&lt;div 
-      
+&lt;div class=&quot;figure&quot;&gt;
+&lt;img src=&quot;/Assets/BlogImg/蚁群算法1.png&quot; alt=&quot;蚁群算法2&quot;&gt;
+&lt;p class=&quot;caption&quot;&gt;蚁群算法2&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;figure&quot;&gt;
+&lt;img src=&quot;/Assets/BlogImg/蚁群算法2.png&quot; alt=&quot;蚁群算法3&quot;&gt;
+&lt;p class=&quot;caption&quot;&gt;蚁群算法3&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id=&quot;基本流程&quot;&gt;基本流程&lt;/h1&gt;
+&lt;h2 id=&quot;路径构建&quot;&gt;路径构建&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;\[
+\begin{equation}
+    P_{ij}(t) =
+   \begin{cases}
+   \frac{[\tau_{ij}(t)]^\alpha \times [\eta_{ij}(t)]^\beta}{\sum\limits_{k\in allowed_k }[\tau_{ik}(t)]^\alpha \times [\eta_{ik}(t)]^\beta}&amp;amp;
+   {if \quad j \in allowed_k}\\
+   \qquad 0&amp;amp;
+   others
+   \end{cases}
+  \end{equation}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&quot;math inline&quot;&gt;\(i,j\)&lt;/span&gt;分别为起点和终点&lt;/li&gt;
+&lt;li&gt;&lt;span class=&quot;math inline&quot;&gt;\(\eta_{ij} = \frac{1}{d_{ij}}\)&lt;/span&gt;为能见度，是两点&lt;span class=&quot;math inline&quot;&gt;\(i、j\)&lt;/span&gt;间的导数&lt;/li&gt;
+&lt;li&gt;&lt;span class=&quot;math inline&quot;&gt;\(\tau_{ij}(t)\)&lt;/span&gt;为时间&lt;span class=&quot;math inline&quot;&gt;\(t\)&lt;/span&gt;时由&lt;span class=&quot;math inline&quot;&gt;\(i\)&lt;/span&gt;到&lt;span class=&quot;math inline&quot;&gt;\(j\)&lt;/span&gt;的信息素强度&lt;/li&gt;
+&lt;li&gt;&lt;span class=&quot;math inline&quot;&gt;\(allowed_k\)&lt;/span&gt;为从&lt;span class=&quot;math inline&quot;&gt;\(i\)&lt;/span&gt;出发可访问到节点的集合&lt;/li&gt;
+&lt;li&gt;&lt;span class=&quot;math inline&quot;&gt;\(\alpha,\beta\)&lt;/span&gt;为两常数，分别是信息素和能见度的加权值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;结果表示&lt;strong&gt;当前点到每个可能的下个节点的概率&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;信息素更新&quot;&gt;信息素更新&lt;/h2&gt;
+&lt;p&gt;蚂蚁的信息素释放量&lt;span class=&quot;math inline&quot;&gt;\(C(0)\)&lt;/span&gt;,如果太小则容易导致局部最优。为什么？&lt;/p&gt;
+&lt;p&gt;如果太大，则对搜索方向的导向作用降低。一般用贪婪算法获取一个路径值&lt;span class=&quot;math inline&quot;&gt;\(Cnn\)&lt;/span&gt;，然后根据蚂蚁个数来计算&lt;span class=&quot;math inline&quot;&gt;\(C(0) = m/Cnn\)&lt;/span&gt;,&lt;span class=&quot;math inline&quot;&gt;\(m\)&lt;/span&gt;为蚂蚁个数。&lt;/p&gt;
+&lt;p&gt;信息素更新如下：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;\[
+\tau(t)=(1-p)\tau_{ij}+\sum_{k=1}^m\Delta\tau_{ij}^k
+\]&lt;/span&gt; &lt;span class=&quot;math inline&quot;&gt;\(m\)&lt;/span&gt;:蚂蚁个数，&lt;span class=&quot;math inline&quot;&gt;\(0&amp;lt;\rho&amp;lt;=1\)&lt;/span&gt;:信息素蒸发率,&lt;span class=&quot;math inline&quot;&gt;\(\Delta\tau_{ij}^k\)&lt;/span&gt;:第&lt;span class=&quot;math inline&quot;&gt;\(k\)&lt;/span&gt;只蚂蚁在路径&lt;span class=&quot;math inline&quot;&gt;\(i\)&lt;/span&gt;到 &lt;span class=&quot;math inline&quot;&gt;\(j\)&lt;/span&gt; 所留下的信息素 &lt;span class=&quot;math display&quot;&gt;\[
+\begin{equation}
+    \Delta \tau_{ij}^k =
+   \begin{cases}
+   (c_k)^{-1}&amp;amp;\quad 第k^{th}只蚂蚁经过路径(i，j)\\\\
+   0&amp;amp;\quad others
+   \end{cases}
+  \end{equation}
+\]&lt;/span&gt; 信息素挥发(evaporation):避免算法过快地向局部最优区域集中，有助于搜索区域的扩展。&lt;/p&gt;
+&lt;p&gt;信息素增强(reinforcement):指引最优路径的指南。&lt;/p&gt;
+&lt;h2 id=&quot;迭代与停止&quot;&gt;迭代与停止&lt;/h2&gt;
+&lt;p&gt;算法每次迭代：&lt;strong&gt;每次迭代的m只蚂蚁都完成了自己的路径过程，回到原点后的整个过程。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;停止：指定迭代次数或达成指定的最优解条件&lt;/p&gt;
+&lt;h1 id=&quot;蚁群算法的实例&quot;&gt;蚁群算法的实例&lt;/h1&gt;
+&lt;div class=&quot;figure&quot;&gt;
+&lt;img src=&quot;/Assets/BlogImg/蚁群算法4.png&quot; alt=&quot;蚁群算法4&quot;&gt;
+&lt;p class=&quot;caption&quot;&gt;蚁群算法4&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;假设共&lt;span class=&quot;math inline&quot;&gt;\(m=3\)&lt;/span&gt;只蚂蚁，参数&lt;span class=&quot;math inline&quot;&gt;\(\alpha=1,\beta=2,\rho=0.5\)&lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&quot;初始化&quot;&gt;初始化&lt;/h2&gt;
+&lt;p&gt;首先使用贪婪算法得到路径的&lt;strong&gt;(ACDBA)&lt;/strong&gt;, 则&lt;span class=&quot;math inline&quot;&gt;\(C_{nn}=1+2+4+3=10\)&lt;/span&gt;,求得&lt;span class=&quot;math inline&quot;&gt;\(\tau_0=m\div C_{nn}=0.3\)&lt;/span&gt; &lt;span class=&quot;math display&quot;&gt;\[
+\tau(0)=
+\begin{bmatrix}
+0&amp;amp;0.3&amp;amp;0.3&amp;amp;0.3 \\
+0.3&amp;amp;0&amp;amp;0.3&amp;amp;0.3 \\
+0.3&amp;amp;0.3&amp;amp;0&amp;amp;0.3 \\
+0.3&amp;amp;0.3&amp;amp;0.3&amp;amp;0
+\end{bmatrix}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&quot;出发地&quot;&gt;出发地&lt;/h2&gt;
+&lt;p&gt;为每个蚂蚁随机选择出发城市，假设蚂蚁1选择城市A，蚂蚁2选择城市B，蚂蚁3选择城市D。&lt;/p&gt;
+&lt;h2 id=&quot;访问地&quot;&gt;访问地&lt;/h2&gt;
+&lt;p&gt;以蚂蚁1为例，当前城市&lt;span class=&quot;math inline&quot;&gt;\(i=A\)&lt;/span&gt;,可访问城市集合&lt;span class=&quot;math inline&quot;&gt;\(J_1 (i)={B,C,D}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;计算蚂蚁1访问各个城市的概率 &lt;span class=&quot;math display&quot;&gt;\[
+A \Rightarrow 
+\begin{cases}
+B:\tau_{AB}^a\times\eta_{AB}^\beta=0.3^1\times\frac{1}{3}^2=0.033\\\\
+C:\tau_{AC}^a\times\eta_{AC}^\beta=0.3^1\times\frac{1}{1}^2=0.300\\\\
+D:\tau_{AD}^a\times\eta_{AD}^\beta=0.3^1\times\frac{1}{2}^2=0.075\\\\
+\end{cases}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;\[
+P(B)=\frac{0.033}{0.033+0.3+0.075}=0.08 \\\\
+P(C)=\frac{0.03}{0.033+0.3+0.075}=0.74 \\\\
+P(D)=\frac{0.075}{0.033+0.3+0.075}=0.1
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;div class=&quot;figure&quot;&gt;
+&lt;img src=&quot;/Assets/BlogImg/轮盘赌选择法.jpeg&quot; alt=&quot;轮盘赌选择法&quot;&gt;
+&lt;p class=&quot;caption&quot;&gt;轮盘赌选择法&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;轮盘赌选择法：选择累积概率超过随机值的第一个个体。&lt;/p&gt;
+&lt;p&gt;用轮盘赌法选择下一个访问城市。假设产生的随机值&lt;span class=&quot;math inline&quot;&gt;\(r=0.05\)&lt;/span&gt;，则蚂蚁&lt;strong&gt;1&lt;/strong&gt;会选择城市&lt;strong&gt;B&lt;/strong&gt; 同样，假设蚂蚁&lt;strong&gt;2&lt;/strong&gt;选择城市&lt;strong&gt;D&lt;/strong&gt;，蚂蚁&lt;strong&gt;3&lt;/strong&gt;选择城市&lt;strong&gt;A&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;现在蚂蚁&lt;strong&gt;1&lt;/strong&gt;已经来到&lt;strong&gt;B&lt;/strong&gt;了，路径记忆向量&lt;span class=&quot;math inline&quot;&gt;\(R^l=(AB)\)&lt;/span&gt;,可访问城市集合&lt;span class=&quot;math inline&quot;&gt;\(J_i(i)={C,D}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;蚂蚁&lt;strong&gt;1&lt;/strong&gt;访问&lt;strong&gt;C，D&lt;/strong&gt;城市的概率： &lt;span class=&quot;math display&quot;&gt;\[
+B\Rightarrow
+\begin{cases}
+C:\tau_{BC}^\alpha\times\eta_{BC}^\beta=0.3^1\times\frac{1}{5}^2=0.012\\\\
+D:\tau_{BD}^\alpha\times\eta_{BD}^\beta=0.3^1\times\frac{1}{4}^2=0.019
+\end{cases}\\\\
+P(C)=\frac{0.012}{0.012+0.019}=0.39\\\\
+P(D)=\frac{0.019}{0.012+0.019}=0.61
+\]&lt;/span&gt; 用轮盘赌法选择下一个访问城市。假设产生的随机数&lt;span class=&quot;math inline&quot;&gt;\(r=0.67\)&lt;/span&gt;，则蚂蚁&lt;strong&gt;1&lt;/strong&gt;会选择城市&lt;strong&gt;D&lt;/strong&gt; 同样，假设蚂蚁&lt;strong&gt;2&lt;/strong&gt;选择城市&lt;strong&gt;C&lt;/strong&gt;，蚂蚁&lt;strong&gt;3&lt;/strong&gt;选择城市&lt;strong&gt;D&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;最终，所有蚂蚁选择的路径为：&lt;/p&gt;
+&lt;p&gt;蚂蚁1：ABDCA&lt;/p&gt;
+&lt;p&gt;蚂蚁2：BDCAB&lt;/p&gt;
+&lt;p&gt;蚂蚁3：DACBD&lt;/p&gt;
+&lt;h2 id=&quot;信息素更新-1&quot;&gt;信息素更新&lt;/h2&gt;
+&lt;p&gt;每只蚂蚁走过的路径长度：&lt;span class=&quot;math inline&quot;&gt;\(C_1=3+4+2+1=10;C_2=4+2+1+3=10;C_3=2+1+5+4=12。\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;每条边信息素的更新如下: &lt;span class=&quot;math display&quot;&gt;\[
+\tau_{AB}=（1-\rho)\times\tau_{AB} + \sum_{k=1}^3\Delta\tau_{AB}^k=0.5\times0.3+(\frac{1}{10}+\frac{1}{10})=0.35\\\\
+\tau_{AC}=（1-\rho)\times\tau_{AC} + \sum_{k=1}^3\Delta\tau_{AC}^k=0.5\times0.3+(\frac{1}{12})=0.16\\\\
+\tau_{AD},\tau_{BC}...
+\]&lt;/span&gt; 在&lt;span class=&quot;math inline&quot;&gt;\(\tau_{AB}\)&lt;/span&gt;的计算中蚂蚁3并未走过路径&lt;strong&gt;AB&lt;/strong&gt;，所以&lt;span class=&quot;math inline&quot;&gt;\(\tau_{AB}^3=0\)&lt;/span&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;结束&quot;&gt;结束&lt;/h2&gt;
+&lt;p&gt;如果满足结束条件，则输出全局最优结果并结束程序，否则，则转向步骤2继续执行。&lt;/p&gt;
+&lt;p&gt;references&lt;/p&gt;
+&lt;p&gt;https://www.cnblogs.com/asxinyu/p/Path_Optimization_Tsp_Problem_Ant_System_CSharp.html#opennewwindow&lt;/p&gt;
     
     </summary>
     

@@ -6,25 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="//Rocky1ee.github.io">
-  <title>Rocky1ee的博客</title>
+  <title>简化粒子群 | Rocky1ee的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Abstract Swarm-based optimization tend to suffer from premature convergence in the high dimensional problem space. thus，proposing simplified swarm optimization (SSO) algorithm to overcome the abo">
-<meta name="keywords" content="程序猿,极客">
+  <meta name="description" content="Abstract Swarm-based optimization tend to suffer from premature convergence in the high dimensional problem space. thus，proposing simplified swarm optimization (SSO) algorithm to overcome the above c">
+<meta name="keywords" content="粒子群算法,智能算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Rocky1ee的博客">
-<meta property="og:url" content="//Rocky1ee.github.io/2019/12/08/遗传算法GA/index.html">
+<meta property="og:title" content="简化粒子群">
+<meta property="og:url" content="//Rocky1ee.github.io/2019/09/03/遗传算法GA/index.html">
 <meta property="og:site_name" content="Rocky1ee的博客">
-<meta property="og:description" content="Abstract Swarm-based optimization tend to suffer from premature convergence in the high dimensional problem space. thus，proposing simplified swarm optimization (SSO) algorithm to overcome the abo">
+<meta property="og:description" content="Abstract Swarm-based optimization tend to suffer from premature convergence in the high dimensional problem space. thus，proposing simplified swarm optimization (SSO) algorithm to overcome the above c">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/SSO1.png">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/ROC1.png">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/ROC2.png">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/ELS.png">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/exchange%20Attribute.png">
-<meta property="og:updated_time" content="2019-12-09T03:22:27.217Z">
+<meta property="og:updated_time" content="2019-12-09T12:02:33.732Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rocky1ee的博客">
-<meta name="twitter:description" content="Abstract Swarm-based optimization tend to suffer from premature convergence in the high dimensional problem space. thus，proposing simplified swarm optimization (SSO) algorithm to overcome the abo">
+<meta name="twitter:title" content="简化粒子群">
+<meta name="twitter:description" content="Abstract Swarm-based optimization tend to suffer from premature convergence in the high dimensional problem space. thus，proposing simplified swarm optimization (SSO) algorithm to overcome the above c">
 <meta name="twitter:image" content="//rocky1ee.github.io/Assets/BlogImg/SSO1.png">
   
     <link rel="alternative" href="/atom.xml" title="Rocky1ee的博客" type="application/atom+xml">
@@ -176,14 +176,74 @@ var _hmt = _hmt || [];
             <article id="post-遗传算法GA" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      简化粒子群
+    </h1>
+  
+
+        
+        <a href="/2019/09/03/遗传算法GA/" class="archive-article-date">
+  	<time datetime="2019-09-03T07:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-03</time>
+</a>
+        <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">878字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">5分</span>
+      </span>
+    </span>
+</div>
+          
+        <!-- 添加完成 -->
+        
+      </header>
+    
 <!-- 目录内容 -->
-   
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+  <div id="toc-article" class="toc-article">
+      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#abstract"><span class="toc-number">1.</span> <span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#introduction"><span class="toc-number">2.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#particle-swarm-optimization-and-simplified-swarm-optimization."><span class="toc-number">3.</span> <span class="toc-text">Particle Swarm Optimization and Simplified Swarm Optimization.</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pso"><span class="toc-number">3.1.</span> <span class="toc-text">PSO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sso"><span class="toc-number">3.2.</span> <span class="toc-text">SSO</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#the-proposed-sso-els-data-mining-algorithm"><span class="toc-number">4.</span> <span class="toc-text">The Proposed SSO-ELS Data Mining Algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#the-rule-mining-encoding"><span class="toc-number">4.1.</span> <span class="toc-text">The rule mining encoding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rule-evaluation"><span class="toc-number">4.2.</span> <span class="toc-text">Rule evaluation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rule-pruning"><span class="toc-number">4.3.</span> <span class="toc-text">Rule pruning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#the-proposed-exchange-local-search-strategy"><span class="toc-number">4.4.</span> <span class="toc-text">The proposed exchange local search strategy</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#conclusions"><span class="toc-number">5.</span> <span class="toc-text">Conclusions</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+    };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+    };
+   </script>
+         
 <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<hr>
-<h1 id="abstract">Abstract</h1>
+        <h1 id="abstract">Abstract</h1>
 <p>Swarm-based optimization tend to suffer from premature convergence in the high dimensional problem space. thus，proposing simplified swarm optimization (SSO) algorithm to overcome the above convergence problem by incorporating it with the new <strong>local search strategy</strong> named ELS(Exchange Local Search).</p>
 <h1 id="introduction">Introduction</h1>
 <p>The ELS strategy is introduced to find a better solution from the neighbourhood of the current solution which is produced by SSO. It allows the particles to better explore the search space, and preserves swarm diversity which is important in preventing premature convergence of the particles.</p>
@@ -268,6 +328,7 @@ Prediction\quad value +=a*rule\quad quality +\beta*percentage\quad of\quad the \
 <p>precision and recall,ROC,AUC</p>
 <p>https://towardsdatascience.com/beyond-accuracy-precision-and-recall-3da06bea9f6c</p>
 <p>A new simplified swarm optimization (SSO) using exchange local search scheme</p>
+<a id="more"></a>
 
       
 
@@ -276,7 +337,33 @@ Prediction\quad value +=a*rule\quad quality +\beta*percentage\quad of\quad the \
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">粒子群算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">智能算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/算法学习//" class="article-tag-list-link color5">算法学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -326,7 +413,7 @@ Prediction\quad value +=a*rule\quad quality +\beta*percentage\quad of\quad the \
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://Rocky1ee.github.io/2019/12/08/遗传算法GA/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://Rocky1ee.github.io/2019/09/03/遗传算法GA/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -339,6 +426,15 @@ Prediction\quad value +=a*rule\quad quality +\beta*percentage\quad of\quad the \
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/12/09/蒙特卡罗算法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
   
   
     <a href="/2019/09/01/粒子群算法PSO/" id="article-nav-older" class="article-nav-link-wrap">
@@ -361,6 +457,19 @@ Prediction\quad value +=a*rule\quad quality +\beta*percentage\quad of\quad the \
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#abstract"><span class="toc-number">1.</span> <span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#introduction"><span class="toc-number">2.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#particle-swarm-optimization-and-simplified-swarm-optimization."><span class="toc-number">3.</span> <span class="toc-text">Particle Swarm Optimization and Simplified Swarm Optimization.</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pso"><span class="toc-number">3.1.</span> <span class="toc-text">PSO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sso"><span class="toc-number">3.2.</span> <span class="toc-text">SSO</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#the-proposed-sso-els-data-mining-algorithm"><span class="toc-number">4.</span> <span class="toc-text">The Proposed SSO-ELS Data Mining Algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#the-rule-mining-encoding"><span class="toc-number">4.1.</span> <span class="toc-text">The rule mining encoding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rule-evaluation"><span class="toc-number">4.2.</span> <span class="toc-text">Rule evaluation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rule-pruning"><span class="toc-number">4.3.</span> <span class="toc-text">Rule pruning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#the-proposed-exchange-local-search-strategy"><span class="toc-number">4.4.</span> <span class="toc-text">The proposed exchange local search strategy</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#conclusions"><span class="toc-number">5.</span> <span class="toc-text">Conclusions</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
