@@ -6,19 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="//Rocky1ee.github.io">
-  <title>Tag: 智能算法 | Rocky1ee的博客</title>
+  <title>模拟退火算法 | Rocky1ee的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="学习中">
-<meta name="keywords" content="程序猿,极客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Rocky1ee的博客">
-<meta property="og:url" content="//Rocky1ee.github.io/tags/智能算法/index.html">
+  <meta name="description" content="模拟退火算法(Simulated Annealing)：采用类似于物理退火的过程，先在一个高温状态下（相当于算法随机搜索），然后逐渐退火，在每个温度下（相当于算法的每一次状态转移）徐徐冷却（相当于算法局部搜索），最终达到物理基态（相当于算法找到最优解）。 算法思想 爬山算法 爬山算法是一种简单的贪心搜索算法，它每次都鼠目寸光地从当前解临近的解空间中选择一个更优解代替当前解，直到得到一个局部最">
+<meta name="keywords" content="模拟退火算法,智能算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模拟退火算法">
+<meta property="og:url" content="//Rocky1ee.github.io/2019/09/06/模拟退火算法SA/index.html">
 <meta property="og:site_name" content="Rocky1ee的博客">
-<meta property="og:description" content="学习中">
+<meta property="og:description" content="模拟退火算法(Simulated Annealing)：采用类似于物理退火的过程，先在一个高温状态下（相当于算法随机搜索），然后逐渐退火，在每个温度下（相当于算法的每一次状态转移）徐徐冷却（相当于算法局部搜索），最终达到物理基态（相当于算法找到最优解）。 算法思想 爬山算法 爬山算法是一种简单的贪心搜索算法，它每次都鼠目寸光地从当前解临近的解空间中选择一个更优解代替当前解，直到得到一个局部最">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/SA.jpg">
+<meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/SA2.png">
+<meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/SA3.gif">
+<meta property="og:updated_time" content="2019-12-10T07:43:48.033Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rocky1ee的博客">
-<meta name="twitter:description" content="学习中">
+<meta name="twitter:title" content="模拟退火算法">
+<meta name="twitter:description" content="模拟退火算法(Simulated Annealing)：采用类似于物理退火的过程，先在一个高温状态下（相当于算法随机搜索），然后逐渐退火，在每个温度下（相当于算法的每一次状态转移）徐徐冷却（相当于算法局部搜索），最终达到物理基态（相当于算法找到最优解）。 算法思想 爬山算法 爬山算法是一种简单的贪心搜索算法，它每次都鼠目寸光地从当前解临近的解空间中选择一个更优解代替当前解，直到得到一个局部最">
+<meta name="twitter:image" content="//rocky1ee.github.io/Assets/BlogImg/SA.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Rocky1ee的博客" type="application/atom+xml">
   
@@ -166,36 +171,131 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-模拟退火算法SA" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/06/模拟退火算法SA/" class="archive-article-date">
-  	<time datetime="2019-09-06T11:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-06</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/06/模拟退火算法SA/">模拟退火算法</a>
+    <h1 class="article-title" itemprop="name">
+      模拟退火算法
     </h1>
   
 
-        <div class="article-info info-on-right">
+        
+        <a href="/2019/09/06/模拟退火算法SA/" class="archive-article-date">
+  	<time datetime="2019-09-06T11:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-06</time>
+</a>
+        <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">840字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">3分</span>
+      </span>
+    </span>
+</div>
           
+        <!-- 添加完成 -->
+        
+      </header>
+    
+<!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+  <div id="toc-article" class="toc-article">
+      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#算法思想"><span class="toc-number">1.</span> <span class="toc-text">算法思想</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#爬山算法"><span class="toc-number">1.1.</span> <span class="toc-text">爬山算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模拟退火算法"><span class="toc-number">1.2.</span> <span class="toc-text">模拟退火算法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#算法流程"><span class="toc-number">2.</span> <span class="toc-text">算法流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#初始化"><span class="toc-number">2.1.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#metropolis准则"><span class="toc-number">2.2.</span> <span class="toc-text">Metropolis准则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迭代更新"><span class="toc-number">2.3.</span> <span class="toc-text">迭代更新</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#算法实例"><span class="toc-number">3.</span> <span class="toc-text">算法实例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#references"><span class="toc-number">4.</span> <span class="toc-text">references</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+    };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+    };
+   </script>
+         
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>模拟退火算法(Simulated Annealing)：采用类似于物理退火的过程，先在一个高温状态下（相当于算法随机搜索），然后逐渐退火，在每个温度下（相当于算法的每一次状态转移）徐徐冷却（相当于算法局部搜索），最终达到物理基态（相当于算法找到最优解）。</p>
+<h1 id="算法思想">算法思想</h1>
+<h2 id="爬山算法">爬山算法</h2>
+<p><strong>爬山算法</strong>是一种简单的<strong>贪心搜索算法</strong>，它每次都<strong>鼠目寸光</strong>地从当前解临近的解空间中选择一个更优解代替当前解，直到得到一个局部最优解。</p>
+<p>如图1所示：假设C点为当前解，爬山算法搜索到A点这个局部最优解后就会停止搜索，因为在A点无论向那个方向小幅度移动都不能得到更优的解。因此，爬山算法只能搜索到局部最优值，而不一定能搜索到全局最优解。</p>
+<div class="figure">
+<img src="/Assets/BlogImg/SA.jpg" alt="图 1">
+<p class="caption">图 1</p>
+</div>
+<h2 id="模拟退火算法">模拟退火算法</h2>
+<p>模拟退火算法其实也是一种贪心算法，但是它的搜索过程引入了随机因素。模拟退火算法<strong>以一定的概率</strong>来接受一个比当前解要差的解，因此<strong>有可能</strong>会跳出这个局部的最优解，达到全局的最优解。</p>
+<p>以图1为例，模拟退火算法在搜索到局部最优解A后，会<strong>以一定的概率</strong>向E的移动。可能经过几次这样的不是局部最优的移动后会到达D点，于是就跳出了局部最大值A。模拟退火算法是一种随机算法，并不一定能找到全局的最优解，但可以比较快的找到问题的近似最优解。</p>
+<a id="more"></a>
+<h1 id="算法流程">算法流程</h1>
+<p><img src="/Assets/BlogImg/SA2.png" alt="The process of SA" style="zoom:80%;"></p>
+<h2 id="初始化">初始化</h2>
+<p>模拟退火时需设定三个参数：一个比较大初始温度<span class="math inline">\(T_0\)</span> ，降温系数<span class="math inline">\(d\)</span> 非常接近但小于<span class="math inline">\(1\)</span>，终止温度 <span class="math inline">\(T_k\)</span>是一个接近<span class="math inline">\(0\)</span>的正数。</p>
+<h2 id="metropolis准则">Metropolis准则</h2>
+解的替换按照Metropolis准则进行，假设前一状态为 <span class="math inline">\(f(x_n)\)</span>，系统受到一定扰动，状态变为 <span class="math inline">\(f(x_{n+1})\)</span>，相应地，系统能量由 <span class="math inline">\(E(x_n)\)</span> 变为 <span class="math inline">\(E(x_{n+1})\)</span>。 定义系统由 <span class="math inline">\(f(x_n)\)</span> 变为$f(x_{n+1}) $的接收概率为 <span class="math inline">\(p\)</span>（probability of acceptance）： $$
+<span class="math display">\[\begin{equation}
+p=
+\begin{cases}
+
+1, \quad &amp;if \quad E(x_{n+1})&lt;E(x_n)\\
+e^{-\frac{E(x_{n+1})-E(x_n)}{T}} \quad &amp;if \quad E(x_{n+1})\geq E(x_n)
+
+\end{cases}
+\end{equation}\]</span>
+<p>$$</p>
+<p>通俗解释为：</p>
+<ol style="list-style-type: decimal">
+<li>在高温下可接受与当前状态能量差较大的新状态；</li>
+<li>在低温下基本只接受与当前能量差较小的新状态；</li>
+<li>当温度趋于零时，就不能接受比当前状态能量高的新状态。</li>
+</ol>
+<p>随着温度的降低，对随机性的接受度降低。</p>
+<h2 id="迭代更新">迭代更新</h2>
+<p>首先让温度 <span class="math inline">\(T=T_0\)</span>，然后按照上述Metroplis准则对解进行更新，再让<span class="math inline">\(T=d \times T\)</span>。当<span class="math inline">\(T&lt;T_k\)</span>时模拟退火过程结束，当前最优解即为最终的最优解。</p>
+<p>直观表示如下图：随着温度的降低，跳跃越来越不随机，最优解也越来越稳定。</p>
+<div class="figure">
+<img src="/Assets/BlogImg/SA3.gif" alt="退火算法求解过程">
+<p class="caption">退火算法求解过程</p>
+</div>
+<h1 id="算法实例">算法实例</h1>
+<h1 id="references">references</h1>
+<p>OI Wiki 习题https://oi-wiki.org/misc/simulated-annealing/</p>
+<p>科学网 http://blog.sciencenet.cn/blog-1813407-893984.html</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -211,7 +311,7 @@ var _hmt = _hmt || [];
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -224,229 +324,142 @@ var _hmt = _hmt || [];
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://Rocky1ee.github.io/2019/09/06/模拟退火算法SA/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/04/遗传算法GA/" class="archive-article-date">
-  	<time datetime="2019-09-04T09:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-04</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2019/12/09/蒙特卡罗算法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/09/04/遗传算法GA/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">遗传算法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/04/遗传算法GA/">遗传算法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">智能算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">进化算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/算法学习//" class="article-tag-list-link color5">算法学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#算法思想"><span class="toc-number">1.</span> <span class="toc-text">算法思想</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#爬山算法"><span class="toc-number">1.1.</span> <span class="toc-text">爬山算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模拟退火算法"><span class="toc-number">1.2.</span> <span class="toc-text">模拟退火算法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#算法流程"><span class="toc-number">2.</span> <span class="toc-text">算法流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#初始化"><span class="toc-number">2.1.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#metropolis准则"><span class="toc-number">2.2.</span> <span class="toc-text">Metropolis准则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迭代更新"><span class="toc-number">2.3.</span> <span class="toc-text">迭代更新</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#算法实例"><span class="toc-number">3.</span> <span class="toc-text">算法实例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#references"><span class="toc-number">4.</span> <span class="toc-text">references</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/03/简化群优化SSO/" class="archive-article-date">
-  	<time datetime="2019-09-03T07:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/03/简化群优化SSO/">简化粒子群</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">智能算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">粒子群算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/算法学习//" class="article-tag-list-link color5">算法学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/01/粒子群算法PSO/" class="archive-article-date">
-  	<time datetime="2019-09-01T08:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/01/粒子群算法PSO/">粒子群算法</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">智能算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">粒子群算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/算法学习//" class="article-tag-list-link color5">算法学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/31/蚁群算法(ACO)/" class="archive-article-date">
-  	<time datetime="2019-08-31T08:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/31/蚁群算法(ACO)/">蚁群算法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">智能算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">蚁群算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/算法学习//" class="article-tag-list-link color5">算法学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
+  
+
+
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'true'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
 
 
           </div>
@@ -469,9 +482,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,

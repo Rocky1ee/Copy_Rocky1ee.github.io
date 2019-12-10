@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/粒子群算法1.png">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/粒子群算法2.png">
-<meta property="og:updated_time" content="2019-12-09T12:01:37.171Z">
+<meta property="og:updated_time" content="2019-12-10T07:45:55.605Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="粒子群算法">
 <meta name="twitter:description" content="算法思路 基本思想 粒子群算法-particle swarm optimization。粒子群优化算法的基本思想是：通过群体中个体之间的协作和信息共享来寻找最优解。 我们可以设想这样的一个场景，一群鸟在随机搜寻食物。这个区域里只有一块食物。所有的鸟都不知道食物再哪里，但他们知道目前距离食物还有多远，那么找到食物的最佳策略是什么？ 1.找寻距离食物最近的鸟之周围区域 2.根据自己本身飞行的">
@@ -253,6 +253,7 @@ X_i = (x_1,x_2,...,x_N)
 \]</span> 运动速度表示为： <span class="math display">\[
 V_i=(v_1,v_2,...,v_N)
 \]</span> 每个粒子都有一个由目标函数决定的<strong>适应值</strong>，并且知道自己到目前为止的最好位置<span class="math inline">\((pbest_i)\)</span>和现在所在的位置<span class="math inline">\(X_i\)</span>．这个可以看作是粒子自己的运动经验。同时，每个粒子还知道到目前整个群体中位置最好的粒子<span class="math inline">\((gbest) (gbest是pbest_i中的最好值)\)</span>．这个可以看作是粒子同伴的经验。粒子就是通过自己的经验和同伴中最好的经验来决定下一步的运动。</p>
+<a id="more"></a>
 <h1 id="算法基本内容">算法基本内容</h1>
 <h2 id="初始化">初始化</h2>
 <p>对于每个粒子的位置<span class="math inline">\(X_i\)</span>和运动速度<span class="math inline">\(V_i\)</span>进行随机初始化</p>
@@ -389,7 +390,7 @@ gbest=pbest_3=(4.5,-4.7)
 \]</span></p>
 <h2 id="迭代">迭代</h2>
 <p>如果满足结束条件，则输出全局最优结果并结束程序，否则，转向第二步继续执行。</p>
-<a id="more"></a>
+<!-- more -->
 
       
 
@@ -677,7 +678,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">进化算法</a>
+                <a href="javascript:void(0)" class="js-tag color2">模拟退火算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -690,6 +691,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">蚁群算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">进化算法</a>
               </li>
             
             <div class="clearfix"></div>

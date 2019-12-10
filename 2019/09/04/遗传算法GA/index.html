@@ -9,7 +9,7 @@
   <title>遗传算法 | Rocky1ee的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="遗传算法（Genetic Algorithm） 算法背景 种群(Population)：生物的进化以群体的形式进行，这样的一个群体称为种群。 个体：组成种群的单个生物。 染色体 ( Chromosome ) ：包含一组的基因。 基因 ( Gene ) ：一个遗传因子。 生存竞争，适者生存：对环境适应度高的、优良的个体参与繁殖的机会比较多，后代就会越来越多。适应度低的个体参与繁殖的机会比">
-<meta name="keywords" content="进化算法,智能算法">
+<meta name="keywords" content="智能算法,进化算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="遗传算法">
 <meta property="og:url" content="//Rocky1ee.github.io/2019/09/04/遗传算法GA/index.html">
@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/GA1.jpg">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/轮盘赌选择法.jpeg">
-<meta property="og:updated_time" content="2019-12-10T02:13:37.999Z">
+<meta property="og:updated_time" content="2019-12-10T07:45:30.478Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="遗传算法">
 <meta name="twitter:description" content="遗传算法（Genetic Algorithm） 算法背景 种群(Population)：生物的进化以群体的形式进行，这样的一个群体称为种群。 个体：组成种群的单个生物。 染色体 ( Chromosome ) ：包含一组的基因。 基因 ( Gene ) ：一个遗传因子。 生存竞争，适者生存：对环境适应度高的、优良的个体参与繁殖的机会比较多，后代就会越来越多。适应度低的个体参与繁殖的机会比">
@@ -257,6 +257,7 @@ var _hmt = _hmt || [];
 <img src="/Assets/BlogImg/GA1.jpg" alt="The process of GA">
 <p class="caption">The process of GA</p>
 </div>
+<a id="more"></a>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">begin</span><br><span class="line">       initialize P(0);      </span><br><span class="line">       t = 0;             //t是进化的代数，一代、二代、三代...</span><br><span class="line"></span><br><span class="line">       while(t &lt;= T) do</span><br><span class="line">              for i = 1 to M  do     //M是初始种群的个体数</span><br><span class="line">                     Evaluate fitness of P(t);  //计算P（t）中各个个体的适应度</span><br><span class="line">              end for</span><br><span class="line"></span><br><span class="line">              for i = 1 to M  do</span><br><span class="line">                     Select operation to P(t);  //将选择算子作用于群体</span><br><span class="line">              end for</span><br><span class="line"></span><br><span class="line">              for i = 1 to M/2  do</span><br><span class="line">                     Crossover operation to P(t); //将交叉算子作用于群体</span><br><span class="line">              end for</span><br><span class="line"></span><br><span class="line">              for i = 1 to M  do</span><br><span class="line">                     Mutation operation to P(t);  //将变异算子作用于群体</span><br><span class="line">              end for</span><br><span class="line"></span><br><span class="line">              for i = 1 to M  do</span><br><span class="line">                     P(t+1) = P(t);      //得到下一代群体P（t + 1）</span><br><span class="line">              end for</span><br><span class="line">              </span><br><span class="line">              t = t + 1;      //终止条件判断  t≦T：t← t+1 转到步骤2</span><br><span class="line"></span><br><span class="line">       end while</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 <h2 id="编码">编码</h2>
 <p>遗传算法需要将问题的解(个体)编码成字符串的形式。最简单的一种编码方式是二进制编码，</p>
@@ -447,7 +448,7 @@ s1=11011（27）,    s2 = 11001（25）,
 <h1 id="references">references</h1>
 <p>JULY大神 https://blog.csdn.net/v_JULY_v/article/details/6132775</p>
 <p>Michael翔 https://michael728.github.io/2015/12/24/algorithm-GA-basic/</p>
-<a id="more"></a>
+<!--more-->
 
       
 
@@ -461,11 +462,11 @@ s1=11011（27）,    s2 = 11001（25）,
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">进化算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">智能算法</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">智能算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">进化算法</a>
         		</li>
       		
 		</ul>
@@ -546,11 +547,11 @@ s1=11011（27）,    s2 = 11001（25）,
   
 <nav id="article-nav">
   
-    <a href="/2019/12/09/蒙特卡罗算法/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/09/06/模拟退火算法SA/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          (no title)
+          模拟退火算法
         
       </div>
     </a>
@@ -735,7 +736,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">进化算法</a>
+                <a href="javascript:void(0)" class="js-tag color2">模拟退火算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -748,6 +749,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">蚁群算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">进化算法</a>
               </li>
             
             <div class="clearfix"></div>
