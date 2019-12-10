@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="//Rocky1ee.github.io/"/>
-  <updated>2019-12-09T05:44:22.908Z</updated>
+  <updated>2019-12-09T12:42:12.924Z</updated>
   <id>//Rocky1ee.github.io/</id>
   
   <author>
@@ -21,16 +21,16 @@
     <link href="//Rocky1ee.github.io/2019/12/09/%E8%92%99%E7%89%B9%E5%8D%A1%E7%BD%97%E7%AE%97%E6%B3%95/"/>
     <id>//Rocky1ee.github.io/2019/12/09/蒙特卡罗算法/</id>
     <published>2019-12-09T05:44:22.908Z</published>
-    <updated>2019-12-09T05:44:22.908Z</updated>
+    <updated>2019-12-09T12:42:12.924Z</updated>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<p>蒙特卡罗算法：采样越多，越<strong>近似</strong>最优解；用有限随机数去计算估计值.</p><p>举个例子，假如筐里有100个苹果，让我每次闭眼拿1个，挑出最大的。于是我随机拿1个，再随机拿1个跟它比，留下大的，再随机拿1个……我每拿一次，留下的苹果都至少不比上次的小。拿的次数越多，挑出的苹果就越大，但我除非拿100次，否则无法肯定挑出了最大的。这个挑苹果的算法，就属于蒙特卡罗算法——<strong>尽量找好的，但不保证是最好的</strong>。</p><div class="figure"><img src="/Assets/BlogImg/圆周率估计.gif" alt="Monte Carlo Method"><p class="caption">Monte Carlo Method</p></div><p>使用蒙特卡洛方法估算π值. 放置30000个随机点后,π的估算值与真实值相差0.07%.</p><p>这张图其实很简单, 就像我们玩飞镖一样, 随机地在一个方形平面上投掷30000个飞镖, 事先我们并不知道圆周率π的值究竟是多少, 但是我们知道这里有1/4的圆, 于是我们把红色面积上的点数<span class="math inline">\(m\)</span>, 和蓝色面积上的点数<span class="math inline">\(n\)</span>, 以及圆周率<span class="math inline">\(π\)</span>的关系, 可以写出一个约等于的式子: <span class="math display">\[π ≈ 4m/(n+m)\]</span> 随着<span class="math inline">\(m+n\)</span>的投射点的逐渐增加, <span class="math inline">\(π\)</span>值的计算也越来越精确, 最后我们就估计出一个不错的比较精确的<span class="math inline">\(π\)</span>值啦</p>]]></content>
     
     <summary type="html">
     
       
       
-        
-
+        &lt;p&gt;蒙特卡罗算法：采样越多，越&lt;strong&gt;近似&lt;/strong&gt;最优解；用有限随机数去计算估计值.&lt;/p&gt;
+&lt;p&gt;举个例子，假如筐里有100个苹果，让我每次闭眼拿1个，挑出最大的。于是我随机拿1个，再随机拿1个跟它比，留下大的，再随机拿1个……我每拿一次，留下的苹果都至少
       
     
     </summary>
@@ -39,9 +39,239 @@
   </entry>
   
   <entry>
+    <title>遗传算法</title>
+    <link href="//Rocky1ee.github.io/2019/09/04/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95GA/"/>
+    <id>//Rocky1ee.github.io/2019/09/04/遗传算法GA/</id>
+    <published>2019-09-04T09:56:36.000Z</published>
+    <updated>2019-12-10T02:13:37.999Z</updated>
+    
+    <content type="html"><![CDATA[<p>遗传算法（Genetic Algorithm）</p><h1 id="算法背景">算法背景</h1><p><strong>种群(Population)</strong>：生物的进化以群体的形式进行，这样的一个群体称为种群。</p><p><strong>个体</strong>：组成种群的单个生物。</p><p><strong>染色体 ( Chromosome )</strong> ：包含一组的基因。</p><p><strong>基因 ( Gene )</strong> ：一个遗传因子。</p><p><strong>生存竞争，适者生存</strong>：对环境适应度高的、优良的个体参与繁殖的机会比较多，后代就会越来越多。适应度低的个体参与繁殖的机会比较少，后代就会越来越少。</p><p><strong>选择</strong>：根据相应策略选择父母染色体对进行繁殖。</p><p><strong>交叉</strong>：将父母双方各一部分的基因进行组合形成子代染色体。</p><p><strong>变异</strong>：子代染色体有一定的概率发生基因变异。</p><p>简单说来就是：选择优良父代进行繁殖，期间会发生基因交叉( Crossover ) ，基因突变 ( Mutation ) ，适应度( Fitness )低的个体会被逐步淘汰，而适应度高的个体会越来越多。那么经过N代的自然选择后，保存下来的个体都是适应度很高的，其中很可能包含史上产生的适应度最高的个体。</p><h1 id="算法流程">算法流程</h1><h2 id="总体流程">总体流程</h2><div class="figure"><img src="/Assets/BlogImg/GA1.jpg" alt="The process of GA"><p class="caption">The process of GA</p></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">begin</span><br><span class="line">       initialize P(0);      </span><br><span class="line">       t = 0;             //t是进化的代数，一代、二代、三代...</span><br><span class="line"></span><br><span class="line">       while(t &lt;= T) do</span><br><span class="line">              for i = 1 to M  do     //M是初始种群的个体数</span><br><span class="line">                     Evaluate fitness of P(t);  //计算P（t）中各个个体的适应度</span><br><span class="line">              end for</span><br><span class="line"></span><br><span class="line">              for i = 1 to M  do</span><br><span class="line">                     Select operation to P(t);  //将选择算子作用于群体</span><br><span class="line">              end for</span><br><span class="line"></span><br><span class="line">              for i = 1 to M/2  do</span><br><span class="line">                     Crossover operation to P(t); //将交叉算子作用于群体</span><br><span class="line">              end for</span><br><span class="line"></span><br><span class="line">              for i = 1 to M  do</span><br><span class="line">                     Mutation operation to P(t);  //将变异算子作用于群体</span><br><span class="line">              end for</span><br><span class="line"></span><br><span class="line">              for i = 1 to M  do</span><br><span class="line">                     P(t+1) = P(t);      //得到下一代群体P（t + 1）</span><br><span class="line">              end for</span><br><span class="line">              </span><br><span class="line">              t = t + 1;      //终止条件判断  t≦T：t← t+1 转到步骤2</span><br><span class="line"></span><br><span class="line">       end while</span><br><span class="line">end</span><br></pre></td></tr></table></figure><h2 id="编码">编码</h2><p>遗传算法需要将问题的解(个体)编码成字符串的形式。最简单的一种编码方式是二进制编码，</p><p>即<span class="math inline">\(24=11000\)</span>。</p><h2 id="适应度计算">适应度计算</h2><p>适应度函数 ( Fitness Function )：用于评价染色体的适应度，用<span class="math inline">\(f(x)\)</span>表示。<strong>适应度函数</strong>与<strong>目标函数</strong>是正相关的，可对目标函数作一些变形来得到适应度函数。有时需要区分染色体的适应度函数与问题的目标函数。例如：0-1背包问题的目标函数是所取得物品价值，但将物品价值作为染色体的适应度函数可能并不一定适合。</p><h2 id="选择">选择</h2><p>使用选择运算子对个体进行优胜劣汰操作。适应度高的个体被遗传到下一代群体中的概率大；适应度低的个体，被遗传到下一代群体中的概率小。目标就是从父代群体中选取优个体，遗传到下一代群体。</p><p>常用算法为轮盘赌法： <span class="math display">\[P(x_i)=\frac{f(x_i)}{\sum\limits_{j=1}^Nf(x_j)}\qquad(1)\]</span> <span class="math inline">\(x_i\)</span>:个体<span class="math inline">\(i，i \in[1,N]\)</span>,<span class="math inline">\(f()\)</span>:适应度函数,<span class="math inline">\(P(x_i)\)</span>:选择个体<span class="math inline">\(i\)</span>的概率。 <span class="math display">\[q_i = \sum\limits_{j=1}^iP(x_j)\qquad (2)\]</span> <span class="math inline">\(q_i\)</span>为累积概率。</p><div class="figure"><img src="/Assets/BlogImg/轮盘赌选择法.jpeg" alt="轮盘赌法"><p class="caption">轮盘赌法</p></div><p>生成随机数<span class="math inline">\(r_k \in[0,1],k =1,2,3...N\)</span>,<span class="math inline">\(N\)</span>为选择个体总数。假设<span class="math inline">\(r_1=0.4\)</span>,则选择<span class="math inline">\(个体3\)</span>,即选择<span class="math inline">\(q_i \geq r_1\)</span>的第首个个体。</p><h2 id="交叉">交叉</h2><p>染色体交叉是以一定的概率发生的，这个概率记为$P_c $。交叉的方法有很多种，这里用的是单点交叉</p><p>交叉前：</p><p>00000|<strong>011100000000</strong>|10000</p><p>11100|<strong>000001111110</strong>|00101</p><p>交叉后：</p><p>00000|<strong>000001111110</strong>|10000</p><p>11100|<strong>011100000000</strong>|00101</p><h2 id="变异">变异</h2><p>在繁殖过程，新产生的染色体中的基因会以一定的概率出错，称为变异。变异发生的概率记为&amp;P_m&amp;</p><p>变异前：</p><p>000001110000<strong>0</strong>00010000</p><p>变异后：</p><p>000001110000<strong>1</strong>00010000</p><h1 id="算法实例">算法实例</h1><p>已知<span class="math inline">\(x\)</span>为整数，利用遗传算法求函数<span class="math inline">\(y=x^2\)</span>区间<span class="math inline">\([0, 31]\)</span>上的的最大值。</p><h2 id="初始化">初始化</h2><p>将种群规模设定为<span class="math inline">\(M=4\)</span>；用5位二进制数编码染色体；取下列个体组成初始种群<span class="math inline">\(S_1\)</span> <span class="math display">\[s_1= 13 (01101),  s_2= 24 (11000)\\s_3= 8 (01000),    s_4= 19 (10011）\]</span></p><h2 id="适应度计算-1">适应度计算</h2><p>适应度函数定义为<span class="math inline">\(f(x)=x^2\)</span>,由此计算各染色体的适应度： <span class="math display">\[\begin{split}&amp;f (s_1) = f(13) = 13^2 = 169\\&amp;f (s_2) = f(24) = 24^2 = 576\\&amp;f (s_3) = f(8) = 8^2 = 64\\&amp;f (s_4) = f(19) = 19^2 = 361\end{split}\]</span> ## 选择</p><p>再由公式(1)计算<span class="math inline">\(S_1\)</span>中各个体的选择概率： <span class="math display">\[\begin{split}&amp;P(s_1) = P(13) = 0.14\\&amp;P(s_2) = P(24) = 0.49\\&amp;P(s_3) = P(8) = 0.06\\&amp;P(s_4) = P(19) = 0.31\end{split}\]</span> 再由公式(2)计算<span class="math inline">\(S_1\)</span>中各个体的累计概率： <span class="math display">\[\begin{split}&amp;q(s_1) = q(13) = 0.14\\&amp;q(s_2) = q(24) = 0.63\\&amp;q(s_3) = q(8) = 0.69\\&amp;q(s_4) = q(19) = 1\end{split}\]</span> 假设从<span class="math inline">\([0,1]\)</span>中产生的<span class="math inline">\(N=4\)</span>个随机数如下： <span class="math display">\[\begin{split}&amp;r1 = 0.450126,\\     &amp;r2 = 0.110347\\&amp;r3 = 0.572496, \\    &amp;r4 = 0.98503\end{split}\]</span> 选择结果为：</p><table><thead><tr class="header"><th>个体</th><th>染色体</th><th>适应度</th><th>选择概率</th><th>累积概率</th><th>选择次数</th></tr></thead><tbody><tr class="odd"><td>13</td><td><span class="math inline">\(s_1=01101\)</span></td><td>169</td><td>0.14</td><td>0.14</td><td>1</td></tr><tr class="even"><td>24</td><td><span class="math inline">\(s_2=11000\)</span></td><td>576</td><td>0.49</td><td>0.63</td><td>2</td></tr><tr class="odd"><td>8</td><td><span class="math inline">\(s_3=01000\)</span></td><td>64</td><td>0.06</td><td>0.69</td><td>0</td></tr><tr class="even"><td>19</td><td><span class="math inline">\(s_4=10011\)</span></td><td>361</td><td>0.31</td><td>1</td><td>1</td></tr></tbody></table><h2 id="交叉-1">交叉</h2><p>设交叉率<span class="math inline">\(p_c\)</span>=100%，即<span class="math inline">\(S_1\)</span>中的全体染色体都参加交叉运算,交叉点位: | 。 设<span class="math inline">\(s_1’与s_2’\)</span>配对，<span class="math inline">\(s_3’与s_4’\)</span>配对。 <span class="math display">\[s_1’ =110|00（24）,  s_2’ =011|01（13）s_3’ =110|00（24）,  s_4’ =100|11（19）\]</span> 分别交换后两位基因，得新染色体： <span class="math display">\[s_1’’=11001（25）,  s_2’’=01100（12）s_3’’=11011（27）,  s_4’’=10000（16）\]</span></p><h2 id="变异-1">变异</h2><p>设变异率<span class="math inline">\(p_m=0.001\)</span>。这样，群体<span class="math inline">\(S1\)</span>中共有<span class="math inline">\(5×4×0.001=0.02\)</span>位基因可以变异。<span class="math inline">\(0.02\)</span>位显然不足1位，所以本轮遗传操作不做变异。</p><p>于是，得到第二代种群S2： <span class="math display">\[s_1=11001（25）,  s_2=01100（12）s_3=11011（27）,  s_4=10000（16）\]</span></p><h2 id="迭代更替">迭代更替</h2><table><thead><tr class="header"><th>个体</th><th>染色体</th><th>适应度</th><th>选择概率</th><th>累积概率</th><th>选择次数</th></tr></thead><tbody><tr class="odd"><td>25</td><td><span class="math inline">\(s_1=11001\)</span></td><td>625</td><td>0.36</td><td>0.36</td><td>1</td></tr><tr class="even"><td>12</td><td><span class="math inline">\(s_2=01100\)</span></td><td>144</td><td>0.07</td><td>0.44</td><td>0</td></tr><tr class="odd"><td>27</td><td><span class="math inline">\(s_3=11011\)</span></td><td>729</td><td>0.41</td><td>0.85</td><td>2</td></tr><tr class="even"><td>256</td><td><span class="math inline">\(s_4=10000\)</span></td><td>256</td><td>0.15</td><td>1.00</td><td>1</td></tr></tbody></table><p>假设这一轮遗传操作中，种群S2中的4个染色体都被选中，则得到群体： <span class="math display">\[ s_1’=11|001（25）,  s_2’=11|011（27）， s_3’=11|011（27）,  s_4’= 10|000（16）\]</span> 做交叉运算，让s1’与s2’，s3’与s4’ 分别交叉，得 <span class="math display">\[s1’’=11011（27）,    s2’’ = 11001（25）,  s3’’ =11000（24）,   s4’’ = 10011（19）\]</span> 这一轮仍然不会发生变异。 于是，得第三代种群S3： <span class="math display">\[s1=11011（27）,    s2 = 11001（25）,  s3 =11000（24）,   s4= 10011（19）\]</span> 迭代到第5代可以得到最优解<span class="math inline">\(s^*=11111(31),f(s^*)=961\)</span>。</p><h2 id="结束">结束</h2><p>按照以上流程不断迭代更替直到迭代次数超出预设值或目标函数的最优值不再变化。</p><h1 id="references">references</h1><p>JULY大神 https://blog.csdn.net/v_JULY_v/article/details/6132775</p><p>Michael翔 https://michael728.github.io/2015/12/24/algorithm-GA-basic/</p><a id="more"></a>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;遗传算法（Genetic Algorithm）&lt;/p&gt;
+&lt;h1 id=&quot;算法背景&quot;&gt;算法背景&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;种群(Population)&lt;/strong&gt;：生物的进化以群体的形式进行，这样的一个群体称为种群。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;个体&lt;/strong&gt;：组成种群的单个生物。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;染色体 ( Chromosome )&lt;/strong&gt; ：包含一组的基因。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;基因 ( Gene )&lt;/strong&gt; ：一个遗传因子。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;生存竞争，适者生存&lt;/strong&gt;：对环境适应度高的、优良的个体参与繁殖的机会比较多，后代就会越来越多。适应度低的个体参与繁殖的机会比较少，后代就会越来越少。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;选择&lt;/strong&gt;：根据相应策略选择父母染色体对进行繁殖。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;交叉&lt;/strong&gt;：将父母双方各一部分的基因进行组合形成子代染色体。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;变异&lt;/strong&gt;：子代染色体有一定的概率发生基因变异。&lt;/p&gt;
+&lt;p&gt;简单说来就是：选择优良父代进行繁殖，期间会发生基因交叉( Crossover ) ，基因突变 ( Mutation ) ，适应度( Fitness )低的个体会被逐步淘汰，而适应度高的个体会越来越多。那么经过N代的自然选择后，保存下来的个体都是适应度很高的，其中很可能包含史上产生的适应度最高的个体。&lt;/p&gt;
+&lt;h1 id=&quot;算法流程&quot;&gt;算法流程&lt;/h1&gt;
+&lt;h2 id=&quot;总体流程&quot;&gt;总体流程&lt;/h2&gt;
+&lt;div class=&quot;figure&quot;&gt;
+&lt;img src=&quot;/Assets/BlogImg/GA1.jpg&quot; alt=&quot;The process of GA&quot;&gt;
+&lt;p class=&quot;caption&quot;&gt;The process of GA&lt;/p&gt;
+&lt;/div&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;begin&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       initialize P(0);      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       t = 0;             //t是进化的代数，一代、二代、三代...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       while(t &amp;lt;= T) do&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;              for i = 1 to M  do     //M是初始种群的个体数&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                     Evaluate fitness of P(t);  //计算P（t）中各个个体的适应度&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;              end for&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;              for i = 1 to M  do&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                     Select operation to P(t);  //将选择算子作用于群体&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;              end for&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;              for i = 1 to M/2  do&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                     Crossover operation to P(t); //将交叉算子作用于群体&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;              end for&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;              for i = 1 to M  do&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                     Mutation operation to P(t);  //将变异算子作用于群体&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;              end for&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;              for i = 1 to M  do&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                     P(t+1) = P(t);      //得到下一代群体P（t + 1）&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;              end for&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;              &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;              t = t + 1;      //终止条件判断  t≦T：t← t+1 转到步骤2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       end while&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;end&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;编码&quot;&gt;编码&lt;/h2&gt;
+&lt;p&gt;遗传算法需要将问题的解(个体)编码成字符串的形式。最简单的一种编码方式是二进制编码，&lt;/p&gt;
+&lt;p&gt;即&lt;span class=&quot;math inline&quot;&gt;\(24=11000\)&lt;/span&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;适应度计算&quot;&gt;适应度计算&lt;/h2&gt;
+&lt;p&gt;适应度函数 ( Fitness Function )：用于评价染色体的适应度，用&lt;span class=&quot;math inline&quot;&gt;\(f(x)\)&lt;/span&gt;表示。&lt;strong&gt;适应度函数&lt;/strong&gt;与&lt;strong&gt;目标函数&lt;/strong&gt;是正相关的，可对目标函数作一些变形来得到适应度函数。有时需要区分染色体的适应度函数与问题的目标函数。例如：0-1背包问题的目标函数是所取得物品价值，但将物品价值作为染色体的适应度函数可能并不一定适合。&lt;/p&gt;
+&lt;h2 id=&quot;选择&quot;&gt;选择&lt;/h2&gt;
+&lt;p&gt;使用选择运算子对个体进行优胜劣汰操作。适应度高的个体被遗传到下一代群体中的概率大；适应度低的个体，被遗传到下一代群体中的概率小。目标就是从父代群体中选取优个体，遗传到下一代群体。&lt;/p&gt;
+&lt;p&gt;常用算法为轮盘赌法： &lt;span class=&quot;math display&quot;&gt;\[
+P(x_i)=\frac{f(x_i)}{\sum\limits_{j=1}^Nf(x_j)}\qquad(1)
+\]&lt;/span&gt; &lt;span class=&quot;math inline&quot;&gt;\(x_i\)&lt;/span&gt;:个体&lt;span class=&quot;math inline&quot;&gt;\(i，i \in[1,N]\)&lt;/span&gt;,&lt;span class=&quot;math inline&quot;&gt;\(f()\)&lt;/span&gt;:适应度函数,&lt;span class=&quot;math inline&quot;&gt;\(P(x_i)\)&lt;/span&gt;:选择个体&lt;span class=&quot;math inline&quot;&gt;\(i\)&lt;/span&gt;的概率。 &lt;span class=&quot;math display&quot;&gt;\[
+q_i = \sum\limits_{j=1}^iP(x_j)\qquad (2)
+\]&lt;/span&gt; &lt;span class=&quot;math inline&quot;&gt;\(q_i\)&lt;/span&gt;为累积概率。&lt;/p&gt;
+&lt;div class=&quot;figure&quot;&gt;
+&lt;img src=&quot;/Assets/BlogImg/轮盘赌选择法.jpeg&quot; alt=&quot;轮盘赌法&quot;&gt;
+&lt;p class=&quot;caption&quot;&gt;轮盘赌法&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;生成随机数&lt;span class=&quot;math inline&quot;&gt;\(r_k \in[0,1],k =1,2,3...N\)&lt;/span&gt;,&lt;span class=&quot;math inline&quot;&gt;\(N\)&lt;/span&gt;为选择个体总数。假设&lt;span class=&quot;math inline&quot;&gt;\(r_1=0.4\)&lt;/span&gt;,则选择&lt;span class=&quot;math inline&quot;&gt;\(个体3\)&lt;/span&gt;,即选择&lt;span class=&quot;math inline&quot;&gt;\(q_i \geq r_1\)&lt;/span&gt;的第首个个体。&lt;/p&gt;
+&lt;h2 id=&quot;交叉&quot;&gt;交叉&lt;/h2&gt;
+&lt;p&gt;染色体交叉是以一定的概率发生的，这个概率记为$P_c $。交叉的方法有很多种，这里用的是单点交叉&lt;/p&gt;
+&lt;p&gt;交叉前：&lt;/p&gt;
+&lt;p&gt;00000|&lt;strong&gt;011100000000&lt;/strong&gt;|10000&lt;/p&gt;
+&lt;p&gt;11100|&lt;strong&gt;000001111110&lt;/strong&gt;|00101&lt;/p&gt;
+&lt;p&gt;交叉后：&lt;/p&gt;
+&lt;p&gt;00000|&lt;strong&gt;000001111110&lt;/strong&gt;|10000&lt;/p&gt;
+&lt;p&gt;11100|&lt;strong&gt;011100000000&lt;/strong&gt;|00101&lt;/p&gt;
+&lt;h2 id=&quot;变异&quot;&gt;变异&lt;/h2&gt;
+&lt;p&gt;在繁殖过程，新产生的染色体中的基因会以一定的概率出错，称为变异。变异发生的概率记为&amp;amp;P_m&amp;amp;&lt;/p&gt;
+&lt;p&gt;变异前：&lt;/p&gt;
+&lt;p&gt;000001110000&lt;strong&gt;0&lt;/strong&gt;00010000&lt;/p&gt;
+&lt;p&gt;变异后：&lt;/p&gt;
+&lt;p&gt;000001110000&lt;strong&gt;1&lt;/strong&gt;00010000&lt;/p&gt;
+&lt;h1 id=&quot;算法实例&quot;&gt;算法实例&lt;/h1&gt;
+&lt;p&gt;已知&lt;span class=&quot;math inline&quot;&gt;\(x\)&lt;/span&gt;为整数，利用遗传算法求函数&lt;span class=&quot;math inline&quot;&gt;\(y=x^2\)&lt;/span&gt;区间&lt;span class=&quot;math inline&quot;&gt;\([0, 31]\)&lt;/span&gt;上的的最大值。&lt;/p&gt;
+&lt;h2 id=&quot;初始化&quot;&gt;初始化&lt;/h2&gt;
+&lt;p&gt;将种群规模设定为&lt;span class=&quot;math inline&quot;&gt;\(M=4\)&lt;/span&gt;；用5位二进制数编码染色体；取下列个体组成初始种群&lt;span class=&quot;math inline&quot;&gt;\(S_1\)&lt;/span&gt; &lt;span class=&quot;math display&quot;&gt;\[
+s_1= 13 (01101),  s_2= 24 (11000)\\
+s_3= 8 (01000),    s_4= 19 (10011）
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&quot;适应度计算-1&quot;&gt;适应度计算&lt;/h2&gt;
+&lt;p&gt;适应度函数定义为&lt;span class=&quot;math inline&quot;&gt;\(f(x)=x^2\)&lt;/span&gt;,由此计算各染色体的适应度： &lt;span class=&quot;math display&quot;&gt;\[
+\begin{split}
+&amp;amp;f (s_1) = f(13) = 13^2 = 169\\
+&amp;amp;f (s_2) = f(24) = 24^2 = 576\\
+&amp;amp;f (s_3) = f(8) = 8^2 = 64\\
+&amp;amp;f (s_4) = f(19) = 19^2 = 361
+\end{split}
+\]&lt;/span&gt; ## 选择&lt;/p&gt;
+&lt;p&gt;再由公式(1)计算&lt;span class=&quot;math inline&quot;&gt;\(S_1\)&lt;/span&gt;中各个体的选择概率： &lt;span class=&quot;math display&quot;&gt;\[
+\begin{split}
+&amp;amp;P(s_1) = P(13) = 0.14\\
+&amp;amp;P(s_2) = P(24) = 0.49\\
+&amp;amp;P(s_3) = P(8) = 0.06\\
+&amp;amp;P(s_4) = P(19) = 0.31
+\end{split}
+\]&lt;/span&gt; 再由公式(2)计算&lt;span class=&quot;math inline&quot;&gt;\(S_1\)&lt;/span&gt;中各个体的累计概率： &lt;span class=&quot;math display&quot;&gt;\[
+\begin{split}
+&amp;amp;q(s_1) = q(13) = 0.14\\
+&amp;amp;q(s_2) = q(24) = 0.63\\
+&amp;amp;q(s_3) = q(8) = 0.69\\
+&amp;amp;q(s_4) = q(19) = 1
+\end{split}
+\]&lt;/span&gt; 假设从&lt;span class=&quot;math inline&quot;&gt;\([0,1]\)&lt;/span&gt;中产生的&lt;span class=&quot;math inline&quot;&gt;\(N=4\)&lt;/span&gt;个随机数如下： &lt;span class=&quot;math display&quot;&gt;\[
+\begin{split}
+&amp;amp;r1 = 0.450126,\\     &amp;amp;r2 = 0.110347\\
+&amp;amp;r3 = 0.572496, \\    &amp;amp;r4 = 0.98503
+\end{split}
+\]&lt;/span&gt; 选择结果为：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&quot;header&quot;&gt;
+&lt;th&gt;个体&lt;/th&gt;
+&lt;th&gt;染色体&lt;/th&gt;
+&lt;th&gt;适应度&lt;/th&gt;
+&lt;th&gt;选择概率&lt;/th&gt;
+&lt;th&gt;累积概率&lt;/th&gt;
+&lt;th&gt;选择次数&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&quot;odd&quot;&gt;
+&lt;td&gt;13&lt;/td&gt;
+&lt;td&gt;&lt;span class=&quot;math inline&quot;&gt;\(s_1=01101\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;169&lt;/td&gt;
+&lt;td&gt;0.14&lt;/td&gt;
+&lt;td&gt;0.14&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&quot;even&quot;&gt;
+&lt;td&gt;24&lt;/td&gt;
+&lt;td&gt;&lt;span class=&quot;math inline&quot;&gt;\(s_2=11000\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;576&lt;/td&gt;
+&lt;td&gt;0.49&lt;/td&gt;
+&lt;td&gt;0.63&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&quot;odd&quot;&gt;
+&lt;td&gt;8&lt;/td&gt;
+&lt;td&gt;&lt;span class=&quot;math inline&quot;&gt;\(s_3=01000\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;64&lt;/td&gt;
+&lt;td&gt;0.06&lt;/td&gt;
+&lt;td&gt;0.69&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&quot;even&quot;&gt;
+&lt;td&gt;19&lt;/td&gt;
+&lt;td&gt;&lt;span class=&quot;math inline&quot;&gt;\(s_4=10011\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;361&lt;/td&gt;
+&lt;td&gt;0.31&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&quot;交叉-1&quot;&gt;交叉&lt;/h2&gt;
+&lt;p&gt;设交叉率&lt;span class=&quot;math inline&quot;&gt;\(p_c\)&lt;/span&gt;=100%，即&lt;span class=&quot;math inline&quot;&gt;\(S_1\)&lt;/span&gt;中的全体染色体都参加交叉运算,交叉点位: | 。 设&lt;span class=&quot;math inline&quot;&gt;\(s_1’与s_2’\)&lt;/span&gt;配对，&lt;span class=&quot;math inline&quot;&gt;\(s_3’与s_4’\)&lt;/span&gt;配对。 &lt;span class=&quot;math display&quot;&gt;\[
+s_1’ =110|00（24）,  s_2’ =011|01（13）
+s_3’ =110|00（24）,  s_4’ =100|11（19）
+\]&lt;/span&gt; 分别交换后两位基因，得新染色体： &lt;span class=&quot;math display&quot;&gt;\[
+s_1’’=11001（25）,  s_2’’=01100（12）
+s_3’’=11011（27）,  s_4’’=10000（16）
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&quot;变异-1&quot;&gt;变异&lt;/h2&gt;
+&lt;p&gt;设变异率&lt;span class=&quot;math inline&quot;&gt;\(p_m=0.001\)&lt;/span&gt;。这样，群体&lt;span class=&quot;math inline&quot;&gt;\(S1\)&lt;/span&gt;中共有&lt;span class=&quot;math inline&quot;&gt;\(5×4×0.001=0.02\)&lt;/span&gt;位基因可以变异。&lt;span class=&quot;math inline&quot;&gt;\(0.02\)&lt;/span&gt;位显然不足1位，所以本轮遗传操作不做变异。&lt;/p&gt;
+&lt;p&gt;于是，得到第二代种群S2： &lt;span class=&quot;math display&quot;&gt;\[
+s_1=11001（25）,  s_2=01100（12）
+s_3=11011（27）,  s_4=10000（16）
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&quot;迭代更替&quot;&gt;迭代更替&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&quot;header&quot;&gt;
+&lt;th&gt;个体&lt;/th&gt;
+&lt;th&gt;染色体&lt;/th&gt;
+&lt;th&gt;适应度&lt;/th&gt;
+&lt;th&gt;选择概率&lt;/th&gt;
+&lt;th&gt;累积概率&lt;/th&gt;
+&lt;th&gt;选择次数&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&quot;odd&quot;&gt;
+&lt;td&gt;25&lt;/td&gt;
+&lt;td&gt;&lt;span class=&quot;math inline&quot;&gt;\(s_1=11001\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;625&lt;/td&gt;
+&lt;td&gt;0.36&lt;/td&gt;
+&lt;td&gt;0.36&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&quot;even&quot;&gt;
+&lt;td&gt;12&lt;/td&gt;
+&lt;td&gt;&lt;span class=&quot;math inline&quot;&gt;\(s_2=01100\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;144&lt;/td&gt;
+&lt;td&gt;0.07&lt;/td&gt;
+&lt;td&gt;0.44&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&quot;odd&quot;&gt;
+&lt;td&gt;27&lt;/td&gt;
+&lt;td&gt;&lt;span class=&quot;math inline&quot;&gt;\(s_3=11011\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;729&lt;/td&gt;
+&lt;td&gt;0.41&lt;/td&gt;
+&lt;td&gt;0.85&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&quot;even&quot;&gt;
+&lt;td&gt;256&lt;/td&gt;
+&lt;td&gt;&lt;span class=&quot;math inline&quot;&gt;\(s_4=10000\)&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;256&lt;/td&gt;
+&lt;td&gt;0.15&lt;/td&gt;
+&lt;td&gt;1.00&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;假设这一轮遗传操作中，种群S2中的4个染色体都被选中，则得到群体： &lt;span class=&quot;math display&quot;&gt;\[
+ s_1’=11|001（25）,  s_2’=11|011（27），
+ s_3’=11|011（27）,  s_4’= 10|000（16）
+\]&lt;/span&gt; 做交叉运算，让s1’与s2’，s3’与s4’ 分别交叉，得 &lt;span class=&quot;math display&quot;&gt;\[
+s1’’=11011（27）,    s2’’ = 11001（25）,
+  s3’’ =11000（24）,   s4’’ = 10011（19）
+\]&lt;/span&gt; 这一轮仍然不会发生变异。 于是，得第三代种群S3： &lt;span class=&quot;math display&quot;&gt;\[
+s1=11011（27）,    s2 = 11001（25）,
+  s3 =11000（24）,   s4= 10011（19）
+\]&lt;/span&gt; 迭代到第5代可以得到最优解&lt;span class=&quot;math inline&quot;&gt;\(s^*=11111(31),f(s^*)=961\)&lt;/span&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;结束&quot;&gt;结束&lt;/h2&gt;
+&lt;p&gt;按照以上流程不断迭代更替直到迭代次数超出预设值或目标函数的最优值不再变化。&lt;/p&gt;
+&lt;h1 id=&quot;references&quot;&gt;references&lt;/h1&gt;
+&lt;p&gt;JULY大神 https://blog.csdn.net/v_JULY_v/article/details/6132775&lt;/p&gt;
+&lt;p&gt;Michael翔 https://michael728.github.io/2015/12/24/algorithm-GA-basic/&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="算法学习" scheme="//Rocky1ee.github.io/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="进化算法" scheme="//Rocky1ee.github.io/tags/%E8%BF%9B%E5%8C%96%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="智能算法" scheme="//Rocky1ee.github.io/tags/%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
     <title>简化粒子群</title>
-    <link href="//Rocky1ee.github.io/2019/09/03/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95GA/"/>
-    <id>//Rocky1ee.github.io/2019/09/03/遗传算法GA/</id>
+    <link href="//Rocky1ee.github.io/2019/09/03/%E7%AE%80%E5%8C%96%E7%BE%A4%E4%BC%98%E5%8C%96SSO/"/>
+    <id>//Rocky1ee.github.io/2019/09/03/简化群优化SSO/</id>
     <published>2019-09-03T07:56:36.000Z</published>
     <updated>2019-12-09T12:02:33.732Z</updated>
     
@@ -140,9 +370,9 @@ Prediction\quad value +=a*rule\quad quality +\beta*percentage\quad of\quad the \
       <category term="算法学习" scheme="//Rocky1ee.github.io/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="粒子群算法" scheme="//Rocky1ee.github.io/tags/%E7%B2%92%E5%AD%90%E7%BE%A4%E7%AE%97%E6%B3%95/"/>
-    
       <category term="智能算法" scheme="//Rocky1ee.github.io/tags/%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="粒子群算法" scheme="//Rocky1ee.github.io/tags/%E7%B2%92%E5%AD%90%E7%BE%A4%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -312,9 +542,9 @@ gbest=pbest_3=(4.5,-4.7)
       <category term="算法学习" scheme="//Rocky1ee.github.io/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="粒子群算法" scheme="//Rocky1ee.github.io/tags/%E7%B2%92%E5%AD%90%E7%BE%A4%E7%AE%97%E6%B3%95/"/>
-    
       <category term="智能算法" scheme="//Rocky1ee.github.io/tags/%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="粒子群算法" scheme="//Rocky1ee.github.io/tags/%E7%B2%92%E5%AD%90%E7%BE%A4%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   

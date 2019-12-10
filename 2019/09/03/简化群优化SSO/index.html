@@ -6,19 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="//Rocky1ee.github.io">
-  <title>Rocky1ee的博客</title>
+  <title>简化粒子群 | Rocky1ee的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="学习中">
-<meta name="keywords" content="程序猿,极客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Rocky1ee的博客">
-<meta property="og:url" content="//Rocky1ee.github.io/index.html">
+  <meta name="description" content="Abstract Swarm-based optimization tend to suffer from premature convergence in the high dimensional problem space. thus，proposing simplified swarm optimization (SSO) algorithm to overcome the above c">
+<meta name="keywords" content="智能算法,粒子群算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简化粒子群">
+<meta property="og:url" content="//Rocky1ee.github.io/2019/09/03/简化群优化SSO/index.html">
 <meta property="og:site_name" content="Rocky1ee的博客">
-<meta property="og:description" content="学习中">
+<meta property="og:description" content="Abstract Swarm-based optimization tend to suffer from premature convergence in the high dimensional problem space. thus，proposing simplified swarm optimization (SSO) algorithm to overcome the above c">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/SSO1.png">
+<meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/ROC1.png">
+<meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/ROC2.png">
+<meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/ELS.png">
+<meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/exchange%20Attribute.png">
+<meta property="og:updated_time" content="2019-12-09T12:02:33.732Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rocky1ee的博客">
-<meta name="twitter:description" content="学习中">
+<meta name="twitter:title" content="简化粒子群">
+<meta name="twitter:description" content="Abstract Swarm-based optimization tend to suffer from premature convergence in the high dimensional problem space. thus，proposing simplified swarm optimization (SSO) algorithm to overcome the above c">
+<meta name="twitter:image" content="//rocky1ee.github.io/Assets/BlogImg/SSO1.png">
   
     <link rel="alternative" href="/atom.xml" title="Rocky1ee的博客" type="application/atom+xml">
   
@@ -166,399 +173,14 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-蒙特卡罗算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-<!-- 目录内容 -->
-   
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>蒙特卡罗算法：采样越多，越<strong>近似</strong>最优解；用有限随机数去计算估计值.</p>
-<p>举个例子，假如筐里有100个苹果，让我每次闭眼拿1个，挑出最大的。于是我随机拿1个，再随机拿1个跟它比，留下大的，再随机拿1个……我每拿一次，留下的苹果都至少不比上次的小。拿的次数越多，挑出的苹果就越大，但我除非拿100次，否则无法肯定挑出了最大的。这个挑苹果的算法，就属于蒙特卡罗算法——<strong>尽量找好的，但不保证是最好的</strong>。</p>
-<div class="figure">
-<img src="/Assets/BlogImg/圆周率估计.gif" alt="Monte Carlo Method">
-<p class="caption">Monte Carlo Method</p>
-</div>
-<p>使用蒙特卡洛方法估算π值. 放置30000个随机点后,π的估算值与真实值相差0.07%.</p>
-<p>这张图其实很简单, 就像我们玩飞镖一样, 随机地在一个方形平面上投掷30000个飞镖, 事先我们并不知道圆周率π的值究竟是多少, 但是我们知道这里有1/4的圆, 于是我们把红色面积上的点数<span class="math inline">\(m\)</span>, 和蓝色面积上的点数<span class="math inline">\(n\)</span>, 以及圆周率<span class="math inline">\(π\)</span>的关系, 可以写出一个约等于的式子: <span class="math display">\[
-π ≈ 4m/(n+m)
-\]</span> 随着<span class="math inline">\(m+n\)</span>的投射点的逐渐增加, <span class="math inline">\(π\)</span>值的计算也越来越精确, 最后我们就估计出一个不错的比较精确的<span class="math inline">\(π\)</span>值啦</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/09/蒙特卡罗算法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-遗传算法GA" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-简化群优化SSO" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/04/遗传算法GA/">遗传算法</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/04/遗传算法GA/" class="archive-article-date">
-  	<time datetime="2019-09-04T09:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-04</time>
-</a>
-        <!-- 需要添加的位置 -->
-        <!-- 开始添加字数统计-->
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.7k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">7分</span>
-      </span>
-    </span>
-</div>
-          
-        <!-- 添加完成 -->
-        
-      </header>
-    
-<!-- 目录内容 -->
-   
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>遗传算法（Genetic Algorithm）</p>
-<h1 id="算法背景">算法背景</h1>
-<p><strong>种群(Population)</strong>：生物的进化以群体的形式进行，这样的一个群体称为种群。</p>
-<p><strong>个体</strong>：组成种群的单个生物。</p>
-<p><strong>染色体 ( Chromosome )</strong> ：包含一组的基因。</p>
-<p><strong>基因 ( Gene )</strong> ：一个遗传因子。</p>
-<p><strong>生存竞争，适者生存</strong>：对环境适应度高的、优良的个体参与繁殖的机会比较多，后代就会越来越多。适应度低的个体参与繁殖的机会比较少，后代就会越来越少。</p>
-<p><strong>选择</strong>：根据相应策略选择父母染色体对进行繁殖。</p>
-<p><strong>交叉</strong>：将父母双方各一部分的基因进行组合形成子代染色体。</p>
-<p><strong>变异</strong>：子代染色体有一定的概率发生基因变异。</p>
-<p>简单说来就是：选择优良父代进行繁殖，期间会发生基因交叉( Crossover ) ，基因突变 ( Mutation ) ，适应度( Fitness )低的个体会被逐步淘汰，而适应度高的个体会越来越多。那么经过N代的自然选择后，保存下来的个体都是适应度很高的，其中很可能包含史上产生的适应度最高的个体。</p>
-<h1 id="算法流程">算法流程</h1>
-<h2 id="总体流程">总体流程</h2>
-<div class="figure">
-<img src="/Assets/BlogImg/GA1.jpg" alt="The process of GA">
-<p class="caption">The process of GA</p>
-</div>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">begin</span><br><span class="line">       initialize P(0);      </span><br><span class="line">       t = 0;             //t是进化的代数，一代、二代、三代...</span><br><span class="line"></span><br><span class="line">       while(t &lt;= T) do</span><br><span class="line">              for i = 1 to M  do     //M是初始种群的个体数</span><br><span class="line">                     Evaluate fitness of P(t);  //计算P（t）中各个个体的适应度</span><br><span class="line">              end for</span><br><span class="line"></span><br><span class="line">              for i = 1 to M  do</span><br><span class="line">                     Select operation to P(t);  //将选择算子作用于群体</span><br><span class="line">              end for</span><br><span class="line"></span><br><span class="line">              for i = 1 to M/2  do</span><br><span class="line">                     Crossover operation to P(t); //将交叉算子作用于群体</span><br><span class="line">              end for</span><br><span class="line"></span><br><span class="line">              for i = 1 to M  do</span><br><span class="line">                     Mutation operation to P(t);  //将变异算子作用于群体</span><br><span class="line">              end for</span><br><span class="line"></span><br><span class="line">              for i = 1 to M  do</span><br><span class="line">                     P(t+1) = P(t);      //得到下一代群体P（t + 1）</span><br><span class="line">              end for</span><br><span class="line">              </span><br><span class="line">              t = t + 1;      //终止条件判断  t≦T：t← t+1 转到步骤2</span><br><span class="line"></span><br><span class="line">       end while</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<h2 id="编码">编码</h2>
-<p>遗传算法需要将问题的解(个体)编码成字符串的形式。最简单的一种编码方式是二进制编码，</p>
-<p>即<span class="math inline">\(24=11000\)</span>。</p>
-<h2 id="适应度计算">适应度计算</h2>
-<p>适应度函数 ( Fitness Function )：用于评价染色体的适应度，用<span class="math inline">\(f(x)\)</span>表示。<strong>适应度函数</strong>与<strong>目标函数</strong>是正相关的，可对目标函数作一些变形来得到适应度函数。有时需要区分染色体的适应度函数与问题的目标函数。例如：0-1背包问题的目标函数是所取得物品价值，但将物品价值作为染色体的适应度函数可能并不一定适合。</p>
-<h2 id="选择">选择</h2>
-<p>使用选择运算子对个体进行优胜劣汰操作。适应度高的个体被遗传到下一代群体中的概率大；适应度低的个体，被遗传到下一代群体中的概率小。目标就是从父代群体中选取优个体，遗传到下一代群体。</p>
-<p>常用算法为轮盘赌法： <span class="math display">\[
-P(x_i)=\frac{f(x_i)}{\sum\limits_{j=1}^Nf(x_j)}\qquad(1)
-\]</span> <span class="math inline">\(x_i\)</span>:个体<span class="math inline">\(i，i \in[1,N]\)</span>,<span class="math inline">\(f()\)</span>:适应度函数,<span class="math inline">\(P(x_i)\)</span>:选择个体<span class="math inline">\(i\)</span>的概率。 <span class="math display">\[
-q_i = \sum\limits_{j=1}^iP(x_j)\qquad (2)
-\]</span> <span class="math inline">\(q_i\)</span>为累积概率。</p>
-<div class="figure">
-<img src="/Assets/BlogImg/轮盘赌选择法.jpeg" alt="轮盘赌法">
-<p class="caption">轮盘赌法</p>
-</div>
-<p>生成随机数<span class="math inline">\(r_k \in[0,1],k =1,2,3...N\)</span>,<span class="math inline">\(N\)</span>为选择个体总数。假设<span class="math inline">\(r_1=0.4\)</span>,则选择<span class="math inline">\(个体3\)</span>,即选择<span class="math inline">\(q_i \geq r_1\)</span>的第首个个体。</p>
-<h2 id="交叉">交叉</h2>
-<p>染色体交叉是以一定的概率发生的，这个概率记为$P_c $。交叉的方法有很多种，这里用的是单点交叉</p>
-<p>交叉前：</p>
-<p>00000|<strong>011100000000</strong>|10000</p>
-<p>11100|<strong>000001111110</strong>|00101</p>
-<p>交叉后：</p>
-<p>00000|<strong>000001111110</strong>|10000</p>
-<p>11100|<strong>011100000000</strong>|00101</p>
-<h2 id="变异">变异</h2>
-<p>在繁殖过程，新产生的染色体中的基因会以一定的概率出错，称为变异。变异发生的概率记为&amp;P_m&amp;</p>
-<p>变异前：</p>
-<p>000001110000<strong>0</strong>00010000</p>
-<p>变异后：</p>
-<p>000001110000<strong>1</strong>00010000</p>
-<h1 id="算法实例">算法实例</h1>
-<p>已知<span class="math inline">\(x\)</span>为整数，利用遗传算法求函数<span class="math inline">\(y=x^2\)</span>区间<span class="math inline">\([0, 31]\)</span>上的的最大值。</p>
-<h2 id="初始化">初始化</h2>
-<p>将种群规模设定为<span class="math inline">\(M=4\)</span>；用5位二进制数编码染色体；取下列个体组成初始种群<span class="math inline">\(S_1\)</span> <span class="math display">\[
-s_1= 13 (01101),  s_2= 24 (11000)\\
-s_3= 8 (01000),    s_4= 19 (10011）
-\]</span></p>
-<h2 id="适应度计算-1">适应度计算</h2>
-<p>适应度函数定义为<span class="math inline">\(f(x)=x^2\)</span>,由此计算各染色体的适应度： <span class="math display">\[
-\begin{split}
-&amp;f (s_1) = f(13) = 13^2 = 169\\
-&amp;f (s_2) = f(24) = 24^2 = 576\\
-&amp;f (s_3) = f(8) = 8^2 = 64\\
-&amp;f (s_4) = f(19) = 19^2 = 361
-\end{split}
-\]</span> ## 选择</p>
-<p>再由公式(1)计算<span class="math inline">\(S_1\)</span>中各个体的选择概率： <span class="math display">\[
-\begin{split}
-&amp;P(s_1) = P(13) = 0.14\\
-&amp;P(s_2) = P(24) = 0.49\\
-&amp;P(s_3) = P(8) = 0.06\\
-&amp;P(s_4) = P(19) = 0.31
-\end{split}
-\]</span> 再由公式(2)计算<span class="math inline">\(S_1\)</span>中各个体的累计概率： <span class="math display">\[
-\begin{split}
-&amp;q(s_1) = q(13) = 0.14\\
-&amp;q(s_2) = q(24) = 0.63\\
-&amp;q(s_3) = q(8) = 0.69\\
-&amp;q(s_4) = q(19) = 1
-\end{split}
-\]</span> 假设从<span class="math inline">\([0,1]\)</span>中产生的<span class="math inline">\(N=4\)</span>个随机数如下： <span class="math display">\[
-\begin{split}
-&amp;r1 = 0.450126,\\     &amp;r2 = 0.110347\\
-&amp;r3 = 0.572496, \\    &amp;r4 = 0.98503
-\end{split}
-\]</span> 选择结果为：</p>
-<table>
-<thead>
-<tr class="header">
-<th>个体</th>
-<th>染色体</th>
-<th>适应度</th>
-<th>选择概率</th>
-<th>累积概率</th>
-<th>选择次数</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>13</td>
-<td><span class="math inline">\(s_1=01101\)</span></td>
-<td>169</td>
-<td>0.14</td>
-<td>0.14</td>
-<td>1</td>
-</tr>
-<tr class="even">
-<td>24</td>
-<td><span class="math inline">\(s_2=11000\)</span></td>
-<td>576</td>
-<td>0.49</td>
-<td>0.63</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>8</td>
-<td><span class="math inline">\(s_3=01000\)</span></td>
-<td>64</td>
-<td>0.06</td>
-<td>0.69</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td>19</td>
-<td><span class="math inline">\(s_4=10011\)</span></td>
-<td>361</td>
-<td>0.31</td>
-<td>1</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
-<h2 id="交叉-1">交叉</h2>
-<p>设交叉率<span class="math inline">\(p_c\)</span>=100%，即<span class="math inline">\(S_1\)</span>中的全体染色体都参加交叉运算,交叉点位: | 。 设<span class="math inline">\(s_1’与s_2’\)</span>配对，<span class="math inline">\(s_3’与s_4’\)</span>配对。 <span class="math display">\[
-s_1’ =110|00（24）,  s_2’ =011|01（13）
-s_3’ =110|00（24）,  s_4’ =100|11（19）
-\]</span> 分别交换后两位基因，得新染色体： <span class="math display">\[
-s_1’’=11001（25）,  s_2’’=01100（12）
-s_3’’=11011（27）,  s_4’’=10000（16）
-\]</span></p>
-<h2 id="变异-1">变异</h2>
-<p>设变异率<span class="math inline">\(p_m=0.001\)</span>。这样，群体<span class="math inline">\(S1\)</span>中共有<span class="math inline">\(5×4×0.001=0.02\)</span>位基因可以变异。<span class="math inline">\(0.02\)</span>位显然不足1位，所以本轮遗传操作不做变异。</p>
-<p>于是，得到第二代种群S2： <span class="math display">\[
-s_1=11001（25）,  s_2=01100（12）
-s_3=11011（27）,  s_4=10000（16）
-\]</span></p>
-<h2 id="迭代更替">迭代更替</h2>
-<table>
-<thead>
-<tr class="header">
-<th>个体</th>
-<th>染色体</th>
-<th>适应度</th>
-<th>选择概率</th>
-<th>累积概率</th>
-<th>选择次数</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>25</td>
-<td><span class="math inline">\(s_1=11001\)</span></td>
-<td>625</td>
-<td>0.36</td>
-<td>0.36</td>
-<td>1</td>
-</tr>
-<tr class="even">
-<td>12</td>
-<td><span class="math inline">\(s_2=01100\)</span></td>
-<td>144</td>
-<td>0.07</td>
-<td>0.44</td>
-<td>0</td>
-</tr>
-<tr class="odd">
-<td>27</td>
-<td><span class="math inline">\(s_3=11011\)</span></td>
-<td>729</td>
-<td>0.41</td>
-<td>0.85</td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>256</td>
-<td><span class="math inline">\(s_4=10000\)</span></td>
-<td>256</td>
-<td>0.15</td>
-<td>1.00</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
-<p>假设这一轮遗传操作中，种群S2中的4个染色体都被选中，则得到群体： <span class="math display">\[
- s_1’=11|001（25）,  s_2’=11|011（27），
- s_3’=11|011（27）,  s_4’= 10|000（16）
-\]</span> 做交叉运算，让s1’与s2’，s3’与s4’ 分别交叉，得 <span class="math display">\[
-s1’’=11011（27）,    s2’’ = 11001（25）,
-  s3’’ =11000（24）,   s4’’ = 10011（19）
-\]</span> 这一轮仍然不会发生变异。 于是，得第三代种群S3： <span class="math display">\[
-s1=11011（27）,    s2 = 11001（25）,
-  s3 =11000（24）,   s4= 10011（19）
-\]</span> 迭代到第5代可以得到最优解<span class="math inline">\(s^*=11111(31),f(s^*)=961\)</span>。</p>
-<h2 id="结束">结束</h2>
-<p>按照以上流程不断迭代更替直到迭代次数超出预设值或目标函数的最优值不再变化。</p>
-<h1 id="references">references</h1>
-<p>JULY大神 https://blog.csdn.net/v_JULY_v/article/details/6132775</p>
-<p>Michael翔 https://michael728.github.io/2015/12/24/algorithm-GA-basic/</p>
-        
-          <a class="article-more-a" href="/2019/09/04/遗传算法GA/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">进化算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">智能算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/算法学习//" class="article-tag-list-link color5">算法学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/04/遗传算法GA/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-简化群优化SSO" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/03/简化群优化SSO/">简化粒子群</a>
+    <h1 class="article-title" itemprop="name">
+      简化粒子群
     </h1>
   
 
@@ -593,7 +215,31 @@ s1=11011（27）,    s2 = 11001（25）,
       </header>
     
 <!-- 目录内容 -->
-   
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+  <div id="toc-article" class="toc-article">
+      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#abstract"><span class="toc-number">1.</span> <span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#introduction"><span class="toc-number">2.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#particle-swarm-optimization-and-simplified-swarm-optimization."><span class="toc-number">3.</span> <span class="toc-text">Particle Swarm Optimization and Simplified Swarm Optimization.</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pso"><span class="toc-number">3.1.</span> <span class="toc-text">PSO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sso"><span class="toc-number">3.2.</span> <span class="toc-text">SSO</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#the-proposed-sso-els-data-mining-algorithm"><span class="toc-number">4.</span> <span class="toc-text">The Proposed SSO-ELS Data Mining Algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#the-rule-mining-encoding"><span class="toc-number">4.1.</span> <span class="toc-text">The rule mining encoding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rule-evaluation"><span class="toc-number">4.2.</span> <span class="toc-text">Rule evaluation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rule-pruning"><span class="toc-number">4.3.</span> <span class="toc-text">Rule pruning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#the-proposed-exchange-local-search-strategy"><span class="toc-number">4.4.</span> <span class="toc-text">The proposed exchange local search strategy</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#conclusions"><span class="toc-number">5.</span> <span class="toc-text">Conclusions</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+    };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+    };
+   </script>
+         
 <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
@@ -682,274 +328,8 @@ Prediction\quad value +=a*rule\quad quality +\beta*percentage\quad of\quad the \
 <p>precision and recall,ROC,AUC</p>
 <p>https://towardsdatascience.com/beyond-accuracy-precision-and-recall-3da06bea9f6c</p>
 <p>A new simplified swarm optimization (SSO) using exchange local search scheme</p>
-        
-          <a class="article-more-a" href="/2019/09/03/简化群优化SSO/#more">more >></a>
-        
-      
+<a id="more"></a>
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">智能算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">粒子群算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/算法学习//" class="article-tag-list-link color5">算法学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/03/简化群优化SSO/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-粒子群算法PSO" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/01/粒子群算法PSO/">粒子群算法</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/01/粒子群算法PSO/" class="archive-article-date">
-  	<time datetime="2019-09-01T08:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-01</time>
-</a>
-        <!-- 需要添加的位置 -->
-        <!-- 开始添加字数统计-->
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.6k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">7分</span>
-      </span>
-    </span>
-</div>
-          
-        <!-- 添加完成 -->
-        
-      </header>
-    
-<!-- 目录内容 -->
-   
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="算法思路">算法思路</h1>
-<h2 id="基本思想">基本思想</h2>
-<p>粒子群算法-particle swarm optimization。粒子群优化算法的基本思想是：通过群体中个体之间的协作和信息共享来寻找最优解。</p>
-<p>我们可以设想这样的一个场景，一群鸟在随机搜寻食物。这个区域里只有一块食物。所有的鸟都不知道食物再哪里，但他们知道目前距离食物还有多远，那么找到食物的最佳策略是什么？</p>
-<p><strong>1.找寻距离食物最近的鸟之周围区域</strong></p>
-<p><strong>2.根据自己本身飞行的经验判断食物的所在</strong></p>
-<p>在PSO中，每个优化问题的潜在解都可以想象成<span class="math inline">\(N\)</span>维搜索空间上的一个点，我们称之为“粒子”（Particle），由目标函数决定每个粒子的适应值，每个粒子还有一个速度决定他们运动的方向和距离，然后粒子们就追随当前的最优粒子在解空间中搜索。</p>
-<h2 id="数学定义">数学定义</h2>
-<p>粒子<span class="math inline">\(i\)</span>在<span class="math inline">\(N\)</span>维空间的位置为： <span class="math display">\[
-X_i = (x_1,x_2,...,x_N)
-\]</span> 运动速度表示为： <span class="math display">\[
-V_i=(v_1,v_2,...,v_N)
-\]</span> 每个粒子都有一个由目标函数决定的<strong>适应值</strong>，并且知道自己到目前为止的最好位置<span class="math inline">\((pbest_i)\)</span>和现在所在的位置<span class="math inline">\(X_i\)</span>．这个可以看作是粒子自己的运动经验。同时，每个粒子还知道到目前整个群体中位置最好的粒子<span class="math inline">\((gbest) (gbest是pbest_i中的最好值)\)</span>．这个可以看作是粒子同伴的经验。粒子就是通过自己的经验和同伴中最好的经验来决定下一步的运动。</p>
-<h1 id="算法基本内容">算法基本内容</h1>
-<h2 id="初始化">初始化</h2>
-<p>对于每个粒子的位置<span class="math inline">\(X_i\)</span>和运动速度<span class="math inline">\(V_i\)</span>进行随机初始化</p>
-<h2 id="更新">更新</h2>
-<p>粒子速度的更新： <span class="math display">\[
-V_i = V_i+c_1\times rand()\times(pbest_i-X_i) + c_2\times rand()\times(gbest-X_i)\qquad公式(1)
-\]</span> 位置的更新： <span class="math display">\[
-X_i = X_i+V_i\qquad 公式(2)
-\]</span> 假设种群中粒子的总数为<span class="math inline">\(M\)</span>。<span class="math inline">\(i \in [1,M]\)</span>。</p>
-<p>随机数<span class="math inline">\(rand() \in (0,1)\)</span>。</p>
-<p>学习因子：<span class="math inline">\(c_1和c_2\)</span></p>
-<p>假设空间的维度为<span class="math inline">\(N\)</span>,在每一维度上，<span class="math inline">\(v_d的上界为v_{dmax},d \in [1,N]\)</span></p>
-<p>公式（1）的第一部分称为<strong>记忆项</strong>，表示上次速度大小和方向的影响；</p>
-<p>第二部分称为<strong>自身认知项</strong>，是从当前点指向粒子自身最好点的一个矢量，粒子自身经验所决定的运动；</p>
-<p>第三部分称为<strong>群体认知项</strong>，是从当前点指向种群最好点的矢量，反映了粒子间的协同合作。</p>
-<p>粒子通过自身的经验和同伴中最好的经验来决定下一步的运动。</p>
-<div class="figure">
-<img src="/Assets/BlogImg/粒子群算法1.png" alt="粒子群算法1">
-<p class="caption">粒子群算法1</p>
-</div>
-<h2 id="引入惯性权重因子">引入惯性权重因子</h2>
-<p>为了完善算法引入惯性权重因子:<span class="math inline">\(\omega \geq 0\)</span>,公式(2)变为： <span class="math display">\[
-V_i = \omega \times V_i+c_1\times rand()\times(pbest_i-X_i) + c_2\times rand()\times(gbest-X_i)\qquad公式(3)
-\]</span> 当<span class="math inline">\(\omega\)</span>越大，越倾向于寻找全局最优。当<span class="math inline">\(\omega\)</span>越小越倾向于寻找局部最优。</p>
-<h2 id="动态权重因子">动态权重因子</h2>
-<p>试验发现动态权重因子比固定权重因子更有效。目前经常采用线性递减权值策略（linearly decreasing weight，LDW） <span class="math display">\[
-\omega=(\omega_{ini}-\omega_{end})(G_k-g)/G_k+\omega_{end}
-\]</span> <span class="math display">\[
-\omega_{ini}:初始惯性权值， \omega_{end}:迭代至最大数时惯性权值，G_k:最大迭代数， g:当前迭代数，
-\]</span></p>
-<p>公式(3)被称为标准PSO。</p>
-<h2 id="全局最优法">全局最优法</h2>
-<p>当<span class="math inline">\(c_1=0\)</span>时，粒子没有了认知能力，变为<strong>只有社会的模型(social-only)</strong>： <span class="math display">\[
-V_i = \omega \times V_i + c_2\times rand()\times(gbest-X_i)\qquad公式(4)
-\]</span> 被称为<strong>全局PSO算法</strong>。粒子有扩展搜索空间能力，具有较快收敛速度，由于缺少局部搜索，对于复杂问题比标准PSO 更易陷入局部最优。</p>
-<h2 id="局部最优法">局部最优法</h2>
-<p>当<span class="math inline">\(c_2=0\)</span>时，则粒子之间没有社会信息，模型变为<strong>只有自我(cognition-only)模型</strong>： <span class="math display">\[
-V_i = \omega \times V_i+c_1\times rand()\times(pbest_i-X_i) \qquad公式(5)
-\]</span> 被称为<strong>局部PSO算法</strong>。由于个体之间没有信息的交流，整个群体相当于多个粒子进行盲目的随机搜索，收敛速度慢，因而得到最优解的可能性小。</p>
-<h2 id="算法流程">算法流程</h2>
-<div class="figure">
-<img src="/Assets/BlogImg/粒子群算法2.png" alt="粒子群算法2">
-<p class="caption">粒子群算法2</p>
-</div>
-<h1 id="实例应用">实例应用</h1>
-<p>用粒子群算法求解<span class="math inline">\(y=f(x_1,x_2)=x_1^2+x_2^2,-10&lt;x_1,x_2&lt;10\)</span>的最小值。已知当<span class="math inline">\(x_1=x_2=0\)</span>时<span class="math inline">\(y\)</span>取最小值。现在用粒子群算法求解。</p>
-<h2 id="初始化-1">初始化</h2>
-<p>设种群大小<span class="math inline">\(M=3\)</span>;惯性权重<span class="math inline">\(\omega=0.5\)</span>;<span class="math inline">\(c_1=c_2=2\)</span>;<span class="math inline">\(r_1,r_2是[0,1]\)</span>内随机数。</p>
-<p>假设个体的初始位置和速度分别为： <span class="math display">\[
-p_1=
-\begin{cases}
-v_1=(3,2)&amp;\\
-x_1=(8,-5)
-\end{cases}
-p_2=
-\begin{cases}
-v_1=(-3,-2)&amp;\\
-x_1=(-5,9)
-\end{cases}
-p_3=
-\begin{cases}
-v_1=(5,2)&amp;\\
-x_1=(-7,-8)
-\end{cases}
-\]</span> 计算适应函数值，并且得到粒子的历史最优位置和群体的全局最优位置 <span class="math display">\[
-\begin{cases}
-f_1=8^2+(-5)^2=89&amp;\\
-pbest=x_1=(8,-5)
-\end{cases}
-\begin{cases}
-f_2=(-5)^2+9^2=106&amp;\\
-pbest=x_2=(-5,9)
-\end{cases}
-\begin{cases}
-f_3=(-7)^2+(-8)^2=113&amp;\\
-pbest=x_3=(-7,-8)
-\end{cases}
-\]</span></p>
-<p><span class="math display">\[
-gbest=pbest=(8,-5)
-\]</span></p>
-<h2 id="粒子速度和位置更新">粒子速度和位置更新</h2>
-<p><strong>根据自身的历史最优位置和全局最优位置，更新每个粒子的速度和位置：</strong> <span class="math display">\[
-p1=\begin{cases}
-V_1 = \omega \times V_1+c_1\times r_1\times(pbest_1-X_1) + c_2\times r_2\times(gbest-X_1)&amp;\\
-\Rightarrow v_1=\begin{cases}0.5\times3+0+0=1.5 &amp;\\
-0.5\times2+0+0=1
-\end{cases}&amp;\\
-x_1=x_1+v_1=(8,-5)+(1.5,1)=(9.5,-4)
-\end{cases}
-\]</span></p>
-<p><span class="math display">\[
-p2=\begin{cases}
-V_2 = \omega \times V_2+c_1\times r_1\times(pbest_2-X_2) + c_2\times r_2\times(gbest-X_2)&amp;\\
-\Rightarrow v_2=\begin{cases}0.5\times-3+0+2\times0.3\times(8-(-5))=6.1 &amp;\\
-0.5\times2+0+2\times0.3\times(-5-9)=1.8
-\end{cases}&amp;\\
-x_2=x_2+v_2=(-5,9)+(6.1,1.8)=(1.1,10)
-\end{cases}
-\]</span></p>
-<p><span class="math display">\[
-p3=\begin{cases}
-V_3 = \omega \times V_3+c_1\times r_1\times(pbest_3-X_3) + c_2\times r_2\times(gbest-X_3)&amp;\\
-\Rightarrow v_2=\begin{cases}0.5\times5+0+2\times0.3\times(8-(-7))=11.5 &amp;\\
-0.5\times3+0+2\times0.3\times(-5-(-8))=3.3
-\end{cases}&amp;\\
-x_3=x_3+v_3=(-7,-8)+(11.5,3.3)=(4.5,-4.7)
-\end{cases}
-\]</span></p>
-<h2 id="更新粒子的历史最优位置和全局最优位置">更新粒子的历史最优位置和全局最优位置：</h2>
-<p><span class="math display">\[
-f_1^*=9.5^2+(-4)^2=106.25&gt;f_1=89\\
-\begin{cases}
-f_1=89&amp;\\
-pbest_1=(8,-5)
-\end{cases}
-\]</span></p>
-<p><span class="math display">\[
-f_2^*=1.1^2+10^2=101.21&lt;f_2=106\\
-\begin{cases}
-f_2=f_2^*=101.32&amp;\\
-pbest_2=(1.1,10)
-\end{cases}
-\]</span></p>
-<p><span class="math display">\[
-f_3^*=4.5^2+(-4.7)^2=42.34&lt;f_3=113\\
-\begin{cases}
-f_3=f_3^*=42.34&amp;\\
-pbest_3=(4.5,-4.7)
-\end{cases}
-\]</span></p>
-<p><span class="math display">\[
-gbest=pbest_3=(4.5,-4.7)
-\]</span></p>
-<h2 id="迭代">迭代</h2>
-<p>如果满足结束条件，则输出全局最优结果并结束程序，否则，转向第二步继续执行。</p>
-        
-          <a class="article-more-a" href="/2019/09/01/粒子群算法PSO/#more">more >></a>
-        
       
 
       
@@ -986,16 +366,84 @@ gbest=pbest_3=(4.5,-4.7)
 
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/01/粒子群算法PSO/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://Rocky1ee.github.io/2019/09/03/简化群优化SSO/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2019/09/04/遗传算法GA/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          遗传算法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/09/01/粒子群算法PSO/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">粒子群算法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -1010,247 +458,48 @@ gbest=pbest_3=(4.5,-4.7)
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-蚁群算法(ACO)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/31/蚁群算法(ACO)/">蚁群算法</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/31/蚁群算法(ACO)/" class="archive-article-date">
-  	<time datetime="2019-08-31T08:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-31</time>
-</a>
-        <!-- 需要添加的位置 -->
-        <!-- 开始添加字数统计-->
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.2k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">5分</span>
-      </span>
-    </span>
-</div>
-          
-        <!-- 添加完成 -->
-        
-      </header>
-    
-<!-- 目录内容 -->
-   
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="基本原理">基本原理</h1>
-<div class="figure">
-<img src="/Assets/BlogImg/蚁群算法.png" alt="蚁群算法1">
-<p class="caption">蚁群算法1</p>
-</div>
-<div class="figure">
-<img src="/Assets/BlogImg/蚁群算法1.png" alt="蚁群算法2">
-<p class="caption">蚁群算法2</p>
-</div>
-<div class="figure">
-<img src="/Assets/BlogImg/蚁群算法2.png" alt="蚁群算法3">
-<p class="caption">蚁群算法3</p>
-</div>
-<h1 id="基本流程">基本流程</h1>
-<h2 id="路径构建">路径构建</h2>
-<p><span class="math display">\[
-\begin{equation}
-    P_{ij}(t) =
-   \begin{cases}
-   \frac{[\tau_{ij}(t)]^\alpha \times [\eta_{ij}(t)]^\beta}{\sum\limits_{k\in allowed_k }[\tau_{ik}(t)]^\alpha \times [\eta_{ik}(t)]^\beta}&amp;
-   {if \quad j \in allowed_k}\\
-   \qquad 0&amp;
-   others
-   \end{cases}
-  \end{equation}
-\]</span></p>
-<hr>
-<ul>
-<li><span class="math inline">\(i,j\)</span>分别为起点和终点</li>
-<li><span class="math inline">\(\eta_{ij} = \frac{1}{d_{ij}}\)</span>为能见度，是两点<span class="math inline">\(i、j\)</span>间的导数</li>
-<li><span class="math inline">\(\tau_{ij}(t)\)</span>为时间<span class="math inline">\(t\)</span>时由<span class="math inline">\(i\)</span>到<span class="math inline">\(j\)</span>的信息素强度</li>
-<li><span class="math inline">\(allowed_k\)</span>为从<span class="math inline">\(i\)</span>出发可访问到节点的集合</li>
-<li><span class="math inline">\(\alpha,\beta\)</span>为两常数，分别是信息素和能见度的加权值</li>
-</ul>
-<p>结果表示<strong>当前点到每个可能的下个节点的概率</strong></p>
-<h2 id="信息素更新">信息素更新</h2>
-<p>蚂蚁的信息素释放量<span class="math inline">\(C(0)\)</span>,如果太小则容易导致局部最优。为什么？</p>
-<p>如果太大，则对搜索方向的导向作用降低。一般用贪婪算法获取一个路径值<span class="math inline">\(Cnn\)</span>，然后根据蚂蚁个数来计算<span class="math inline">\(C(0) = m/Cnn\)</span>,<span class="math inline">\(m\)</span>为蚂蚁个数。</p>
-<p>信息素更新如下：</p>
-<p><span class="math display">\[
-\tau(t)=(1-p)\tau_{ij}+\sum_{k=1}^m\Delta\tau_{ij}^k
-\]</span> <span class="math inline">\(m\)</span>:蚂蚁个数，<span class="math inline">\(0&lt;\rho&lt;=1\)</span>:信息素蒸发率,<span class="math inline">\(\Delta\tau_{ij}^k\)</span>:第<span class="math inline">\(k\)</span>只蚂蚁在路径<span class="math inline">\(i\)</span>到 <span class="math inline">\(j\)</span> 所留下的信息素 <span class="math display">\[
-\begin{equation}
-    \Delta \tau_{ij}^k =
-   \begin{cases}
-   (c_k)^{-1}&amp;\quad 第k^{th}只蚂蚁经过路径(i，j)\\\\
-   0&amp;\quad others
-   \end{cases}
-  \end{equation}
-\]</span> 信息素挥发(evaporation):避免算法过快地向局部最优区域集中，有助于搜索区域的扩展。</p>
-<p>信息素增强(reinforcement):指引最优路径的指南。</p>
-<h2 id="迭代与停止">迭代与停止</h2>
-<p>算法每次迭代：<strong>每次迭代的m只蚂蚁都完成了自己的路径过程，回到原点后的整个过程。</strong></p>
-<p>停止：指定迭代次数或达成指定的最优解条件</p>
-<h1 id="蚁群算法的实例">蚁群算法的实例</h1>
-<div class="figure">
-<img src="/Assets/BlogImg/蚁群算法4.png" alt="蚁群算法4">
-<p class="caption">蚁群算法4</p>
-</div>
-<p>假设共<span class="math inline">\(m=3\)</span>只蚂蚁，参数<span class="math inline">\(\alpha=1,\beta=2,\rho=0.5\)</span></p>
-<h2 id="初始化">初始化</h2>
-<p>首先使用贪婪算法得到路径的<strong>(ACDBA)</strong>, 则<span class="math inline">\(C_{nn}=1+2+4+3=10\)</span>,求得<span class="math inline">\(\tau_0=m\div C_{nn}=0.3\)</span> <span class="math display">\[
-\tau(0)=
-\begin{bmatrix}
-0&amp;0.3&amp;0.3&amp;0.3 \\
-0.3&amp;0&amp;0.3&amp;0.3 \\
-0.3&amp;0.3&amp;0&amp;0.3 \\
-0.3&amp;0.3&amp;0.3&amp;0
-\end{bmatrix}
-\]</span></p>
-<h2 id="出发地">出发地</h2>
-<p>为每个蚂蚁随机选择出发城市，假设蚂蚁1选择城市A，蚂蚁2选择城市B，蚂蚁3选择城市D。</p>
-<h2 id="访问地">访问地</h2>
-<p>以蚂蚁1为例，当前城市<span class="math inline">\(i=A\)</span>,可访问城市集合<span class="math inline">\(J_1 (i)={B,C,D}\)</span></p>
-<p>计算蚂蚁1访问各个城市的概率 <span class="math display">\[
-A \Rightarrow 
-\begin{cases}
-B:\tau_{AB}^a\times\eta_{AB}^\beta=0.3^1\times\frac{1}{3}^2=0.033\\\\
-C:\tau_{AC}^a\times\eta_{AC}^\beta=0.3^1\times\frac{1}{1}^2=0.300\\\\
-D:\tau_{AD}^a\times\eta_{AD}^\beta=0.3^1\times\frac{1}{2}^2=0.075\\\\
-\end{cases}
-\]</span></p>
-<p><span class="math display">\[
-P(B)=\frac{0.033}{0.033+0.3+0.075}=0.08 \\\\
-P(C)=\frac{0.03}{0.033+0.3+0.075}=0.74 \\\\
-P(D)=\frac{0.075}{0.033+0.3+0.075}=0.1
-\]</span></p>
-<div class="figure">
-<img src="/Assets/BlogImg/轮盘赌选择法.jpeg" alt="轮盘赌选择法">
-<p class="caption">轮盘赌选择法</p>
-</div>
-<p>轮盘赌选择法：选择累积概率超过随机值的第一个个体。</p>
-<p>用轮盘赌法选择下一个访问城市。假设产生的随机值<span class="math inline">\(r=0.05\)</span>，则蚂蚁<strong>1</strong>会选择城市<strong>B</strong> 同样，假设蚂蚁<strong>2</strong>选择城市<strong>D</strong>，蚂蚁<strong>3</strong>选择城市<strong>A</strong>。</p>
-<p>现在蚂蚁<strong>1</strong>已经来到<strong>B</strong>了，路径记忆向量<span class="math inline">\(R^l=(AB)\)</span>,可访问城市集合<span class="math inline">\(J_i(i)={C,D}\)</span></p>
-<p>蚂蚁<strong>1</strong>访问<strong>C，D</strong>城市的概率： <span class="math display">\[
-B\Rightarrow
-\begin{cases}
-C:\tau_{BC}^\alpha\times\eta_{BC}^\beta=0.3^1\times\frac{1}{5}^2=0.012\\\\
-D:\tau_{BD}^\alpha\times\eta_{BD}^\beta=0.3^1\times\frac{1}{4}^2=0.019
-\end{cases}\\\\
-P(C)=\frac{0.012}{0.012+0.019}=0.39\\\\
-P(D)=\frac{0.019}{0.012+0.019}=0.61
-\]</span> 用轮盘赌法选择下一个访问城市。假设产生的随机数<span class="math inline">\(r=0.67\)</span>，则蚂蚁<strong>1</strong>会选择城市<strong>D</strong> 同样，假设蚂蚁<strong>2</strong>选择城市<strong>C</strong>，蚂蚁<strong>3</strong>选择城市<strong>D</strong>。</p>
-<p>最终，所有蚂蚁选择的路径为：</p>
-<p>蚂蚁1：ABDCA</p>
-<p>蚂蚁2：BDCAB</p>
-<p>蚂蚁3：DACBD</p>
-<h2 id="信息素更新-1">信息素更新</h2>
-<p>每只蚂蚁走过的路径长度：<span class="math inline">\(C_1=3+4+2+1=10;C_2=4+2+1+3=10;C_3=2+1+5+4=12。\)</span></p>
-<p>每条边信息素的更新如下: <span class="math display">\[
-\tau_{AB}=（1-\rho)\times\tau_{AB} + \sum_{k=1}^3\Delta\tau_{AB}^k=0.5\times0.3+(\frac{1}{10}+\frac{1}{10})=0.35\\\\
-\tau_{AC}=（1-\rho)\times\tau_{AC} + \sum_{k=1}^3\Delta\tau_{AC}^k=0.5\times0.3+(\frac{1}{12})=0.16\\\\
-\tau_{AD},\tau_{BC}...
-\]</span> 在<span class="math inline">\(\tau_{AB}\)</span>的计算中蚂蚁3并未走过路径<strong>AB</strong>，所以<span class="math inline">\(\tau_{AB}^3=0\)</span>。</p>
-<h2 id="结束">结束</h2>
-<p>如果满足结束条件，则输出全局最优结果并结束程序，否则，则转向步骤2继续执行。</p>
-<p>references</p>
-<p>https://www.cnblogs.com/asxinyu/p/Path_Optimization_Tsp_Problem_Ant_System_CSharp.html#opennewwindow</p>
-        
-          <a class="article-more-a" href="/2019/08/31/蚁群算法(ACO)/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">智能算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">蚁群算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/算法学习//" class="article-tag-list-link color5">算法学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/31/蚁群算法(ACO)/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#abstract"><span class="toc-number">1.</span> <span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#introduction"><span class="toc-number">2.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#particle-swarm-optimization-and-simplified-swarm-optimization."><span class="toc-number">3.</span> <span class="toc-text">Particle Swarm Optimization and Simplified Swarm Optimization.</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pso"><span class="toc-number">3.1.</span> <span class="toc-text">PSO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sso"><span class="toc-number">3.2.</span> <span class="toc-text">SSO</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#the-proposed-sso-els-data-mining-algorithm"><span class="toc-number">4.</span> <span class="toc-text">The Proposed SSO-ELS Data Mining Algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#the-rule-mining-encoding"><span class="toc-number">4.1.</span> <span class="toc-text">The rule mining encoding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rule-evaluation"><span class="toc-number">4.2.</span> <span class="toc-text">Rule evaluation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rule-pruning"><span class="toc-number">4.3.</span> <span class="toc-text">Rule pruning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#the-proposed-exchange-local-search-strategy"><span class="toc-number">4.4.</span> <span class="toc-text">The proposed exchange local search strategy</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#conclusions"><span class="toc-number">5.</span> <span class="toc-text">Conclusions</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
+  
+  
+  
 
   
+
+
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'true'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
   
 
 
@@ -1273,8 +522,8 @@ P(D)=\frac{0.019}{0.012+0.019}=0.61
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
