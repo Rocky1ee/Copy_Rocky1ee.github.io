@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>//Rocky1ee.github.io/2019/07/31/%E6%9D%A1%E4%BB%B6GAN%E5%8E%BB%E9%9B%A8/</loc>
+    <lastmod>2019-12-12</lastmod>
+  </url>  <url>
+    <loc>//Rocky1ee.github.io/2019/12/11/%E5%B7%AE%E5%88%86%E8%BF%9B%E5%8C%96%E7%AE%97%E6%B3%95DE/</loc>
+    <lastmod>2019-12-11</lastmod>
+  </url>  <url>
     <loc>//Rocky1ee.github.io/2019/09/01/%E7%B2%92%E5%AD%90%E7%BE%A4%E7%AE%97%E6%B3%95PSO/</loc>
     <lastmod>2019-12-10</lastmod>
   </url>  <url>
