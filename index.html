@@ -283,6 +283,211 @@ var _hmt = _hmt || [];
 
 
   
+    <article id="post-转置卷积和膨胀卷积" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/10/转置卷积和膨胀卷积/">反卷积(Transposed Conv)和空洞卷积(Dilated conv)</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/10/转置卷积和膨胀卷积/" class="archive-article-date">
+  	<time datetime="2019-09-10T08:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
+</a>
+        <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">830字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">4分</span>
+      </span>
+    </span>
+</div>
+          
+        <!-- 添加完成 -->
+        
+      </header>
+    
+<!-- 目录内容 -->
+   
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="卷积">卷积</h1>
+假设输入图像<span class="math inline">\(input,size = 4 x 4\)</span>,表示如下： $$
+<span class="math display">\[\begin{equation}
+input = 
+\begin{bmatrix}
+ x_1&amp; x_2 &amp; x_3 &amp;x_4 \\ 
+ x_5&amp; x_6 &amp; x_7 &amp;x_8 \\ 
+ x_9&amp; x_{10} &amp; x_{11} &amp; x_{12}\\ 
+ x_{13}&amp; x_{14} &amp; x_{15} &amp; x_{16}
+\end{bmatrix}
+
+\end{equation}\]</span>
+<span class="math display">\[
+$kernel, size =3 x 3$,表示如下：
+\]</span>
+<span class="math display">\[\begin{bmatrix}
+ w_{0,0}&amp; w_{0,1}  &amp; w_{0,2} \\ 
+ w_{1,0}&amp; w_{1,1}  &amp; w_{1,2} \\ 
+ w_{2,0}&amp; w_{2,1}  &amp; w_{2,2}
+\end{bmatrix}\]</span>
+<p><span class="math inline">\($ 按照卷积公式\)</span>o=+1<span class="math inline">\(得出输出特征图\)</span>output size = 2 x 2$</p>
+<p>卷积过程用矩阵乘法描述为<span class="math inline">\(Y=CX\)</span> <span class="math display">\[
+X = [x_1,x_2,x_3,x_4,
+ x_5,x_6,x_7,x_8, 
+ x_9,x_{10},x_{11},x_{12},
+ x_{13},x_{14},x_{15},x_{16}]
+\]</span></p>
+<p><span class="math display">\[
+C = \begin{bmatrix}
+ w_{0,0}&amp;w_{0,1}  &amp;w_{0,2}  &amp;0  &amp;w_{1,0}  &amp;w_{1,1}  &amp;w_{1,2}  &amp;0  &amp;w_{2,0}  &amp;w_{2,1}  &amp;w_{2,2}  &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp;0 \\ 
+0 &amp;w_{0,0}&amp;w_{0,1}  &amp;w_{0,2}  &amp;0  &amp;w_{1,0}  &amp;w_{1,1}  &amp;w_{1,2}  &amp;0  &amp;w_{2,0}  &amp;w_{2,1}  &amp;w_{2,2}  &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\ 
+0 &amp;0 &amp;0 &amp;0 &amp;w_{0,0}&amp;w_{0,1}  &amp;w_{0,2}  &amp;0  &amp;w_{1,0}  &amp;w_{1,1}  &amp;w_{1,2}  &amp;0  &amp;w_{2,0}  &amp;w_{2,1}  &amp;w_{2,2}  &amp; 0   \\ 
+ 0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;w_{0,0}&amp;w_{0,1}  &amp;w_{0,2}  &amp;0  &amp;w_{1,0}  &amp;w_{1,1}  &amp;w_{1,2}  &amp;0  &amp;w_{2,0}  &amp;w_{2,1}  &amp;w_{2,2}   
+\end{bmatrix}
+\]</span></p>
+<div class="figure">
+<img src="/Assets/BlogImg/conv.gif" alt="convelution">
+<p class="caption">convelution</p>
+</div>
+<h1 id="反卷积">反卷积</h1>
+<p>反卷积的操作就是要对这个矩阵运算过程进行逆运算，即通过 <span class="math inline">\(C\)</span>和<span class="math inline">\(Y\)</span>得到<span class="math inline">\(X\)</span>,反卷积操作可以表示为：</p>
+<p>$X=C^TY&amp; <span class="math display">\[
+Y=\begin{bmatrix}
+y_1\\ 
+y_2\\ 
+y_3\\ 
+y_4
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+C^T=\begin{bmatrix}
+ w_{0,0}&amp;0  &amp; 0 &amp; 0\\ 
+ w_{0,1}&amp;w_{0,0}  &amp;0  &amp; 0\\ 
+ w_{0,2}&amp;w_{0,1}  &amp; 0 &amp; 0\\ 
+ 0&amp; w_{0,2} &amp; 0 &amp; 0\\ 
+ w_{1,0}&amp; 0 &amp;w_{0,0}  &amp; 0\\ 
+ w_{1,1}&amp; w_{1,0} &amp;w_{0,1}  &amp; w_{0,0}\\ 
+ w_{1,2}&amp;w_{1,1}  &amp; w_{0,2} &amp;w_{0,0} \\ 
+ 0&amp;w_{1,2}  &amp;0  &amp;w_{2,1} \\ 
+ w_{2,0}&amp; 0 &amp; w_{1,0} &amp; 0\\ 
+ w_{2,1}&amp; w_{2,0} &amp;w_{1,1}  &amp;w_{1,0} \\ 
+ w_{2,2}&amp; w_{2,1} &amp; w_{1,2} &amp;w_{1,1} \\
+ 0&amp; w_{2,2} &amp; 0 &amp; w_{1,2}\\ 
+ 0&amp; 0 &amp; w_{2,0} &amp; 0\\ 
+ 0&amp;0  &amp;w_{2,1}  &amp; w_{2,0}\\ 
+ 0&amp;0  &amp;w_{2,2}  &amp;w_{2,1} \\  
+ 0&amp; 0 &amp;0  &amp; w_{2,2}
+\end{bmatrix}
+\]</span></p>
+反卷积公式为： $$ o=
+<span class="math display">\[\begin{cases}
+s(i-1)-2p+k,\quad &amp;if \quad(o+2p-k)\%s=0 \\
+s(i-1)-2p+k+(o+2p-k)\%s,\quad &amp;if \quad (o+2p-k)\%s\neq0
+
+\end{cases}\]</span>
+<p>$$ <img src="/Assets/BlogImg/Tconv.gif" alt="Transform Convelution"></p>
+<h1 id="空洞卷积">空洞卷积</h1>
+<div class="figure">
+<img src="/Assets/BlogImg/dilated.gif" alt="dilated conv">
+<p class="caption">dilated conv</p>
+</div>
+<div class="figure">
+<img src="/Assets/BlogImg/dilated%20conv.jpg" alt="论文实例">
+<p class="caption">论文实例</p>
+</div>
+<p>(a):3x3,1-dilated conv,其效果和普通卷积一样。</p>
+<p>(b):3x3,2dilated conv,其效果为非红点pixel取0的7x7普通卷积。</p>
+<p>(c):3x3,4dilated conv,其效果为非红点pixel取0的15x15普通卷积</p>
+<p>优点：在不做pooling损失信息和相同的计算条件下的情况下，加大了感受野，让每个卷积输出都包含较大范围的信息。空洞卷积经常用在实时图像分割中。当网络层需要较大的感受野，但计算资源有限而无法提高卷积核数量或大小时，可以考虑空洞卷积。</p>
+<h1 id="references">references</h1>
+<p>https://www.cnblogs.com/hellcat/p/9687624.html</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">upsampling，卷积</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/深度学习//" class="article-tag-list-link color5">深度学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/10/转置卷积和膨胀卷积/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-模拟退火算法SA" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -922,125 +1127,10 @@ V_i=(v_1,v_2,...,v_N)
 
 
   
-    <article id="post-条件GAN去雨" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/31/条件GAN去雨/">conditional GAN De-raining</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/31/条件GAN去雨/" class="archive-article-date">
-  	<time datetime="2019-07-31T08:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-31</time>
-</a>
-        <!-- 需要添加的位置 -->
-        <!-- 开始添加字数统计-->
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">685字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">3分</span>
-      </span>
-    </span>
-</div>
-          
-        <!-- 添加完成 -->
-        
-      </header>
-    
-<!-- 目录内容 -->
-   
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Image De-raining Using a Conditional Generative Adversarial Network</p>
-<h1 id="abstract">Abstract</h1>
-<p>在C-GAN中执行限制条件使去雨后的图像与相应的真实图像一致。其中的adversarial loss 有助于获取更好结果。此外在G和D中提出新的refined loss function（降低创造能力使图像更加真实）和新的网络结构提升效果。G使用densely connected networks），D可利用局部和全局信息进行真伪判断。</p>
-        
-          <a class="article-more-a" href="/2019/07/31/条件GAN去雨/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">De-rain</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/深度学习去雨方法//" class="article-tag-list-link color4">深度学习去雨方法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/31/条件GAN去雨/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
@@ -1157,14 +1247,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">De-rain</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">模拟退火算法</a>
               </li>
              
@@ -1173,11 +1255,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">De-rain</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">粒子群算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">蚁群算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">upsampling，卷积</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -6,27 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="//Rocky1ee.github.io">
-  <title>conditional GAN De-raining | Rocky1ee的博客</title>
+  <title>Rocky1ee的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Image De-raining Using a Conditional Generative Adversarial Network Abstract 在C-GAN中执行限制条件使去雨后的图像与相应的真实图像一致。其中的adversarial loss 有助于获取更好结果。此外在G和D中提出新的refined loss function（降低创造能力使图像更加真实）和新的网络结构提升效果。G">
-<meta name="keywords" content="De-rain,深度学习">
-<meta property="og:type" content="article">
-<meta property="og:title" content="conditional GAN De-raining">
-<meta property="og:url" content="//Rocky1ee.github.io/2019/07/31/条件GAN去雨/index.html">
+  <meta name="description" content="学习中">
+<meta name="keywords" content="程序猿,极客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rocky1ee的博客">
+<meta property="og:url" content="//Rocky1ee.github.io/page/2/index.html">
 <meta property="og:site_name" content="Rocky1ee的博客">
-<meta property="og:description" content="Image De-raining Using a Conditional Generative Adversarial Network Abstract 在C-GAN中执行限制条件使去雨后的图像与相应的真实图像一致。其中的adversarial loss 有助于获取更好结果。此外在G和D中提出新的refined loss function（降低创造能力使图像更加真实）和新的网络结构提升效果。G">
+<meta property="og:description" content="学习中">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="//rocky1ee.github.io/Assets/Img/De-rain.png">
-<meta property="og:image" content="//rocky1ee.github.io/Assets/Img/De-rain3.png">
-<meta property="og:image" content="//rocky1ee.github.io/Assets/Img/De-rain4.png">
-<meta property="og:image" content="//rocky1ee.github.io/Assets/Img/De-raind-t2.png">
-<meta property="og:image" content="//rocky1ee.github.io/Assets/Img/De-rain5.png">
-<meta property="og:image" content="//rocky1ee.github.io/Assets/Img/De-raind-t3.png">
-<meta property="og:updated_time" content="2019-12-13T03:19:16.364Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="conditional GAN De-raining">
-<meta name="twitter:description" content="Image De-raining Using a Conditional Generative Adversarial Network Abstract 在C-GAN中执行限制条件使去雨后的图像与相应的真实图像一致。其中的adversarial loss 有助于获取更好结果。此外在G和D中提出新的refined loss function（降低创造能力使图像更加真实）和新的网络结构提升效果。G">
-<meta name="twitter:image" content="//rocky1ee.github.io/Assets/Img/De-rain.png">
+<meta name="twitter:title" content="Rocky1ee的博客">
+<meta name="twitter:description" content="学习中">
   
     <link rel="alternative" href="/atom.xml" title="Rocky1ee的博客" type="application/atom+xml">
   
@@ -174,14 +166,16 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-条件GAN去雨" class="article article-type-post " itemscope itemprop="blogPost">
+            
+  
+    <article id="post-条件GAN去雨" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      conditional GAN De-raining
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/31/条件GAN去雨/">conditional GAN De-raining</a>
     </h1>
   
 
@@ -216,104 +210,16 @@ var _hmt = _hmt || [];
       </header>
     
 <!-- 目录内容 -->
-
-    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
-          <span class="btn-bg"></span>
-          <span class="btn-text">文章导航</span>
-          </p>
-  <div id="toc-article" class="toc-article">
-      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
-    <strong class="toc-title">文章目录</strong>
-           <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#abstract"><span class="toc-number">1.</span> <span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#introduction"><span class="toc-number">2.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#proposed-method"><span class="toc-number">3.</span> <span class="toc-text">Proposed Method</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gan-objective-function"><span class="toc-number">3.1.</span> <span class="toc-text">GAN Objective Function</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#generator-with-symmetric-structure"><span class="toc-number">3.2.</span> <span class="toc-text">Generator with Symmetric Structure</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#multi-scale-discriminator"><span class="toc-number">3.3.</span> <span class="toc-text">Multi-scale Discriminator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#refined-perceptual-loss"><span class="toc-number">3.4.</span> <span class="toc-text">Refined Perceptual Loss</span></a></li></ol></li></ol>
-         </div>
-   <script type="text/javascript">
-  function showToc(){
-    var toc_article = document.getElementById("toc-article");
-    var show_toc_btn = document.getElementById("show-toc-btn");
-    toc_article.setAttribute("style","display:block");
-    show_toc_btn.setAttribute("style","display:none");
-    };
-  function showBtn(){
-    var toc_article = document.getElementById("toc-article");
-    var show_toc_btn = document.getElementById("show-toc-btn");
-    toc_article.setAttribute("style","display:none");
-    show_toc_btn.setAttribute("style","display:block");
-    };
-   </script>
-         
+   
 <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
         <p>Image De-raining Using a Conditional Generative Adversarial Network</p>
 <h1 id="abstract">Abstract</h1>
 <p>在C-GAN中执行限制条件使去雨后的图像与相应的真实图像一致。其中的adversarial loss 有助于获取更好结果。此外在G和D中提出新的refined loss function（降低创造能力使图像更加真实）和新的网络结构提升效果。G使用densely connected networks），D可利用局部和全局信息进行真伪判断。</p>
-<a id="more"></a>
-<h1 id="introduction">Introduction</h1>
-<p>一张有雨的图像可以被分为2部分</p>
-<div class="figure">
-<img src="/Assets/Img/De-rain.png" alt="X = y + w">
-<p class="caption">X = y + w</p>
-</div>
-<p>数学上可以定义为： <span class="math display">\[
-X = y + w
-\]</span> <span class="math inline">\(X:(a),y:(b),w:(c)\)</span></p>
-<p>C-GAN由densely-connected G和multi-scale D组成，为了防止GAN生成新的图像（与无雨原图不一致）引入refined perceptual loss，同时提出multi-scale D充分利用不同尺寸的信息对de-rained图像进行真伪判断。</p>
-<h1 id="proposed-method">Proposed Method</h1>
-<div class="figure">
-<img src="/Assets/Img/De-rain3.png" alt="overview of the ID-CGAN">
-<p class="caption">overview of the ID-CGAN</p>
-</div>
-<p>G 是个对称且带有skip connections的densely-connected network用于生成de-rained image（输入为rainy image）。</p>
-<p>D 是个multi-scale network 用于判断G生成去雨图像的真伪。真对应:ground truth image，伪对应：G生成的de-rained image。</p>
-<p>定义refined perceptual loss functions解决G的 image synthesized 问题。</p>
-<h2 id="gan-objective-function">GAN Objective Function</h2>
-<p><span class="math display">\[
-\min_{G}\max_{D} \Epsilon_{x\sim p_{data(x)}},[log(1-D(x,G(x)))]+\Epsilon_{x\sim p_{data(x,y)}}[logD(x,y)]
-\]</span></p>
-<p><span class="math inline">\(x\)</span>:rainy image,<span class="math inline">\(y\)</span>:synthesized de-rained image</p>
-<h2 id="generator-with-symmetric-structure">Generator with Symmetric Structure</h2>
-<div class="figure">
-<img src="/Assets/Img/De-rain4.png" alt="Structure of G">
-<p class="caption">Structure of G</p>
-</div>
-<p>G采用了对称跳跃连接的形式，其结构如下： <span class="math display">\[
-\begin{equation}
-\begin{aligned}
-&amp;CBLP(64)-
-\\&amp;D(256)-Td(128)-D(512)-Td(256)-D(1024)-Tn(512)-D(768)-Tn(128)-
-\\&amp;D(640)-Tu(120)-D(384)-Tu(64)\quad-D(192)-Tu(64)-\quad D(32)-Tn(16)-
-\\&amp;C(3)-Tanh
-\end{aligned}
-\end{equation}
-\]</span> C：Convolution，B：BN，L：ReLU，P:Pooling，Td：down-sampling，Tu：up-sampling，</p>
-<p>Tn：no-sampling。</p>
-<div class="figure">
-<img src="/Assets/Img/De-raind-t2.png" alt="architecture of G">
-<p class="caption">architecture of G</p>
-</div>
-<h2 id="multi-scale-discriminator">Multi-scale Discriminator</h2>
-<div class="figure">
-<img src="/Assets/Img/De-rain5.png" alt="structure of D">
-<p class="caption">structure of D</p>
-</div>
-<p>输入G生成的de-raind image 和 对应datasets 中的ground truth，经过Conv+BN+PRelU得到特征图，对特征图进行多尺度的down-sampling的多尺度的特征图，然后up-samping成统一尺寸，之后用1x1 Conv进行融合。最后用sigmoid函数进行评分。</p>
-<div class="figure">
-<img src="/Assets/Img/De-raind-t3.png" alt="architecture for the D">
-<p class="caption">architecture for the D</p>
-</div>
-<h2 id="refined-perceptual-loss">Refined Perceptual Loss</h2>
-<p>引入 perceptual loss 解决G的合成问题。loss 由 pixel-to-pixel欧几里德loss，perceptual loss，adversarial loss 以不同权重组合而成 <span class="math display">\[
-L_{RP}=L_E+\lambda_a L_A+\lambda_pL_p
-\]</span> <span class="math inline">\(L_A\)</span>:adversarial loss,<span class="math inline">\(L_E\)</span>:输出图和ground truth的欧几里德loss ，<span class="math inline">\(L_P\)</span>:perceptual loss, 如果<span class="math inline">\(\lambda_a和\lambda_b\)</span>同时为0，则network变为CNN。若只是<span class="math inline">\(\lambda_p=0\)</span>，则network变为标准 的GAN。</p>
-<p>其中<span class="math inline">\(L_E\)</span>为： <span class="math display">\[
-L_E=\frac{1}{CWH}\sum_{c=1}^C\sum_{x=1}^W\sum_{y=1}^H \left\| \phi_E(x)^{c,w,h} -(y_b)^{c,w,h}\right\|^2_2
-\]</span> C:channels,W:width,H:height。x:input image, <span class="math inline">\(y_b\)</span>:corresponding ground truth ,</p>
-<p><span class="math inline">\(\phi_E(x)\)</span>:mapping G <span class="math display">\[
-L_P=\frac{1}{C_iW_iH_i}\sum_{c=1}^{C_i}\sum_{x=1}^{W_i}\sum_{y=1}^{H_i} \left\| V(\phi_E(x)^{c,w,h}) -V((y_b)^{c,w,h})\right\|^2_2
-\]</span> V:non-linear CNN transformation. <span class="math display">\[
-L_A=-\frac{1}{N}\sum_{i=1}^Nlog(D(\phi_E(x)))
-\]</span></p>
-
+        
+          <a class="article-more-a" href="/2019/07/31/条件GAN去雨/#more">more >></a>
+        
       
 
       
@@ -350,79 +256,16 @@ L_A=-\frac{1}{N}\sum_{i=1}^Nlog(D(\phi_E(x)))
 
 
       
-
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/31/条件GAN去雨/">展开全文 >></a>
+        </p>
       
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
 
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://Rocky1ee.github.io/2019/07/31/条件GAN去雨/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2019/08/31/蚁群算法(ACO)/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          蚁群算法
-        
-      </div>
-    </a>
-  
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -437,48 +280,17 @@ L_A=-\frac{1}{N}\sum_{i=1}^Nlog(D(\phi_E(x)))
         </div>
         
         
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#abstract"><span class="toc-number">1.</span> <span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#introduction"><span class="toc-number">2.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#proposed-method"><span class="toc-number">3.</span> <span class="toc-text">Proposed Method</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gan-objective-function"><span class="toc-number">3.1.</span> <span class="toc-text">GAN Objective Function</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#generator-with-symmetric-structure"><span class="toc-number">3.2.</span> <span class="toc-text">Generator with Symmetric Structure</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#multi-scale-discriminator"><span class="toc-number">3.3.</span> <span class="toc-text">Multi-scale Discriminator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#refined-perceptual-loss"><span class="toc-number">3.4.</span> <span class="toc-text">Refined Perceptual Loss</span></a></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
     </div>
 </aside>
 
 
 
-  
-  
-  
 
   
-
-
-
   
-    <section id="comments">
-      <div id="disqus_thread"></div>
-        <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'true'; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-      </script>
-      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </section>
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
   
 
 
@@ -501,8 +313,8 @@ L_A=-\frac{1}{N}\sum_{i=1}^Nlog(D(\phi_E(x)))
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: false,
-		isPost: true,
+		isHome: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
