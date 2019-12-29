@@ -6,19 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="//Rocky1ee.github.io">
-  <title>Rocky1ee的博客</title>
+  <title>蒙特卡罗算法 | Rocky1ee的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="学习中">
-<meta name="keywords" content="程序猿,极客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Rocky1ee的博客">
-<meta property="og:url" content="//Rocky1ee.github.io/page/2/index.html">
+  <meta name="description" content="蒙特卡罗算法：采样越多，越近似最优解；用有限随机数去计算估计值. 举个例子，假如筐里有100个苹果，让我每次闭眼拿1个，挑出最大的。于是我随机拿1个，再随机拿1个跟它比，留下大的，再随机拿1个……我每拿一次，留下的苹果都至少不比上次的小。拿的次数越多，挑出的苹果就越大，但我除非拿100次，否则无法肯定挑出了最大的。这个挑苹果的算法，就属于蒙特卡罗算法——尽量找好的，但不保证是最好的。">
+<meta name="keywords" content="智能算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="蒙特卡罗算法">
+<meta property="og:url" content="//Rocky1ee.github.io/2019/09/12/蒙特卡罗算法/index.html">
 <meta property="og:site_name" content="Rocky1ee的博客">
-<meta property="og:description" content="学习中">
+<meta property="og:description" content="蒙特卡罗算法：采样越多，越近似最优解；用有限随机数去计算估计值. 举个例子，假如筐里有100个苹果，让我每次闭眼拿1个，挑出最大的。于是我随机拿1个，再随机拿1个跟它比，留下大的，再随机拿1个……我每拿一次，留下的苹果都至少不比上次的小。拿的次数越多，挑出的苹果就越大，但我除非拿100次，否则无法肯定挑出了最大的。这个挑苹果的算法，就属于蒙特卡罗算法——尽量找好的，但不保证是最好的。">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/圆周率估计.gif">
+<meta property="og:updated_time" content="2019-12-29T12:38:16.304Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rocky1ee的博客">
-<meta name="twitter:description" content="学习中">
+<meta name="twitter:title" content="蒙特卡罗算法">
+<meta name="twitter:description" content="蒙特卡罗算法：采样越多，越近似最优解；用有限随机数去计算估计值. 举个例子，假如筐里有100个苹果，让我每次闭眼拿1个，挑出最大的。于是我随机拿1个，再随机拿1个跟它比，留下大的，再随机拿1个……我每拿一次，留下的苹果都至少不比上次的小。拿的次数越多，挑出的苹果就越大，但我除非拿100次，否则无法肯定挑出了最大的。这个挑苹果的算法，就属于蒙特卡罗算法——尽量找好的，但不保证是最好的。">
+<meta name="twitter:image" content="//rocky1ee.github.io/Assets/BlogImg/圆周率估计.gif">
   
     <link rel="alternative" href="/atom.xml" title="Rocky1ee的博客" type="application/atom+xml">
   
@@ -166,22 +169,20 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-粒子群算法PSO" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-蒙特卡罗算法" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/01/粒子群算法PSO/">粒子群算法</a>
+    <h1 class="article-title" itemprop="name">
+      蒙特卡罗算法
     </h1>
   
 
         
-        <a href="/2019/09/01/粒子群算法PSO/" class="archive-article-date">
-  	<time datetime="2019-09-01T08:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-01</time>
+        <a href="/2019/09/12/蒙特卡罗算法/" class="archive-article-date">
+  	<time datetime="2019-09-12T13:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-12</time>
 </a>
         <!-- 需要添加的位置 -->
         <!-- 开始添加字数统计-->
@@ -191,7 +192,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.6k字</span>
+        <span class="post-count">359字</span>
       </span>
     </span>
 
@@ -200,7 +201,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">7分</span>
+        <span class="post-count">1分</span>
       </span>
     </span>
 </div>
@@ -210,26 +211,45 @@ var _hmt = _hmt || [];
       </header>
     
 <!-- 目录内容 -->
-   
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+  <div id="toc-article" class="toc-article">
+      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    <strong class="toc-title">文章目录</strong>
+           
+         </div>
+   <script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+    };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+    };
+   </script>
+         
 <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="算法思路">算法思路</h1>
-<h2 id="基本思想">基本思想</h2>
-<p>粒子群算法-particle swarm optimization。粒子群优化算法的基本思想是：通过群体中个体之间的协作和信息共享来寻找最优解。</p>
-<p>我们可以设想这样的一个场景，一群鸟在随机搜寻食物。这个区域里只有一块食物。所有的鸟都不知道食物再哪里，但他们知道目前距离食物还有多远，那么找到食物的最佳策略是什么？</p>
-<p><strong>1.找寻距离食物最近的鸟之周围区域</strong></p>
-<p><strong>2.根据自己本身飞行的经验判断食物的所在</strong></p>
-<p>在PSO中，每个优化问题的潜在解都可以想象成<span class="math inline">\(N\)</span>维搜索空间上的一个点，我们称之为“粒子”（Particle），由目标函数决定每个粒子的适应值，每个粒子还有一个速度决定他们运动的方向和距离，然后粒子们就追随当前的最优粒子在解空间中搜索。</p>
-<h2 id="数学定义">数学定义</h2>
-<p>粒子<span class="math inline">\(i\)</span>在<span class="math inline">\(N\)</span>维空间的位置为： <span class="math display">\[
-X_i = (x_1,x_2,...,x_N)
-\]</span> 运动速度表示为： <span class="math display">\[
-V_i=(v_1,v_2,...,v_N)
-\]</span> 每个粒子都有一个由目标函数决定的<strong>适应值</strong>，并且知道自己到目前为止的最好位置<span class="math inline">\((pbest_i)\)</span>和现在所在的位置<span class="math inline">\(X_i\)</span>．这个可以看作是粒子自己的运动经验。同时，每个粒子还知道到目前整个群体中位置最好的粒子<span class="math inline">\((gbest) (gbest是pbest_i中的最好值)\)</span>．这个可以看作是粒子同伴的经验。粒子就是通过自己的经验和同伴中最好的经验来决定下一步的运动。</p>
-        
-          <a class="article-more-a" href="/2019/09/01/粒子群算法PSO/#more">more >></a>
-        
+        <p>蒙特卡罗算法：采样越多，越<strong>近似</strong>最优解；用有限随机数去计算估计值.</p>
+<p>举个例子，假如筐里有100个苹果，让我每次闭眼拿1个，挑出最大的。于是我随机拿1个，再随机拿1个跟它比，留下大的，再随机拿1个……我每拿一次，留下的苹果都至少不比上次的小。拿的次数越多，挑出的苹果就越大，但我除非拿100次，否则无法肯定挑出了最大的。这个挑苹果的算法，就属于蒙特卡罗算法——<strong>尽量找好的，但不保证是最好的</strong>。</p>
+<div class="figure">
+<img src="/Assets/BlogImg/圆周率估计.gif" alt="Monte Carlo Method">
+<p class="caption">Monte Carlo Method</p>
+</div>
+<p>使用蒙特卡洛方法估算π值. 放置30000个随机点后,π的估算值与真实值相差0.07%.</p>
+<p>这张图其实很简单, 就像我们玩飞镖一样, 随机地在一个方形平面上投掷30000个飞镖, 事先我们并不知道圆周率π的值究竟是多少, 但是我们知道这里有1/4的圆, 于是我们把红色面积上的点数<span class="math inline">\(m\)</span>, 和蓝色面积上的点数<span class="math inline">\(n\)</span>, 以及圆周率<span class="math inline">\(π\)</span>的关系, 可以写出一个约等于的式子: <span class="math display">\[
+π ≈ 4m/(n+m)
+\]</span> 随着<span class="math inline">\(m+n\)</span>的投射点的逐渐增加, <span class="math inline">\(π\)</span>值的计算也越来越精确, 最后我们就估计出一个不错的比较精确的<span class="math inline">\(π\)</span>值啦</p>
+
       
 
       
@@ -244,10 +264,6 @@ V_i=(v_1,v_2,...,v_N)
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">智能算法</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">粒子群算法</a>
-        		</li>
       		
 		</ul>
 	</div>
@@ -258,7 +274,7 @@ V_i=(v_1,v_2,...,v_N)
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/算法学习//" class="article-tag-list-link color5">算法学习</a>
+        			<a href="/categories/算法//" class="article-tag-list-link color3">算法</a>
         		</li>
       		
 		</ul>
@@ -266,16 +282,84 @@ V_i=(v_1,v_2,...,v_N)
 
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/01/粒子群算法PSO/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://Rocky1ee.github.io/2019/09/12/蒙特卡罗算法/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2019/09/12/Attention GAN for raindrop removal/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Attention GAN Raindrop Removal
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/09/10/RNN/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">RNN，LSTM</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -290,265 +374,48 @@ V_i=(v_1,v_2,...,v_N)
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-蚁群算法(ACO)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/31/蚁群算法(ACO)/">蚁群算法</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/31/蚁群算法(ACO)/" class="archive-article-date">
-  	<time datetime="2019-08-31T08:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-31</time>
-</a>
-        <!-- 需要添加的位置 -->
-        <!-- 开始添加字数统计-->
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.2k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">5分</span>
-      </span>
-    </span>
-</div>
-          
-        <!-- 添加完成 -->
-        
-      </header>
-    
-<!-- 目录内容 -->
-   
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="基本原理">基本原理</h1>
-<div class="figure">
-<img src="/Assets/BlogImg/蚁群算法.png" alt="蚁群算法1">
-<p class="caption">蚁群算法1</p>
-</div>
-<div class="figure">
-<img src="/Assets/BlogImg/蚁群算法1.png" alt="蚁群算法2">
-<p class="caption">蚁群算法2</p>
-</div>
-<div class="figure">
-<img src="/Assets/BlogImg/蚁群算法2.png" alt="蚁群算法3">
-<p class="caption">蚁群算法3</p>
-</div>
-        
-          <a class="article-more-a" href="/2019/08/31/蚁群算法(ACO)/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">智能算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">蚁群算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/算法学习//" class="article-tag-list-link color5">算法学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/31/蚁群算法(ACO)/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
   
-    <article id="post-条件GAN去雨" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/31/条件GAN去雨/">conditional GAN De-raining</a>
-    </h1>
   
 
-        
-        <a href="/2019/07/31/条件GAN去雨/" class="archive-article-date">
-  	<time datetime="2019-07-31T08:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-31</time>
-</a>
-        <!-- 需要添加的位置 -->
-        <!-- 开始添加字数统计-->
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">685字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">3分</span>
-      </span>
-    </span>
-</div>
-          
-        <!-- 添加完成 -->
-        
-      </header>
-    
-<!-- 目录内容 -->
-   
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Image De-raining Using a Conditional Generative Adversarial Network</p>
-<h1 id="abstract">Abstract</h1>
-<p>在C-GAN中执行限制条件使去雨后的图像与相应的真实图像一致。其中的adversarial loss 有助于获取更好结果。此外在G和D中提出新的refined loss function（降低创造能力使图像更加真实）和新的网络结构提升效果。G使用densely connected networks），D可利用局部和全局信息进行真伪判断。</p>
-        
-          <a class="article-more-a" href="/2019/07/31/条件GAN去雨/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">De-rain</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/深度学习去雨方法//" class="article-tag-list-link color4">深度学习去雨方法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/31/条件GAN去雨/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
+  
 
 
 
   
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-    </nav>
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'true'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
   
 
 
@@ -571,8 +438,8 @@ V_i=(v_1,v_2,...,v_N)
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
