@@ -65,27 +65,33 @@
     <link href="//Rocky1ee.github.io/2019/09/12/Attention%20GAN%20for%20raindrop%20removal/"/>
     <id>//Rocky1ee.github.io/2019/09/12/Attention GAN for raindrop removal/</id>
     <published>2019-09-12T13:56:36.000Z</published>
-    <updated>2019-12-29T07:14:55.972Z</updated>
+    <updated>2019-12-29T12:13:21.195Z</updated>
     
-    <content type="html"><![CDATA[<p>Attentive Generative Adversarial Network for Raindrop Removal from A Single Image</p><h1 id="abstract">Abstract</h1><p>问题：1.雨点覆盖区域未给出。2.被覆盖区域下的真实信息缺失。</p><p>解决方法：在G和D中加入visual attention模块，用于学习雨滴区域及其背景。这样的话G可以更多关注于学习到的区域及其背景结构，D可以以该区域为判别真伪的重要依据。</p><h1 id="introduction">Introduction</h1><p>G由attentive-recurrent-network 和 auto-encoder构成：</p><div class="figure"><img src="/Assets/Img/attention%20gan%20rain%20drop.png" alt="the structure of AGAN"><p class="caption">the structure of AGAN</p></div><p>attentive-recurrent network：由ResNet构造的RNN，LSTM和Conv组成，用于生成attention mapping。</p><p>contextual auto-encoder：在decoder端使用了multi-scale loss，每个loss去评估相应尺寸的feature map和ground truth pairs，用此模块获取更多纹理信息。auto-encoder用perceptual loss评估最后结果与ground truth的整体相似度。</p><h1 id="raindrop-image-formation">Raindrop Image Formation</h1><p><span class="math display">\[I=(1-M)\bigodot B+R\]</span></p><p><span class="math inline">\(I\)</span>:输入的有雨点图，<span class="math inline">\(B\)</span>:无雨点图，<span class="math inline">\(R\)</span>:被雨点影响区域 <span class="math display">\[M(x)=\begin{cases}1 \qquad if \quad 被雨点覆盖\\0 \qquad if \quad 未雨点覆盖\end{cases}\]</span></p><h1 id="raindrop-removal-using-attentive-gan">Raindrop Removal using Attentive GAN</h1><p><span class="math display">\[\min_G\max_D \Epsilon_\R \sim_{P_{clean}}[log(D(\R))]+\Epsilon_{\Iota\sim{P_{raindrop}}}[log(1-D(G(\Iota)))]\]</span></p><p><span class="math inline">\(\Iota\)</span>:输入雨图，<span class="math inline">\(\R\)</span>：输入的真实无雨图</p><h2 id="generative-network">Generative Network</h2><h3 id="attentive-recurrent-network">Attentive-Recurrent Network</h3><p>用于寻找输入图像中需要关注的区域（雨点区域及其周边信息），结构如下：</p><div class="figure"><img src="/Assets/Img/agan2.png" alt="construction of ARN"><p class="caption">construction of ARN</p></div><p>每个block（time step）由5个ResNet（提取特征），LSTM和Conv（生成attention mapping）组成。</p><p>attention mapping是一个matrix，<span class="math inline">\(x in matrix,x \ in [0,1]\)</span>, 数值越大代表关注越强，从无雨点区域到有雨点区域取值不断变大。</p><p>LSTM部分？？？</p><p>产生attention mapping所采用的loss： <span class="math display">\[\mathcal{L}_{ATT}(\{A\}，M)=\sum_{t=1}^N\theta^{N-t}\mathcal{L}_{MSE}(A_t,M)\]</span> <span class="math inline">\(A_t\)</span>:attention map,其成分如下： <span class="math display">\[A_t=ATT_t(F_{t-1},H_{t-1},C_{t-1}),\\F_{t-1}:输入图像和上个time step产生attention map的组合.\\H_{t-1}:LSTM 上个time step产生的feature.\\C_{t-1}:Conv 上个time step产生的feature.\]</span> M:binary mask 由<span class="math inline">\(I-B\)</span>,然后进行Threshold得到。N:timestep总和，<span class="math inline">\(\theta\)</span>：超参数。</p><h3 id="contextual-autoencoder">Contextual Autoencoder</h3><p><img src="/Assets/Img/agan3.png" style="zoom:70%;"></p><p>Contextual Autoencoder 中包含multi-scale loss 和 perceptual loss。其中multi-scale loss是为了获取不同尺度的contextual information，其定义如下： <span class="math display">\[\mathcal{L}(\{S\},\{T\})=\sum_{i=1}^{M}\lambda_i\mathcal{L}_{MSE}(S_i,T_i)\]</span> <span class="math inline">\(S_i\)</span>：不同尺度的decoder端获取的feature map，<span class="math inline">\(T_i\)</span>是不同尺度feature map对应的ground truth，<span class="math inline">\(\lambda_i\)</span>为各尺度MSE权重。</p><p>perceptual loss 是为了获取autoencoder 的结果和相应的ground truth的全局差异。 <span class="math display">\[\mathcal{L}_P(O,T)=\mathcal{L}_{MSE}(VGG(O),VGG(T))\]</span> <span class="math inline">\(O=G(I)\)</span>：autoencoder的输出，T：ground truth</p><p>整个generative的loss为： <span class="math display">\[\mathcal{L}_G=10^{-2}\mathcal{L}_{GAN}(O)+\mathcal{L}_{ATT}({A},M)+\mathcal{L}_M(\{S\},\{T\}+\mathcal{L}_p(O,T))\\\mathcal{L}_{GAN}(O)=log(1-D(O))\]</span></p><h2 id="discriminative-network">Discriminative Network</h2><p><img src="/Assets/Img/agan4.png" alt="structure of discriminator" style="zoom:80%;"></p><p>特点是将D前面层的特征图a输入到CNN中得到结果b，将a和b相乘输入到下一层。基于b和attentive-recurrent network产生的attention map的loss定义如下： <span class="math display">\[\mathcal{L}_D(O,R,A_N)=-log(D(R))-log(1-D(O))+\gamma\mathcal{L}_{map}(O,R,A_N)\]</span> <span class="math inline">\(O\)</span>:G的输出的raindrop removal image，<span class="math inline">\(R\)</span>：ground truth image，<span class="math inline">\(A_N\)</span>:attentive-recurrent network 产生的attention map. <span class="math display">\[\mathcal{L}_{map}(O,R,A_N)=\mathcal{L}_{MSE}(D_{map}(O),A_N)+\mathcal{L}_{MSE}(D_{map}(R),0)\]</span> <span class="math inline">\(D_{map}()\)</span>:D前层提取的特征图，公式的意思是对于输入<span class="math inline">\(O\)</span>我们更关注attention 区域的 loss，对于<span class="math inline">\(R\)</span>我们没有需要特别关注的区域。</p>]]></content>
+    <content type="html"><![CDATA[<p>Attentive Generative Adversarial Network for Raindrop Removal from A Single Image</p><h1 id="abstract">Abstract</h1><p>问题：1.雨点覆盖区域未给出。2.被覆盖区域下的真实信息缺失。</p><p>解决方法：在G和D中加入visual attention模块，用于学习雨滴区域及其背景。这样的话G可以更多关注于学习到的区域及其背景结构，D可以以该区域为判别真伪的重要依据。</p><h1 id="introduction">Introduction</h1><p>G由attentive-recurrent-network 和 auto-encoder构成：</p><div class="figure"><img src="/Assets/Img/attention%20gan%20rain%20drop.png" alt="the structure of AGAN"><p class="caption">the structure of AGAN</p></div><p>attentive-recurrent network：由ResNet构造的RNN，LSTM和Conv组成，用于生成attention mapping。</p><p>contextual auto-encoder：在decoder端使用了multi-scale loss，每个loss去评估相应尺寸的feature map和ground truth pairs，用此模块获取更多纹理信息。auto-encoder用perceptual loss评估最后结果与ground truth的整体相似度。</p><a id="more"></a><h1 id="raindrop-image-formation">Raindrop Image Formation</h1><p><span class="math display">\[I=(1-M)\bigodot B+R\]</span></p><p><span class="math inline">\(I\)</span>:输入的有雨点图，<span class="math inline">\(B\)</span>:无雨点图，<span class="math inline">\(R\)</span>:被雨点影响区域 <span class="math display">\[M(x)=\begin{cases}1 \qquad if \quad 被雨点覆盖\\0 \qquad if \quad 未雨点覆盖\end{cases}\]</span></p><h1 id="raindrop-removal-using-attentive-gan">Raindrop Removal using Attentive GAN</h1><p><span class="math display">\[\min_G\max_D \Epsilon_\R \sim_{P_{clean}}[log(D(\R))]+\Epsilon_{\Iota\sim{P_{raindrop}}}[log(1-D(G(\Iota)))]\]</span></p><p><span class="math inline">\(\Iota\)</span>:输入雨图，<span class="math inline">\(\R\)</span>：输入的真实无雨图</p><h2 id="generative-network">Generative Network</h2><h3 id="attentive-recurrent-network">Attentive-Recurrent Network</h3><p>用于寻找输入图像中需要关注的区域（雨点区域及其周边信息），结构如下：</p><div class="figure"><img src="/Assets/Img/agan2.png" alt="construction of ARN"><p class="caption">construction of ARN</p></div><p>每个block（time step）由5个ResNet（提取特征），LSTM和Conv（生成attention mapping）组成。</p><p>attention mapping是一个matrix，<span class="math inline">\(x in matrix,x \ in [0,1]\)</span>, 数值越大代表关注越强，从无雨点区域到有雨点区域取值不断变大。</p><p>LSTM部分？？？</p><p>产生attention mapping所采用的loss： <span class="math display">\[\mathcal{L}_{ATT}(\{A\}，M)=\sum_{t=1}^N\theta^{N-t}\mathcal{L}_{MSE}(A_t,M)\]</span> <span class="math inline">\(A_t\)</span>:attention map,其成分如下： <span class="math display">\[A_t=ATT_t(F_{t-1},H_{t-1},C_{t-1}),\\F_{t-1}:输入图像和上个time step产生attention map的组合.\\H_{t-1}:LSTM 上个time step产生的feature.\\C_{t-1}:Conv 上个time step产生的feature.\]</span> M:binary mask 由<span class="math inline">\(I-B\)</span>,然后进行Threshold得到。N:timestep总和，<span class="math inline">\(\theta\)</span>：超参数。</p><h3 id="contextual-autoencoder">Contextual Autoencoder</h3><p><img src="/Assets/Img/agan3.png" style="zoom:70%;"></p><p>Contextual Autoencoder 中包含multi-scale loss 和 perceptual loss。其中multi-scale loss是为了获取不同尺度的contextual information，其定义如下： <span class="math display">\[\mathcal{L}(\{S\},\{T\})=\sum_{i=1}^{M}\lambda_i\mathcal{L}_{MSE}(S_i,T_i)\]</span> <span class="math inline">\(S_i\)</span>：不同尺度的decoder端获取的feature map，<span class="math inline">\(T_i\)</span>是不同尺度feature map对应的ground truth，<span class="math inline">\(\lambda_i\)</span>为各尺度MSE权重。</p><p>perceptual loss 是为了获取autoencoder 的结果和相应的ground truth的全局差异。 <span class="math display">\[\mathcal{L}_P(O,T)=\mathcal{L}_{MSE}(VGG(O),VGG(T))\]</span> <span class="math inline">\(O=G(I)\)</span>：autoencoder的输出，T：ground truth</p><p>整个generative的loss为： <span class="math display">\[\mathcal{L}_G=10^{-2}\mathcal{L}_{GAN}(O)+\mathcal{L}_{ATT}({A},M)+\mathcal{L}_M(\{S\},\{T\}+\mathcal{L}_p(O,T))\\\mathcal{L}_{GAN}(O)=log(1-D(O))\]</span></p><h2 id="discriminative-network">Discriminative Network</h2><p><img src="/Assets/Img/agan4.png" alt="structure of discriminator" style="zoom:80%;"></p><p>特点是将D前面层的特征图a输入到CNN中得到结果b，将a和b相乘输入到下一层。基于b和attentive-recurrent network产生的attention map的loss定义如下： <span class="math display">\[\mathcal{L}_D(O,R,A_N)=-log(D(R))-log(1-D(O))+\gamma\mathcal{L}_{map}(O,R,A_N)\]</span> <span class="math inline">\(O\)</span>:G的输出的raindrop removal image，<span class="math inline">\(R\)</span>：ground truth image，<span class="math inline">\(A_N\)</span>:attentive-recurrent network 产生的attention map. <span class="math display">\[\mathcal{L}_{map}(O,R,A_N)=\mathcal{L}_{MSE}(D_{map}(O),A_N)+\mathcal{L}_{MSE}(D_{map}(R),0)\]</span> <span class="math inline">\(D_{map}()\)</span>:D前层提取的特征图，公式的意思是对于输入<span class="math inline">\(O\)</span>我们更关注attention 区域的 loss，对于<span class="math inline">\(R\)</span>我们没有需要特别关注的区域。</p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;Attentive Generative Adversarial Network for Raindrop Removal from A Single Image&lt;/p&gt;
+      &lt;p&gt;Attentive Generative Adversarial Network for Raindrop Removal from A Single Image&lt;/p&gt;
 &lt;h1 id=&quot;abstract&quot;&gt;Abstract&lt;/h1&gt;
-&lt;p&gt;问题：1.雨点覆盖区域未给出
-      
+&lt;p&gt;问题：1.雨点覆盖区域未给出。2.被覆盖区域下的真实信息缺失。&lt;/p&gt;
+&lt;p&gt;解决方法：在G和D中加入visual attention模块，用于学习雨滴区域及其背景。这样的话G可以更多关注于学习到的区域及其背景结构，D可以以该区域为判别真伪的重要依据。&lt;/p&gt;
+&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;G由attentive-recurrent-network 和 auto-encoder构成：&lt;/p&gt;
+&lt;div class=&quot;figure&quot;&gt;
+&lt;img src=&quot;/Assets/Img/attention%20gan%20rain%20drop.png&quot; alt=&quot;the structure of AGAN&quot;&gt;
+&lt;p class=&quot;caption&quot;&gt;the structure of AGAN&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;attentive-recurrent network：由ResNet构造的RNN，LSTM和Conv组成，用于生成attention mapping。&lt;/p&gt;
+&lt;p&gt;contextual auto-encoder：在decoder端使用了multi-scale loss，每个loss去评估相应尺寸的feature map和ground truth pairs，用此模块获取更多纹理信息。auto-encoder用perceptual loss评估最后结果与ground truth的整体相似度。&lt;/p&gt;
     
     </summary>
     
       <category term="深度学习去雨方法" scheme="//Rocky1ee.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%8E%BB%E9%9B%A8%E6%96%B9%E6%B3%95/"/>
     
     
-      <category term="深度学习" scheme="//Rocky1ee.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
       <category term="Raindrop Removal" scheme="//Rocky1ee.github.io/tags/Raindrop-Removal/"/>
+    
+      <category term="深度学习" scheme="//Rocky1ee.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
@@ -94,19 +100,44 @@
     <link href="//Rocky1ee.github.io/2019/09/10/RNN/"/>
     <id>//Rocky1ee.github.io/2019/09/10/RNN/</id>
     <published>2019-09-10T11:56:36.000Z</published>
-    <updated>2019-12-29T11:47:53.969Z</updated>
+    <updated>2019-12-29T12:12:43.210Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="rnn">RNN</h1><p>Recurrent Neural Networks:将神经网络中前层获得的信息传递到后层</p><div class="figure"><img src="/Assets/BlogImg/RNN.png" alt="RNN structure"><p class="caption">RNN structure</p></div><div class="figure"><img src="/Assets/BlogImg/standard_RNN.png" alt="standard RNN"><p class="caption">standard RNN</p></div><p>RNN的问题：随着层数的增长对于有用信息<span class="math inline">\(x_0,x_1\)</span>的记忆越弱</p><div class="figure"><img src="/Assets/BlogImg/RNN_problem.png" alt="drawback of RNN"><p class="caption">drawback of RNN</p></div><h1 id="lstm">LSTM</h1><h2 id="介绍">介绍</h2><p>Long Short Term Memory networks :可以记忆久远的的有用信息</p><div class="figure"><img src="/Assets/BlogImg/structure_of_LSTM.png" alt="structure of LSTM"><p class="caption">structure of LSTM</p></div><p>主线信息贯穿整个网络</p><div class="figure"><img src="/Assets/BlogImg/main_line.png" alt="cell state"><p class="caption">cell state</p></div><h2 id="逐步分析">逐步分析</h2><p>forget gate layer：决定<span class="math inline">\(C_{t-1}\)</span>中的那些信息保留下来，那些信息丢掉。对输入<span class="math inline">\(x_t\)</span>和<span class="math inline">\(h_{t-1}\)</span>的组合进行sigmoid mapping为<span class="math inline">\(C_{t-1}\)</span>中的每个元素产生对应的output，output<span class="math inline">\(in [0,1]\)</span>，0指丢弃当前信息，1指保留当前信息。</p><div class="figure"><img src="/Assets/BlogImg/forget_gate.png" alt="forget_gate"><p class="caption">forget_gate</p></div><p>input gate layer: 决定将<span class="math inline">\(\widetilde{C_t}\)</span>中的哪些信息加入到主线信息。</p><div class="figure"><img src="/Assets/BlogImg/input_gate.png" alt="input gate"><p class="caption">input gate</p></div><p>主线信息的更新：用<span class="math inline">\(f_t\)</span>决定主线中哪些信息保留，哪些信息丢弃。用<span class="math inline">\(i_t\)</span>决定添加哪些新信息到主线。</p><div class="figure"><img src="/Assets/BlogImg/update_cell_state.png" alt="update cell state"><p class="caption">update cell state</p></div><p>output gate layer：决定<span class="math inline">\(C_t\)</span>主线中输出的信息。</p><div class="figure"><img src="/Assets/BlogImg/output_gate_layer.png" alt="output gate layer"><p class="caption">output gate layer</p></div><h2 id="变体">变体</h2><p>将主线信息加入到门判断中</p><div class="figure"><img src="/Assets/BlogImg/cell_state_add_to_%20all_gate.png" alt="adding cell state to all gate"><p class="caption">adding cell state to all gate</p></div><p>用coupled forget 即一个门<span class="math inline">\(f_t\)</span>,<span class="math inline">\(1-f_t\)</span>判断主线信息的更新</p><div class="figure"><img src="/Assets/BlogImg/coupled_forget.png" alt="coupled forget"><p class="caption">coupled forget</p></div><p>Gated Recurrent Unit (GRU)</p><div class="figure"><img src="/Assets/BlogImg/GRU.png" alt="structure of GRU"><p class="caption">structure of GRU</p></div>]]></content>
+    <content type="html"><![CDATA[<h1 id="rnn">RNN</h1><p>Recurrent Neural Networks:将神经网络中前层获得的信息传递到后层</p><div class="figure"><img src="/Assets/BlogImg/RNN.png" alt="RNN structure"><p class="caption">RNN structure</p></div><div class="figure"><img src="/Assets/BlogImg/standard_RNN.png" alt="standard RNN"><p class="caption">standard RNN</p></div><p>RNN的问题：随着层数的增长对于有用信息<span class="math inline">\(x_0,x_1\)</span>的记忆越弱</p><div class="figure"><img src="/Assets/BlogImg/RNN_problem.png" alt="drawback of RNN"><p class="caption">drawback of RNN</p></div><h1 id="lstm">LSTM</h1><h2 id="介绍">介绍</h2><p>Long Short Term Memory networks :可以记忆久远的的有用信息</p><p><img src="/Assets/BlogImg/structure_of_LSTM.png" alt="structure of LSTM"> <span class="math display">\[\begin{aligned}f_t&amp;=\sigma(W_f[h_{t-1},x_t]+b_f)\\i_t&amp;=\sigma(W_i[h_{t-1},x_t]+b_i)\\\widetilde{C_{t}}&amp;=tanh(W_c[h_{t-1},x_t]+b_c)\\C_t&amp;=f_t*C_{t-1}+i_t*\widetilde{C}\\o_t&amp;=\sigma(W_o[h_{t-1},x_t]+b_o)\\h_t&amp;=o_t*tanh(C_t)\end{aligned}\]</span> 主线信息贯穿整个网络</p><div class="figure"><img src="/Assets/BlogImg/main_line.png" alt="cell state"><p class="caption">cell state</p></div><a id="more"></a><h2 id="逐步分析">逐步分析</h2><p>forget gate layer：决定<span class="math inline">\(C_{t-1}\)</span>中的那些信息保留下来，那些信息丢掉。对输入<span class="math inline">\(x_t\)</span>和<span class="math inline">\(h_{t-1}\)</span>的组合进行sigmoid mapping为<span class="math inline">\(C_{t-1}\)</span>中的每个元素产生对应的output，output<span class="math inline">\(\in [0,1]\)</span>，0指丢弃当前信息，1指保留当前信息。</p><div class="figure"><img src="/Assets/BlogImg/forget_gate.png" alt="forget_gate"><p class="caption">forget_gate</p></div><p>input gate layer: 决定将<span class="math inline">\(\widetilde{C_t}\)</span>中的哪些信息加入到主线信息。</p><div class="figure"><img src="/Assets/BlogImg/input_gate.png" alt="input gate"><p class="caption">input gate</p></div><p>主线信息的更新：用<span class="math inline">\(f_t\)</span>决定主线中哪些信息保留，哪些信息丢弃。用<span class="math inline">\(i_t\)</span>决定添加哪些新信息到主线。</p><div class="figure"><img src="/Assets/BlogImg/update_cell_state.png" alt="update cell state"><p class="caption">update cell state</p></div><p>output gate layer：决定<span class="math inline">\(C_t\)</span>主线中输出的信息。</p><div class="figure"><img src="/Assets/BlogImg/output_gate_layer.png" alt="output gate layer"><p class="caption">output gate layer</p></div><h2 id="变体">变体</h2><p>将主线信息加入到门判断中</p><div class="figure"><img src="/Assets/BlogImg/cell_state_add_to_%20all_gate.png" alt="adding cell state to all gate"><p class="caption">adding cell state to all gate</p></div><p>用coupled forget 即一个门<span class="math inline">\(f_t\)</span>,<span class="math inline">\(1-f_t\)</span>判断主线信息的更新</p><div class="figure"><img src="/Assets/BlogImg/coupled_forget.png" alt="coupled forget"><p class="caption">coupled forget</p></div><p>Gated Recurrent Unit (GRU)</p><div class="figure"><img src="/Assets/BlogImg/GRU.png" alt="structure of GRU"><p class="caption">structure of GRU</p></div>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;h1 id=&quot;rnn&quot;&gt;RNN&lt;/h1&gt;
+      &lt;h1 id=&quot;rnn&quot;&gt;RNN&lt;/h1&gt;
 &lt;p&gt;Recurrent Neural Networks:将神经网络中前层获得的信息传递到后层&lt;/p&gt;
 &lt;div class=&quot;figure&quot;&gt;
-&lt;img src=&quot;/Assets/BlogImg/RNN.png&quot; alt=&quot;RN
-      
+&lt;img src=&quot;/Assets/BlogImg/RNN.png&quot; alt=&quot;RNN structure&quot;&gt;
+&lt;p class=&quot;caption&quot;&gt;RNN structure&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;figure&quot;&gt;
+&lt;img src=&quot;/Assets/BlogImg/standard_RNN.png&quot; alt=&quot;standard RNN&quot;&gt;
+&lt;p class=&quot;caption&quot;&gt;standard RNN&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;RNN的问题：随着层数的增长对于有用信息&lt;span class=&quot;math inline&quot;&gt;\(x_0,x_1\)&lt;/span&gt;的记忆越弱&lt;/p&gt;
+&lt;div class=&quot;figure&quot;&gt;
+&lt;img src=&quot;/Assets/BlogImg/RNN_problem.png&quot; alt=&quot;drawback of RNN&quot;&gt;
+&lt;p class=&quot;caption&quot;&gt;drawback of RNN&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id=&quot;lstm&quot;&gt;LSTM&lt;/h1&gt;
+&lt;h2 id=&quot;介绍&quot;&gt;介绍&lt;/h2&gt;
+&lt;p&gt;Long Short Term Memory networks :可以记忆久远的的有用信息&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/Assets/BlogImg/structure_of_LSTM.png&quot; alt=&quot;structure of LSTM&quot;&gt; &lt;span class=&quot;math display&quot;&gt;\[
+\begin{aligned}
+f_t&amp;amp;=\sigma(W_f[h_{t-1},x_t]+b_f)\\
+i_t&amp;amp;=\sigma(W_i[h_{t-1},x_t]+b_i)\\
+\widetilde{C_{t}}&amp;amp;=tanh(W_c[h_{t-1},x_t]+b_c)\\
+C_t&amp;amp;=f_t*C_{t-1}+i_t*\widetilde{C}\\
+o_t&amp;amp;=\sigma(W_o[h_{t-1},x_t]+b_o)\\
+h_t&amp;amp;=o_t*tanh(C_t)
+\end{aligned}
+\]&lt;/span&gt; 主线信息贯穿整个网络&lt;/p&gt;
+&lt;div class=&quot;figure&quot;&gt;
+&lt;img src=&quot;/Assets/BlogImg/main_line.png&quot; alt=&quot;cell state&quot;&gt;
+&lt;p class=&quot;caption&quot;&gt;cell state&lt;/p&gt;
+&lt;/div&gt;
     
     </summary>
     
@@ -210,9 +241,9 @@ C = \begin{bmatrix}
       <category term="算法学习" scheme="//Rocky1ee.github.io/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="智能算法" scheme="//Rocky1ee.github.io/tags/%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/"/>
-    
       <category term="模拟退火算法" scheme="//Rocky1ee.github.io/tags/%E6%A8%A1%E6%8B%9F%E9%80%80%E7%81%AB%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="智能算法" scheme="//Rocky1ee.github.io/tags/%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -277,9 +308,9 @@ C = \begin{bmatrix}
       <category term="算法学习" scheme="//Rocky1ee.github.io/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="粒子群算法" scheme="//Rocky1ee.github.io/tags/%E7%B2%92%E5%AD%90%E7%BE%A4%E7%AE%97%E6%B3%95/"/>
-    
       <category term="智能算法" scheme="//Rocky1ee.github.io/tags/%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="粒子群算法" scheme="//Rocky1ee.github.io/tags/%E7%B2%92%E5%AD%90%E7%BE%A4%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -313,9 +344,9 @@ V_i=(v_1,v_2,...,v_N)
       <category term="算法学习" scheme="//Rocky1ee.github.io/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="粒子群算法" scheme="//Rocky1ee.github.io/tags/%E7%B2%92%E5%AD%90%E7%BE%A4%E7%AE%97%E6%B3%95/"/>
-    
       <category term="智能算法" scheme="//Rocky1ee.github.io/tags/%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="粒子群算法" scheme="//Rocky1ee.github.io/tags/%E7%B2%92%E5%AD%90%E7%BE%A4%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -375,9 +406,9 @@ V_i=(v_1,v_2,...,v_N)
       <category term="深度学习去雨方法" scheme="//Rocky1ee.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%8E%BB%E9%9B%A8%E6%96%B9%E6%B3%95/"/>
     
     
-      <category term="De-rain" scheme="//Rocky1ee.github.io/tags/De-rain/"/>
-    
       <category term="深度学习" scheme="//Rocky1ee.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="De-rain" scheme="//Rocky1ee.github.io/tags/De-rain/"/>
     
   </entry>
   

@@ -28,7 +28,7 @@
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/cell_state_add_to_%20all_gate.png">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/coupled_forget.png">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/GRU.png">
-<meta property="og:updated_time" content="2019-12-29T11:47:53.969Z">
+<meta property="og:updated_time" content="2019-12-29T12:12:43.210Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RNN，LSTM">
 <meta name="twitter:description" content="RNN Recurrent Neural Networks:将神经网络中前层获得的信息传递到后层   RNN structure    standard RNN  RNN的问题：随着层数的增长对于有用信息\(x_0,x_1\)的记忆越弱   drawback of RNN  LSTM 介绍 Long Short Term Memory networks :可以记忆">
@@ -203,7 +203,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">299字</span>
+        <span class="post-count">352字</span>
       </span>
     </span>
 
@@ -268,17 +268,23 @@ var _hmt = _hmt || [];
 <h1 id="lstm">LSTM</h1>
 <h2 id="介绍">介绍</h2>
 <p>Long Short Term Memory networks :可以记忆久远的的有用信息</p>
-<div class="figure">
-<img src="/Assets/BlogImg/structure_of_LSTM.png" alt="structure of LSTM">
-<p class="caption">structure of LSTM</p>
-</div>
-<p>主线信息贯穿整个网络</p>
+<p><img src="/Assets/BlogImg/structure_of_LSTM.png" alt="structure of LSTM"> <span class="math display">\[
+\begin{aligned}
+f_t&amp;=\sigma(W_f[h_{t-1},x_t]+b_f)\\
+i_t&amp;=\sigma(W_i[h_{t-1},x_t]+b_i)\\
+\widetilde{C_{t}}&amp;=tanh(W_c[h_{t-1},x_t]+b_c)\\
+C_t&amp;=f_t*C_{t-1}+i_t*\widetilde{C}\\
+o_t&amp;=\sigma(W_o[h_{t-1},x_t]+b_o)\\
+h_t&amp;=o_t*tanh(C_t)
+\end{aligned}
+\]</span> 主线信息贯穿整个网络</p>
 <div class="figure">
 <img src="/Assets/BlogImg/main_line.png" alt="cell state">
 <p class="caption">cell state</p>
 </div>
+<a id="more"></a>
 <h2 id="逐步分析">逐步分析</h2>
-<p>forget gate layer：决定<span class="math inline">\(C_{t-1}\)</span>中的那些信息保留下来，那些信息丢掉。对输入<span class="math inline">\(x_t\)</span>和<span class="math inline">\(h_{t-1}\)</span>的组合进行sigmoid mapping为<span class="math inline">\(C_{t-1}\)</span>中的每个元素产生对应的output，output<span class="math inline">\(in [0,1]\)</span>，0指丢弃当前信息，1指保留当前信息。</p>
+<p>forget gate layer：决定<span class="math inline">\(C_{t-1}\)</span>中的那些信息保留下来，那些信息丢掉。对输入<span class="math inline">\(x_t\)</span>和<span class="math inline">\(h_{t-1}\)</span>的组合进行sigmoid mapping为<span class="math inline">\(C_{t-1}\)</span>中的每个元素产生对应的output，output<span class="math inline">\(\in [0,1]\)</span>，0指丢弃当前信息，1指保留当前信息。</p>
 <div class="figure">
 <img src="/Assets/BlogImg/forget_gate.png" alt="forget_gate">
 <p class="caption">forget_gate</p>
@@ -601,6 +607,14 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Raindrop Removal</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
              
@@ -613,11 +627,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">粒子群算法</a>
+                <a href="javascript:void(0)" class="js-tag color2">模拟退火算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -625,15 +635,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Raindrop Removal</a>
+                <a href="javascript:void(0)" class="js-tag color1">粒子群算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">模拟退火算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">进化算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">蚁群算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -641,7 +647,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">蚁群算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">进化算法</a>
               </li>
             
             <div class="clearfix"></div>
