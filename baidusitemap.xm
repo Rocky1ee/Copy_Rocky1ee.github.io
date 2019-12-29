@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>//Rocky1ee.github.io/2019/09/10/RNN/</loc>
+    <lastmod>2019-12-29</lastmod>
+  </url>  <url>
+    <loc>//Rocky1ee.github.io/2019/09/12/Attention%20GAN%20for%20raindrop%20removal/</loc>
+    <lastmod>2019-12-29</lastmod>
+  </url>  <url>
     <loc>//Rocky1ee.github.io/2019/09/10/%E8%BD%AC%E7%BD%AE%E5%8D%B7%E7%A7%AF%E5%92%8C%E8%86%A8%E8%83%80%E5%8D%B7%E7%A7%AF/</loc>
-    <lastmod>2019-12-15</lastmod>
+    <lastmod>2019-12-16</lastmod>
   </url>  <url>
     <loc>//Rocky1ee.github.io/2019/07/31/%E6%9D%A1%E4%BB%B6GAN%E5%8E%BB%E9%9B%A8/</loc>
     <lastmod>2019-12-13</lastmod>

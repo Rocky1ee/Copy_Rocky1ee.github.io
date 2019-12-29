@@ -283,6 +283,362 @@ var _hmt = _hmt || [];
 
 
   
+    <article id="post-Attention GAN for raindrop removal" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/12/Attention GAN for raindrop removal/">Attention GAN Raindrop Removal</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/12/Attention GAN for raindrop removal/" class="archive-article-date">
+  	<time datetime="2019-09-12T13:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-12</time>
+</a>
+        <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">820字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">3分</span>
+      </span>
+    </span>
+</div>
+          
+        <!-- 添加完成 -->
+        
+      </header>
+    
+<!-- 目录内容 -->
+   
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Attentive Generative Adversarial Network for Raindrop Removal from A Single Image</p>
+<h1 id="abstract">Abstract</h1>
+<p>问题：1.雨点覆盖区域未给出。2.被覆盖区域下的真实信息缺失。</p>
+<p>解决方法：在G和D中加入visual attention模块，用于学习雨滴区域及其背景。这样的话G可以更多关注于学习到的区域及其背景结构，D可以以该区域为判别真伪的重要依据。</p>
+<h1 id="introduction">Introduction</h1>
+<p>G由attentive-recurrent-network 和 auto-encoder构成：</p>
+<div class="figure">
+<img src="/Assets/Img/attention%20gan%20rain%20drop.png" alt="the structure of AGAN">
+<p class="caption">the structure of AGAN</p>
+</div>
+<p>attentive-recurrent network：由ResNet构造的RNN，LSTM和Conv组成，用于生成attention mapping。</p>
+<p>contextual auto-encoder：在decoder端使用了multi-scale loss，每个loss去评估相应尺寸的feature map和ground truth pairs，用此模块获取更多纹理信息。auto-encoder用perceptual loss评估最后结果与ground truth的整体相似度。</p>
+<h1 id="raindrop-image-formation">Raindrop Image Formation</h1>
+<p><span class="math display">\[
+I=(1-M)\bigodot B+R
+\]</span></p>
+<p><span class="math inline">\(I\)</span>:输入的有雨点图，<span class="math inline">\(B\)</span>:无雨点图，<span class="math inline">\(R\)</span>:被雨点影响区域 <span class="math display">\[
+M(x)=
+\begin{cases}1 \qquad if \quad 被雨点覆盖\\
+0 \qquad if \quad 未雨点覆盖
+\end{cases}
+\]</span></p>
+<h1 id="raindrop-removal-using-attentive-gan">Raindrop Removal using Attentive GAN</h1>
+<p><span class="math display">\[
+\min_G\max_D \Epsilon_\R \sim_{P_{clean}}[log(D(\R))]+\Epsilon_{\Iota\sim{P_{raindrop}}}[log(1-D(G(\Iota)))]
+\]</span></p>
+<p><span class="math inline">\(\Iota\)</span>:输入雨图，<span class="math inline">\(\R\)</span>：输入的真实无雨图</p>
+<h2 id="generative-network">Generative Network</h2>
+<h3 id="attentive-recurrent-network">Attentive-Recurrent Network</h3>
+<p>用于寻找输入图像中需要关注的区域（雨点区域及其周边信息），结构如下：</p>
+<div class="figure">
+<img src="/Assets/Img/agan2.png" alt="construction of ARN">
+<p class="caption">construction of ARN</p>
+</div>
+<p>每个block（time step）由5个ResNet（提取特征），LSTM和Conv（生成attention mapping）组成。</p>
+<p>attention mapping是一个matrix，<span class="math inline">\(x in matrix,x \ in [0,1]\)</span>, 数值越大代表关注越强，从无雨点区域到有雨点区域取值不断变大。</p>
+<p>LSTM部分？？？</p>
+<p>产生attention mapping所采用的loss： <span class="math display">\[
+\mathcal{L}_{ATT}(\{A\}，M)=\sum_{t=1}^N\theta^{N-t}\mathcal{L}_{MSE}(A_t,M)
+\]</span> <span class="math inline">\(A_t\)</span>:attention map,其成分如下： <span class="math display">\[
+A_t=ATT_t(F_{t-1},H_{t-1},C_{t-1}),
+\\F_{t-1}:输入图像和上个time step产生attention map的组合.
+\\H_{t-1}:LSTM 上个time step产生的feature.
+\\C_{t-1}:Conv 上个time step产生的feature.
+\]</span> M:binary mask 由<span class="math inline">\(I-B\)</span>,然后进行Threshold得到。N:timestep总和，<span class="math inline">\(\theta\)</span>：超参数。</p>
+<h3 id="contextual-autoencoder">Contextual Autoencoder</h3>
+<p><img src="/Assets/Img/agan3.png" style="zoom:70%;"></p>
+<p>Contextual Autoencoder 中包含multi-scale loss 和 perceptual loss。其中multi-scale loss是为了获取不同尺度的contextual information，其定义如下： <span class="math display">\[
+\mathcal{L}(\{S\},\{T\})=\sum_{i=1}^{M}\lambda_i\mathcal{L}_{MSE}(S_i,T_i)
+\]</span> <span class="math inline">\(S_i\)</span>：不同尺度的decoder端获取的feature map，<span class="math inline">\(T_i\)</span>是不同尺度feature map对应的ground truth，<span class="math inline">\(\lambda_i\)</span>为各尺度MSE权重。</p>
+<p>perceptual loss 是为了获取autoencoder 的结果和相应的ground truth的全局差异。 <span class="math display">\[
+\mathcal{L}_P(O,T)=\mathcal{L}_{MSE}(VGG(O),VGG(T))
+\]</span> <span class="math inline">\(O=G(I)\)</span>：autoencoder的输出，T：ground truth</p>
+<p>整个generative的loss为： <span class="math display">\[
+\mathcal{L}_G=10^{-2}\mathcal{L}_{GAN}(O)+\mathcal{L}_{ATT}({A},M)+\mathcal{L}_M(\{S\},\{T\}+\mathcal{L}_p(O,T))\\
+\mathcal{L}_{GAN}(O)=log(1-D(O))
+\]</span></p>
+<h2 id="discriminative-network">Discriminative Network</h2>
+<p><img src="/Assets/Img/agan4.png" alt="structure of discriminator" style="zoom:80%;"></p>
+<p>特点是将D前面层的特征图a输入到CNN中得到结果b，将a和b相乘输入到下一层。基于b和attentive-recurrent network产生的attention map的loss定义如下： <span class="math display">\[
+\mathcal{L}_D(O,R,A_N)=-log(D(R))-log(1-D(O))+\gamma\mathcal{L}_{map}(O,R,A_N)
+\]</span> <span class="math inline">\(O\)</span>:G的输出的raindrop removal image，<span class="math inline">\(R\)</span>：ground truth image，<span class="math inline">\(A_N\)</span>:attentive-recurrent network 产生的attention map. <span class="math display">\[
+\mathcal{L}_{map}(O,R,A_N)=\mathcal{L}_{MSE}(D_{map}(O),A_N)+\mathcal{L}_{MSE}(D_{map}(R),0)
+\]</span> <span class="math inline">\(D_{map}()\)</span>:D前层提取的特征图，公式的意思是对于输入<span class="math inline">\(O\)</span>我们更关注attention 区域的 loss，对于<span class="math inline">\(R\)</span>我们没有需要特别关注的区域。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Raindrop Removal</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/深度学习去雨方法//" class="article-tag-list-link color4">深度学习去雨方法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/12/Attention GAN for raindrop removal/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-RNN" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/10/RNN/">RNN，LSTM</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/10/RNN/" class="archive-article-date">
+  	<time datetime="2019-09-10T11:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
+</a>
+        <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">299字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">1分</span>
+      </span>
+    </span>
+</div>
+          
+        <!-- 添加完成 -->
+        
+      </header>
+    
+<!-- 目录内容 -->
+   
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="rnn">RNN</h1>
+<p>Recurrent Neural Networks:将神经网络中前层获得的信息传递到后层</p>
+<div class="figure">
+<img src="/Assets/BlogImg/RNN.png" alt="RNN structure">
+<p class="caption">RNN structure</p>
+</div>
+<div class="figure">
+<img src="/Assets/BlogImg/standard_RNN.png" alt="standard RNN">
+<p class="caption">standard RNN</p>
+</div>
+<p>RNN的问题：随着层数的增长对于有用信息<span class="math inline">\(x_0,x_1\)</span>的记忆越弱</p>
+<div class="figure">
+<img src="/Assets/BlogImg/RNN_problem.png" alt="drawback of RNN">
+<p class="caption">drawback of RNN</p>
+</div>
+<h1 id="lstm">LSTM</h1>
+<h2 id="介绍">介绍</h2>
+<p>Long Short Term Memory networks :可以记忆久远的的有用信息</p>
+<div class="figure">
+<img src="/Assets/BlogImg/structure_of_LSTM.png" alt="structure of LSTM">
+<p class="caption">structure of LSTM</p>
+</div>
+<p>主线信息贯穿整个网络</p>
+<div class="figure">
+<img src="/Assets/BlogImg/main_line.png" alt="cell state">
+<p class="caption">cell state</p>
+</div>
+<h2 id="逐步分析">逐步分析</h2>
+<p>forget gate layer：决定<span class="math inline">\(C_{t-1}\)</span>中的那些信息保留下来，那些信息丢掉。对输入<span class="math inline">\(x_t\)</span>和<span class="math inline">\(h_{t-1}\)</span>的组合进行sigmoid mapping为<span class="math inline">\(C_{t-1}\)</span>中的每个元素产生对应的output，output<span class="math inline">\(in [0,1]\)</span>，0指丢弃当前信息，1指保留当前信息。</p>
+<div class="figure">
+<img src="/Assets/BlogImg/forget_gate.png" alt="forget_gate">
+<p class="caption">forget_gate</p>
+</div>
+<p>input gate layer: 决定将<span class="math inline">\(\widetilde{C_t}\)</span>中的哪些信息加入到主线信息。</p>
+<div class="figure">
+<img src="/Assets/BlogImg/input_gate.png" alt="input gate">
+<p class="caption">input gate</p>
+</div>
+<p>主线信息的更新：用<span class="math inline">\(f_t\)</span>决定主线中哪些信息保留，哪些信息丢弃。用<span class="math inline">\(i_t\)</span>决定添加哪些新信息到主线。</p>
+<div class="figure">
+<img src="/Assets/BlogImg/update_cell_state.png" alt="update cell state">
+<p class="caption">update cell state</p>
+</div>
+<p>output gate layer：决定<span class="math inline">\(C_t\)</span>主线中输出的信息。</p>
+<div class="figure">
+<img src="/Assets/BlogImg/output_gate_layer.png" alt="output gate layer">
+<p class="caption">output gate layer</p>
+</div>
+<h2 id="变体">变体</h2>
+<p>将主线信息加入到门判断中</p>
+<div class="figure">
+<img src="/Assets/BlogImg/cell_state_add_to_%20all_gate.png" alt="adding cell state to all gate">
+<p class="caption">adding cell state to all gate</p>
+</div>
+<p>用coupled forget 即一个门<span class="math inline">\(f_t\)</span>,<span class="math inline">\(1-f_t\)</span>判断主线信息的更新</p>
+<div class="figure">
+<img src="/Assets/BlogImg/coupled_forget.png" alt="coupled forget">
+<p class="caption">coupled forget</p>
+</div>
+<p>Gated Recurrent Unit (GRU)</p>
+<div class="figure">
+<img src="/Assets/BlogImg/GRU.png" alt="structure of GRU">
+<p class="caption">structure of GRU</p>
+</div>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">神经网络</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">循环神经网络</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/神经网络算法学习//" class="article-tag-list-link color4">神经网络算法学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/10/RNN/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-转置卷积和膨胀卷积" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -368,59 +724,9 @@ C = \begin{bmatrix}
 <img src="/Assets/BlogImg/conv.gif" alt="convelution">
 <p class="caption">convelution</p>
 </div>
-<h1 id="反卷积">反卷积</h1>
-<p>反卷积的操作就是要对这个矩阵运算过程进行逆运算，即通过 <span class="math inline">\(C\)</span>和<span class="math inline">\(Y\)</span>得到<span class="math inline">\(X\)</span>,反卷积操作可以表示为：</p>
-<p>$X=C^TY&amp; <span class="math display">\[
-Y=\begin{bmatrix}
-y_1\\ 
-y_2\\ 
-y_3\\ 
-y_4
-\end{bmatrix}
-\]</span></p>
-<p><span class="math display">\[
-C^T=\begin{bmatrix}
- w_{0,0}&amp;0  &amp; 0 &amp; 0\\ 
- w_{0,1}&amp;w_{0,0}  &amp;0  &amp; 0\\ 
- w_{0,2}&amp;w_{0,1}  &amp; 0 &amp; 0\\ 
- 0&amp; w_{0,2} &amp; 0 &amp; 0\\ 
- w_{1,0}&amp; 0 &amp;w_{0,0}  &amp; 0\\ 
- w_{1,1}&amp; w_{1,0} &amp;w_{0,1}  &amp; w_{0,0}\\ 
- w_{1,2}&amp;w_{1,1}  &amp; w_{0,2} &amp;w_{0,0} \\ 
- 0&amp;w_{1,2}  &amp;0  &amp;w_{2,1} \\ 
- w_{2,0}&amp; 0 &amp; w_{1,0} &amp; 0\\ 
- w_{2,1}&amp; w_{2,0} &amp;w_{1,1}  &amp;w_{1,0} \\ 
- w_{2,2}&amp; w_{2,1} &amp; w_{1,2} &amp;w_{1,1} \\
- 0&amp; w_{2,2} &amp; 0 &amp; w_{1,2}\\ 
- 0&amp; 0 &amp; w_{2,0} &amp; 0\\ 
- 0&amp;0  &amp;w_{2,1}  &amp; w_{2,0}\\ 
- 0&amp;0  &amp;w_{2,2}  &amp;w_{2,1} \\  
- 0&amp; 0 &amp;0  &amp; w_{2,2}
-\end{bmatrix}
-\]</span></p>
-反卷积公式为： $$ o=
-<span class="math display">\[\begin{cases}
-s(i-1)-2p+k,\quad &amp;if \quad(o+2p-k)\%s=0 \\
-s(i-1)-2p+k+(o+2p-k)\%s,\quad &amp;if \quad (o+2p-k)\%s\neq0
-
-\end{cases}\]</span>
-<p>$$ <img src="/Assets/BlogImg/Tconv.gif" alt="Transform Convelution"></p>
-<h1 id="空洞卷积">空洞卷积</h1>
-<div class="figure">
-<img src="/Assets/BlogImg/dilated.gif" alt="dilated conv">
-<p class="caption">dilated conv</p>
-</div>
-<div class="figure">
-<img src="/Assets/BlogImg/dilated%20conv.jpg" alt="论文实例">
-<p class="caption">论文实例</p>
-</div>
-<p>(a):3x3,1-dilated conv,其效果和普通卷积一样。</p>
-<p>(b):3x3,2dilated conv,其效果为非红点pixel取0的7x7普通卷积。</p>
-<p>(c):3x3,4dilated conv,其效果为非红点pixel取0的15x15普通卷积</p>
-<p>优点：在不做pooling损失信息和相同的计算条件下的情况下，加大了感受野，让每个卷积输出都包含较大范围的信息。空洞卷积经常用在实时图像分割中。当网络层需要较大的感受野，但计算资源有限而无法提高卷积核数量或大小时，可以考虑空洞卷积。</p>
-<h1 id="references">references</h1>
-<p>https://www.cnblogs.com/hellcat/p/9687624.html</p>
-
+        
+          <a class="article-more-a" href="/2019/09/10/转置卷积和膨胀卷积/#more">more >></a>
+        
       
 
       
@@ -561,11 +867,11 @@ s(i-1)-2p+k+(o+2p-k)\%s,\quad &amp;if \quad (o+2p-k)\%s\neq0
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">模拟退火算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">智能算法</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">智能算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">模拟退火算法</a>
         		</li>
       		
 		</ul>
@@ -814,11 +1120,11 @@ s(i-1)-2p+k+(o+2p-k)\%s,\quad &amp;if \quad (o+2p-k)\%s\neq0
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">智能算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">粒子群算法</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">粒子群算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">智能算法</a>
         		</li>
       		
 		</ul>
@@ -840,264 +1146,6 @@ s(i-1)-2p+k+(o+2p-k)\%s,\quad &amp;if \quad (o+2p-k)\%s\neq0
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/09/03/简化群优化SSO/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-粒子群算法PSO" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/01/粒子群算法PSO/">粒子群算法</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/01/粒子群算法PSO/" class="archive-article-date">
-  	<time datetime="2019-09-01T08:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-01</time>
-</a>
-        <!-- 需要添加的位置 -->
-        <!-- 开始添加字数统计-->
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.6k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">7分</span>
-      </span>
-    </span>
-</div>
-          
-        <!-- 添加完成 -->
-        
-      </header>
-    
-<!-- 目录内容 -->
-   
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="算法思路">算法思路</h1>
-<h2 id="基本思想">基本思想</h2>
-<p>粒子群算法-particle swarm optimization。粒子群优化算法的基本思想是：通过群体中个体之间的协作和信息共享来寻找最优解。</p>
-<p>我们可以设想这样的一个场景，一群鸟在随机搜寻食物。这个区域里只有一块食物。所有的鸟都不知道食物再哪里，但他们知道目前距离食物还有多远，那么找到食物的最佳策略是什么？</p>
-<p><strong>1.找寻距离食物最近的鸟之周围区域</strong></p>
-<p><strong>2.根据自己本身飞行的经验判断食物的所在</strong></p>
-<p>在PSO中，每个优化问题的潜在解都可以想象成<span class="math inline">\(N\)</span>维搜索空间上的一个点，我们称之为“粒子”（Particle），由目标函数决定每个粒子的适应值，每个粒子还有一个速度决定他们运动的方向和距离，然后粒子们就追随当前的最优粒子在解空间中搜索。</p>
-<h2 id="数学定义">数学定义</h2>
-<p>粒子<span class="math inline">\(i\)</span>在<span class="math inline">\(N\)</span>维空间的位置为： <span class="math display">\[
-X_i = (x_1,x_2,...,x_N)
-\]</span> 运动速度表示为： <span class="math display">\[
-V_i=(v_1,v_2,...,v_N)
-\]</span> 每个粒子都有一个由目标函数决定的<strong>适应值</strong>，并且知道自己到目前为止的最好位置<span class="math inline">\((pbest_i)\)</span>和现在所在的位置<span class="math inline">\(X_i\)</span>．这个可以看作是粒子自己的运动经验。同时，每个粒子还知道到目前整个群体中位置最好的粒子<span class="math inline">\((gbest) (gbest是pbest_i中的最好值)\)</span>．这个可以看作是粒子同伴的经验。粒子就是通过自己的经验和同伴中最好的经验来决定下一步的运动。</p>
-        
-          <a class="article-more-a" href="/2019/09/01/粒子群算法PSO/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">智能算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">粒子群算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/算法学习//" class="article-tag-list-link color5">算法学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/01/粒子群算法PSO/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-蚁群算法(ACO)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/31/蚁群算法(ACO)/">蚁群算法</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/31/蚁群算法(ACO)/" class="archive-article-date">
-  	<time datetime="2019-08-31T08:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-31</time>
-</a>
-        <!-- 需要添加的位置 -->
-        <!-- 开始添加字数统计-->
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.2k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">5分</span>
-      </span>
-    </span>
-</div>
-          
-        <!-- 添加完成 -->
-        
-      </header>
-    
-<!-- 目录内容 -->
-   
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="基本原理">基本原理</h1>
-<div class="figure">
-<img src="/Assets/BlogImg/蚁群算法.png" alt="蚁群算法1">
-<p class="caption">蚁群算法1</p>
-</div>
-<div class="figure">
-<img src="/Assets/BlogImg/蚁群算法1.png" alt="蚁群算法2">
-<p class="caption">蚁群算法2</p>
-</div>
-<div class="figure">
-<img src="/Assets/BlogImg/蚁群算法2.png" alt="蚁群算法3">
-<p class="caption">蚁群算法3</p>
-</div>
-        
-          <a class="article-more-a" href="/2019/08/31/蚁群算法(ACO)/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">智能算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">蚁群算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/算法学习//" class="article-tag-list-link color5">算法学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/31/蚁群算法(ACO)/">展开全文 >></a>
         </p>
       
 
@@ -1247,11 +1295,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">模拟退火算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">智能算法</a>
+                <a href="javascript:void(0)" class="js-tag color2">循环神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1267,7 +1315,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">蚁群算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">智能算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Raindrop Removal</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">模拟退火算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">进化算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1275,7 +1335,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">进化算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">蚁群算法</a>
               </li>
             
             <div class="clearfix"></div>

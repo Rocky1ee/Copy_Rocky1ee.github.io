@@ -20,7 +20,7 @@
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/Tconv.gif">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/dilated.gif">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/dilated%20conv.jpg">
-<meta property="og:updated_time" content="2019-12-15T08:36:12.384Z">
+<meta property="og:updated_time" content="2019-12-16T01:25:07.155Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="反卷积(Transposed Conv)和空洞卷积(Dilated conv)">
 <meta name="twitter:description" content="卷积 假设输入图像\(input,size = 4 x 4\),表示如下： $$ \[\begin{equation} input =  \begin{bmatrix}  x_1&amp;amp; x_2 &amp;amp; x_3 &amp;amp;x_4 \\   x_5&amp;amp; x_6 &amp;amp; x_7 &amp;amp;x_8 \\   x_9&amp;amp; x_{10} &amp;amp; x_{11} &amp;amp">
@@ -281,6 +281,7 @@ C = \begin{bmatrix}
 <img src="/Assets/BlogImg/conv.gif" alt="convelution">
 <p class="caption">convelution</p>
 </div>
+<a id="more"></a>
 <h1 id="反卷积">反卷积</h1>
 <p>反卷积的操作就是要对这个矩阵运算过程进行逆运算，即通过 <span class="math inline">\(C\)</span>和<span class="math inline">\(Y\)</span>得到<span class="math inline">\(X\)</span>,反卷积操作可以表示为：</p>
 <p>$X=C^TY&amp; <span class="math display">\[
@@ -431,11 +432,11 @@ s(i-1)-2p+k+(o+2p-k)\%s,\quad &amp;if \quad (o+2p-k)\%s\neq0
   
 <nav id="article-nav">
   
-    <a href="/2019/12/09/蒙特卡罗算法/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/09/10/RNN/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          (no title)
+          RNN，LSTM
         
       </div>
     </a>
@@ -620,11 +621,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">模拟退火算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">智能算法</a>
+                <a href="javascript:void(0)" class="js-tag color2">循环神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -640,7 +641,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">蚁群算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">智能算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Raindrop Removal</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">模拟退火算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">进化算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -648,7 +661,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">进化算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">蚁群算法</a>
               </li>
             
             <div class="clearfix"></div>
