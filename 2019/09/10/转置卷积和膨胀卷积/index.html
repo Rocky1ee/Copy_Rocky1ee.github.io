@@ -20,7 +20,7 @@
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/Tconv.gif">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/dilated.gif">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/dilated%20conv.jpg">
-<meta property="og:updated_time" content="2019-12-30T13:51:26.924Z">
+<meta property="og:updated_time" content="2020-01-14T08:01:40.365Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="反卷积(Transposed Conv)和空洞卷积(Dilated conv)">
 <meta name="twitter:description" content="卷积 假设输入图像\(input,size = 4 x 4\),表示如下： $$ \[\begin{equation} input =  \begin{bmatrix}  x_1&amp;amp; x_2 &amp;amp; x_3 &amp;amp;x_4 \\   x_5&amp;amp; x_6 &amp;amp; x_7 &amp;amp;x_8 \\   x_9&amp;amp; x_{10} &amp;amp; x_{11} &amp;amp">
@@ -195,7 +195,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">831字</span>
+        <span class="post-count">875字</span>
       </span>
     </span>
 
@@ -316,6 +316,14 @@ C^T=\begin{bmatrix}
 <span class="math display">\[\begin{cases}
 s(i-1)-2p+k,\quad &amp;if \quad(o+2p-k)\%s=0 \\
 s(i-1)-2p+k+(o+2p-k)\%s,\quad &amp;if \quad (o+2p-k)\%s\neq0
+
+\end{cases}\]</span>
+<span class="math display">\[
+代码中的stride的计算方法为：
+\]</span> o=
+<span class="math display">\[\begin{cases}
+stride=output_{size}\div(input_{size}-1),\quad &amp;if \quad padding为SAME \\
+stride=（output_{size}-kernel + 1）\div(input_{size}-1),\quad &amp;if \quad padding为VALID
 
 \end{cases}\]</span>
 <p>$$ <img src="/Assets/BlogImg/Tconv.gif" alt="Transform Convelution"></p>
@@ -621,15 +629,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Raindrop Removal</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">图像处理</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">单幅图像去雨</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">深度学习算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -641,15 +653,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">智能算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Raindrop Removal</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+                <a href="javascript:void(0)" class="js-tag color2">深度学习算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -657,11 +661,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">De-rain</a>
+                <a href="javascript:void(0)" class="js-tag color5">智能算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">粒子群算法</a>
+                <a href="javascript:void(0)" class="js-tag color3">De-rain</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -669,7 +673,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">进化算法</a>
+                <a href="javascript:void(0)" class="js-tag color1">粒子群算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -678,6 +682,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">upsampling，卷积</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">进化算法</a>
               </li>
             
             <div class="clearfix"></div>
