@@ -1,20 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>//Rocky1ee.github.io/2019/10/05/Guided_Filter_%E5%AF%BC%E5%90%91%E6%BB%A4%E6%B3%A2/</loc>
+    <lastmod>2020-01-11</lastmod>
+  </url>  <url>
+    <loc>//Rocky1ee.github.io/2019/10/04/Removing%20rain%20from%20single%20images%20via%20a%20deep%20detail%20network/</loc>
+    <lastmod>2020-01-11</lastmod>
+  </url>  <url>
+    <loc>//Rocky1ee.github.io/2019/09/10/RNN/</loc>
+    <lastmod>2020-01-07</lastmod>
+  </url>  <url>
+    <loc>//Rocky1ee.github.io/2020/01/04/%E4%BA%BA%E7%94%9F%E7%9A%84%E6%99%BA%E6%85%A7-%E5%8F%94%E6%9C%AC%E5%8D%8E/</loc>
+    <lastmod>2020-01-07</lastmod>
+  </url>  <url>
+    <loc>//Rocky1ee.github.io/2019/09/20/autoencoder/</loc>
+    <lastmod>2020-01-04</lastmod>
+  </url>  <url>
+    <loc>//Rocky1ee.github.io/2019/09/10/%E8%BD%AC%E7%BD%AE%E5%8D%B7%E7%A7%AF%E5%92%8C%E8%86%A8%E8%83%80%E5%8D%B7%E7%A7%AF/</loc>
+    <lastmod>2019-12-30</lastmod>
+  </url>  <url>
     <loc>//Rocky1ee.github.io/2019/09/18/%E5%B7%AE%E5%88%86%E8%BF%9B%E5%8C%96%E7%AE%97%E6%B3%95DE/</loc>
     <lastmod>2019-12-29</lastmod>
   </url>  <url>
     <loc>//Rocky1ee.github.io/2019/09/12/%E8%92%99%E7%89%B9%E5%8D%A1%E7%BD%97%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2019-12-29</lastmod>
   </url>  <url>
-    <loc>//Rocky1ee.github.io/2019/09/10/RNN/</loc>
-    <lastmod>2019-12-29</lastmod>
-  </url>  <url>
     <loc>//Rocky1ee.github.io/2019/09/12/Attention%20GAN%20for%20raindrop%20removal/</loc>
     <lastmod>2019-12-29</lastmod>
-  </url>  <url>
-    <loc>//Rocky1ee.github.io/2019/09/10/%E8%BD%AC%E7%BD%AE%E5%8D%B7%E7%A7%AF%E5%92%8C%E8%86%A8%E8%83%80%E5%8D%B7%E7%A7%AF/</loc>
-    <lastmod>2019-12-16</lastmod>
   </url>  <url>
     <loc>//Rocky1ee.github.io/2019/07/31/%E6%9D%A1%E4%BB%B6GAN%E5%8E%BB%E9%9B%A8/</loc>
     <lastmod>2019-12-13</lastmod>

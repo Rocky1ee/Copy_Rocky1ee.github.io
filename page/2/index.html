@@ -168,6 +168,542 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-转置卷积和膨胀卷积" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/10/转置卷积和膨胀卷积/">反卷积(Transposed Conv)和空洞卷积(Dilated conv)</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/10/转置卷积和膨胀卷积/" class="archive-article-date">
+  	<time datetime="2019-09-10T08:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
+</a>
+        <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">831字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">4分</span>
+      </span>
+    </span>
+</div>
+          
+        <!-- 添加完成 -->
+        
+      </header>
+    
+<!-- 目录内容 -->
+   
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="卷积">卷积</h1>
+假设输入图像<span class="math inline">\(input,size = 4 x 4\)</span>,表示如下： $$
+<span class="math display">\[\begin{equation}
+input = 
+\begin{bmatrix}
+ x_1&amp; x_2 &amp; x_3 &amp;x_4 \\ 
+ x_5&amp; x_6 &amp; x_7 &amp;x_8 \\ 
+ x_9&amp; x_{10} &amp; x_{11} &amp; x_{12}\\ 
+ x_{13}&amp; x_{14} &amp; x_{15} &amp; x_{16}
+\end{bmatrix}
+
+\end{equation}\]</span>
+<span class="math display">\[
+$kernel, size =3 x 3$,表示如下：
+\]</span>
+<span class="math display">\[\begin{bmatrix}
+ w_{0,0}&amp; w_{0,1}  &amp; w_{0,2} \\ 
+ w_{1,0}&amp; w_{1,1}  &amp; w_{1,2} \\ 
+ w_{2,0}&amp; w_{2,1}  &amp; w_{2,2}
+\end{bmatrix}\]</span>
+<p><span class="math inline">\($ 按照卷积公式\)</span>o=+1<span class="math inline">\(得出输出特征图\)</span>output size = 2 x 2$</p>
+<p>卷积过程用矩阵乘法描述为<span class="math inline">\(Y=CX\)</span> <span class="math display">\[
+X = [x_1,x_2,x_3,x_4,
+ x_5,x_6,x_7,x_8, 
+ x_9,x_{10},x_{11},x_{12},
+ x_{13},x_{14},x_{15},x_{16}]^T
+\]</span></p>
+<p><span class="math display">\[
+C = \begin{bmatrix}
+ w_{0,0}&amp;w_{0,1}  &amp;w_{0,2}  &amp;0  &amp;w_{1,0}  &amp;w_{1,1}  &amp;w_{1,2}  &amp;0  &amp;w_{2,0}  &amp;w_{2,1}  &amp;w_{2,2}  &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp;0 \\ 
+0 &amp;w_{0,0}&amp;w_{0,1}  &amp;w_{0,2}  &amp;0  &amp;w_{1,0}  &amp;w_{1,1}  &amp;w_{1,2}  &amp;0  &amp;w_{2,0}  &amp;w_{2,1}  &amp;w_{2,2}  &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\ 
+0 &amp;0 &amp;0 &amp;0 &amp;w_{0,0}&amp;w_{0,1}  &amp;w_{0,2}  &amp;0  &amp;w_{1,0}  &amp;w_{1,1}  &amp;w_{1,2}  &amp;0  &amp;w_{2,0}  &amp;w_{2,1}  &amp;w_{2,2}  &amp; 0   \\ 
+ 0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;w_{0,0}&amp;w_{0,1}  &amp;w_{0,2}  &amp;0  &amp;w_{1,0}  &amp;w_{1,1}  &amp;w_{1,2}  &amp;0  &amp;w_{2,0}  &amp;w_{2,1}  &amp;w_{2,2}   
+\end{bmatrix}
+\]</span></p>
+<div class="figure">
+<img src="/Assets/BlogImg/conv.gif" alt="convelution">
+<p class="caption">convelution</p>
+</div>
+        
+          <a class="article-more-a" href="/2019/09/10/转置卷积和膨胀卷积/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">upsampling，卷积</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/深度学习//" class="article-tag-list-link color5">深度学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/10/转置卷积和膨胀卷积/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-模拟退火算法SA" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/06/模拟退火算法SA/">模拟退火算法</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/06/模拟退火算法SA/" class="archive-article-date">
+  	<time datetime="2019-09-06T11:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-06</time>
+</a>
+        <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">840字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">3分</span>
+      </span>
+    </span>
+</div>
+          
+        <!-- 添加完成 -->
+        
+      </header>
+    
+<!-- 目录内容 -->
+   
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>模拟退火算法(Simulated Annealing)：采用类似于物理退火的过程，先在一个高温状态下（相当于算法随机搜索），然后逐渐退火，在每个温度下（相当于算法的每一次状态转移）徐徐冷却（相当于算法局部搜索），最终达到物理基态（相当于算法找到最优解）。</p>
+<h1 id="算法思想">算法思想</h1>
+<h2 id="爬山算法">爬山算法</h2>
+<p><strong>爬山算法</strong>是一种简单的<strong>贪心搜索算法</strong>，它每次都<strong>鼠目寸光</strong>地从当前解临近的解空间中选择一个更优解代替当前解，直到得到一个局部最优解。</p>
+<p>如图1所示：假设C点为当前解，爬山算法搜索到A点这个局部最优解后就会停止搜索，因为在A点无论向那个方向小幅度移动都不能得到更优的解。因此，爬山算法只能搜索到局部最优值，而不一定能搜索到全局最优解。</p>
+<div class="figure">
+<img src="/Assets/BlogImg/SA.jpg" alt="图 1">
+<p class="caption">图 1</p>
+</div>
+<h2 id="模拟退火算法">模拟退火算法</h2>
+<p>模拟退火算法其实也是一种贪心算法，但是它的搜索过程引入了随机因素。模拟退火算法<strong>以一定的概率</strong>来接受一个比当前解要差的解，因此<strong>有可能</strong>会跳出这个局部的最优解，达到全局的最优解。</p>
+<p>以图1为例，模拟退火算法在搜索到局部最优解A后，会<strong>以一定的概率</strong>向E的移动。可能经过几次这样的不是局部最优的移动后会到达D点，于是就跳出了局部最大值A。模拟退火算法是一种随机算法，并不一定能找到全局的最优解，但可以比较快的找到问题的近似最优解。</p>
+        
+          <a class="article-more-a" href="/2019/09/06/模拟退火算法SA/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">智能算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">模拟退火算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/算法学习//" class="article-tag-list-link color5">算法学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/06/模拟退火算法SA/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-遗传算法GA" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/04/遗传算法GA/">遗传算法</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/04/遗传算法GA/" class="archive-article-date">
+  	<time datetime="2019-09-04T09:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-04</time>
+</a>
+        <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.7k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">7分</span>
+      </span>
+    </span>
+</div>
+          
+        <!-- 添加完成 -->
+        
+      </header>
+    
+<!-- 目录内容 -->
+   
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>遗传算法（Genetic Algorithm）</p>
+<h1 id="算法背景">算法背景</h1>
+<p><strong>种群(Population)</strong>：生物的进化以群体的形式进行，这样的一个群体称为种群。</p>
+<p><strong>个体</strong>：组成种群的单个生物。</p>
+<p><strong>染色体 ( Chromosome )</strong> ：包含一组的基因。</p>
+<p><strong>基因 ( Gene )</strong> ：一个遗传因子。</p>
+<p><strong>生存竞争，适者生存</strong>：对环境适应度高的、优良的个体参与繁殖的机会比较多，后代就会越来越多。适应度低的个体参与繁殖的机会比较少，后代就会越来越少。</p>
+<p><strong>选择</strong>：根据相应策略选择父母染色体对进行繁殖。</p>
+<p><strong>交叉</strong>：将父母双方各一部分的基因进行组合形成子代染色体。</p>
+<p><strong>变异</strong>：子代染色体有一定的概率发生基因变异。</p>
+<p>简单说来就是：选择优良父代进行繁殖，期间会发生基因交叉( Crossover ) ，基因突变 ( Mutation ) ，适应度( Fitness )低的个体会被逐步淘汰，而适应度高的个体会越来越多。那么经过N代的自然选择后，保存下来的个体都是适应度很高的，其中很可能包含史上产生的适应度最高的个体。</p>
+<h1 id="算法流程">算法流程</h1>
+<h2 id="总体流程">总体流程</h2>
+<div class="figure">
+<img src="/Assets/BlogImg/GA1.jpg" alt="The process of GA">
+<p class="caption">The process of GA</p>
+</div>
+        
+          <a class="article-more-a" href="/2019/09/04/遗传算法GA/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">智能算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">进化算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/算法学习//" class="article-tag-list-link color5">算法学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/04/遗传算法GA/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-简化群优化SSO" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/03/简化群优化SSO/">简化粒子群</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/03/简化群优化SSO/" class="archive-article-date">
+  	<time datetime="2019-09-03T07:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-03</time>
+</a>
+        <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">878字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">5分</span>
+      </span>
+    </span>
+</div>
+          
+        <!-- 添加完成 -->
+        
+      </header>
+    
+<!-- 目录内容 -->
+   
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="abstract">Abstract</h1>
+<p>Swarm-based optimization tend to suffer from premature convergence in the high dimensional problem space. thus，proposing simplified swarm optimization (SSO) algorithm to overcome the above convergence problem by incorporating it with the new <strong>local search strategy</strong> named ELS(Exchange Local Search).</p>
+<h1 id="introduction">Introduction</h1>
+<p>The ELS strategy is introduced to find a better solution from the neighbourhood of the current solution which is produced by SSO. It allows the particles to better explore the search space, and preserves swarm diversity which is important in preventing premature convergence of the particles.</p>
+        
+          <a class="article-more-a" href="/2019/09/03/简化群优化SSO/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">智能算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">粒子群算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/算法学习//" class="article-tag-list-link color5">算法学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/03/简化群优化SSO/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-粒子群算法PSO" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -559,7 +1095,7 @@ V_i=(v_1,v_2,...,v_N)
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 Rocky1ee
+    		&copy; 2020 Rocky1ee
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -665,6 +1201,18 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">图像处理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">单幅图像去雨</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">深度学习算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
              
@@ -685,7 +1233,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">模拟退火算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">autoencoder，算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -697,15 +1245,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">模拟退火算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">进化算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">蚁群算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">upsampling，卷积</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">进化算法</a>
               </li>
             
             <div class="clearfix"></div>
