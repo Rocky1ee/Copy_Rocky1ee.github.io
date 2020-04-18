@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="//Rocky1ee.github.io">
   <title>蒙特卡罗算法 | Rocky1ee的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="蒙特卡罗算法：采样越多，越近似最优解；用有限随机数去计算估计值. 举个例子，假如筐里有100个苹果，让我每次闭眼拿1个，挑出最大的。于是我随机拿1个，再随机拿1个跟它比，留下大的，再随机拿1个……我每拿一次，留下的苹果都至少不比上次的小。拿的次数越多，挑出的苹果就越大，但我除非拿100次，否则无法肯定挑出了最大的。这个挑苹果的算法，就属于蒙特卡罗算法——尽量找好的，但不保证是最好的。">
+  <meta name="description" content="蒙特卡罗算法：采样越多，越近似最优解；用有限随机数去计算估计值. 举个例子，假如筐里有100个苹果，让我每次闭眼拿1个，挑出最大的。于是我随机拿1个，再随机拿1个跟它比，留下大的，再随机拿1个……我每拿一次，留下的苹果都至少不比上次的小。拿的次数越多，挑出的苹果就越大，但我除非拿100次，否则无法肯定挑出了最大的。这个挑苹果的算法，就属于蒙特卡罗算法——尽量找好的，但不保证是最好的。  Mo">
 <meta name="keywords" content="智能算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="蒙特卡罗算法">
 <meta property="og:url" content="//Rocky1ee.github.io/2019/09/12/蒙特卡罗算法/index.html">
 <meta property="og:site_name" content="Rocky1ee的博客">
-<meta property="og:description" content="蒙特卡罗算法：采样越多，越近似最优解；用有限随机数去计算估计值. 举个例子，假如筐里有100个苹果，让我每次闭眼拿1个，挑出最大的。于是我随机拿1个，再随机拿1个跟它比，留下大的，再随机拿1个……我每拿一次，留下的苹果都至少不比上次的小。拿的次数越多，挑出的苹果就越大，但我除非拿100次，否则无法肯定挑出了最大的。这个挑苹果的算法，就属于蒙特卡罗算法——尽量找好的，但不保证是最好的。">
+<meta property="og:description" content="蒙特卡罗算法：采样越多，越近似最优解；用有限随机数去计算估计值. 举个例子，假如筐里有100个苹果，让我每次闭眼拿1个，挑出最大的。于是我随机拿1个，再随机拿1个跟它比，留下大的，再随机拿1个……我每拿一次，留下的苹果都至少不比上次的小。拿的次数越多，挑出的苹果就越大，但我除非拿100次，否则无法肯定挑出了最大的。这个挑苹果的算法，就属于蒙特卡罗算法——尽量找好的，但不保证是最好的。  Mo">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/圆周率估计.gif">
 <meta property="og:updated_time" content="2019-12-29T12:38:16.304Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="蒙特卡罗算法">
-<meta name="twitter:description" content="蒙特卡罗算法：采样越多，越近似最优解；用有限随机数去计算估计值. 举个例子，假如筐里有100个苹果，让我每次闭眼拿1个，挑出最大的。于是我随机拿1个，再随机拿1个跟它比，留下大的，再随机拿1个……我每拿一次，留下的苹果都至少不比上次的小。拿的次数越多，挑出的苹果就越大，但我除非拿100次，否则无法肯定挑出了最大的。这个挑苹果的算法，就属于蒙特卡罗算法——尽量找好的，但不保证是最好的。">
+<meta name="twitter:description" content="蒙特卡罗算法：采样越多，越近似最优解；用有限随机数去计算估计值. 举个例子，假如筐里有100个苹果，让我每次闭眼拿1个，挑出最大的。于是我随机拿1个，再随机拿1个跟它比，留下大的，再随机拿1个……我每拿一次，留下的苹果都至少不比上次的小。拿的次数越多，挑出的苹果就越大，但我除非拿100次，否则无法肯定挑出了最大的。这个挑苹果的算法，就属于蒙特卡罗算法——尽量找好的，但不保证是最好的。  Mo">
 <meta name="twitter:image" content="//rocky1ee.github.io/Assets/BlogImg/圆周率估计.gif">
   
     <link rel="alternative" href="/atom.xml" title="Rocky1ee的博客" type="application/atom+xml">
@@ -241,10 +241,9 @@ var _hmt = _hmt || [];
       
         <p>蒙特卡罗算法：采样越多，越<strong>近似</strong>最优解；用有限随机数去计算估计值.</p>
 <p>举个例子，假如筐里有100个苹果，让我每次闭眼拿1个，挑出最大的。于是我随机拿1个，再随机拿1个跟它比，留下大的，再随机拿1个……我每拿一次，留下的苹果都至少不比上次的小。拿的次数越多，挑出的苹果就越大，但我除非拿100次，否则无法肯定挑出了最大的。这个挑苹果的算法，就属于蒙特卡罗算法——<strong>尽量找好的，但不保证是最好的</strong>。</p>
-<div class="figure">
-<img src="/Assets/BlogImg/圆周率估计.gif" alt="Monte Carlo Method">
-<p class="caption">Monte Carlo Method</p>
-</div>
+<figure>
+<img src="/Assets/BlogImg/圆周率估计.gif" alt><figcaption>Monte Carlo Method</figcaption>
+</figure>
 <p>使用蒙特卡洛方法估算π值. 放置30000个随机点后,π的估算值与真实值相差0.07%.</p>
 <p>这张图其实很简单, 就像我们玩飞镖一样, 随机地在一个方形平面上投掷30000个飞镖, 事先我们并不知道圆周率π的值究竟是多少, 但是我们知道这里有1/4的圆, 于是我们把红色面积上的点数<span class="math inline">\(m\)</span>, 和蓝色面积上的点数<span class="math inline">\(n\)</span>, 以及圆周率<span class="math inline">\(π\)</span>的关系, 可以写出一个约等于的式子: <span class="math display">\[
 π ≈ 4m/(n+m)
@@ -540,11 +539,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">De-rain</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">图像处理</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">单幅图像去雨</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">网络结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">理财</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -560,15 +575,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Structure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">attention</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">autoencoder，算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">De-rain</a>
               </li>
              
               <li class="article-tag-list-item">

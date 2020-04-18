@@ -257,7 +257,7 @@ v_{id}^t = \omega\cdot v_{id}^{t-1}+c_1\cdot rand_1\cdot (p_{id}-x_{id}^{t-1})+c
 x_{id}^t = x_{id}^{t-1}+v_{id}^t \quad (2)
 \]</span></p>
 <p>The algorithm of the standard PSO is presented as follows:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li>Initialize a population of particles with random positions and velocities.</li>
 <li>Evaluate the fitness value of each particle in the population.</li>
 <li>Get the <span class="math inline">\(pbest\)</span> value. If the fitness value of the particle <span class="math inline">\(i\)</span> is better than its <span class="math inline">\(pbest\)</span> fitness value, and then set the fitness value as a new <span class="math inline">\(pbest\)</span> of particle <span class="math inline">\(i\)</span>.</li>
@@ -275,10 +275,9 @@ g_{id}^{t-1},\quad if\quad rand() \in[C_p,C_g]&amp;\\
 x ,\qquad if\quad rand()\in[C_g,1]&amp;\\
 \end{cases}\quad (3)
 \]</span> <span class="math inline">\(C_w\)</span> , <span class="math inline">\(C_p\)</span> and <span class="math inline">\(C_g\)</span> are three predetermined positive constants with <span class="math inline">\(C_w &lt; C_p &lt; C_g\)</span> .</p>
-<div class="figure">
-<img src="/Assets/BlogImg/SSO1.png" alt="Flowchart of SSO algorithm">
-<p class="caption">Flowchart of SSO algorithm</p>
-</div>
+<figure>
+<img src="/Assets/BlogImg/SSO1.png" alt><figcaption>Flowchart of SSO algorithm</figcaption>
+</figure>
 <p><strong>根据随机概率对粒子的位置进行更新。从而增强模型的随机性，防止提前收敛。</strong></p>
 <h1 id="the-proposed-sso-els-data-mining-algorithm">The Proposed SSO-ELS Data Mining Algorithm</h1>
 <p>SSO-ELS:Simplified Swarm Optimization (SSO) with Exchange Local Search scheme.</p>
@@ -291,12 +290,11 @@ UpperBound=x+rand()*(max(X_i)-min(X_i))\quad (5)
 \]</span></p>
 <p><strong>$ (max(X_i ) − min(X_i ))$ is the range value of the data source in each attribute.???</strong></p>
 <h2 id="rule-evaluation">Rule evaluation</h2>
-<p>P,N: What's your judgement about the sample?</p>
+<p>P,N: What’s your judgement about the sample?</p>
 <p>T,F: Is your judgement right(True) or not(False)?</p>
-<div class="figure">
-<img src="/Assets/BlogImg/ROC1.png" alt="Confusion matrix">
-<p class="caption">Confusion matrix</p>
-</div>
+<figure>
+<img src="/Assets/BlogImg/ROC1.png" alt><figcaption>Confusion matrix</figcaption>
+</figure>
 <p>Evaluation index:</p>
 <p><img src="/Assets/BlogImg/ROC2.png" alt="evaluation index-w60"> <span class="math display">\[
 The \quad rule\quad quality = sensitivety\times specifigity=\frac{TP}{TP+FN}\times \frac{TN}{TN+FP}
@@ -315,14 +313,12 @@ Prediction\quad value +=a*rule\quad quality +\beta*percentage\quad of\quad the \
 <p>Step 6 Temporarily replace the corresponding <span class="math inline">\(LowerBound\)</span> and <span class="math inline">\(UpperBound\)</span> of the tar- get particle with <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
 <p>Step 7 Re-evaluate the fitness value of the target particle.</p>
 <p>Step 8 Check whether the fitness value is better than the current <span class="math inline">\(pbest\)</span> of the target particle or better than <span class="math inline">\(gbest\)</span>. If it is better, <span class="math inline">\(pbest\)</span> and <span class="math inline">\(gbest\)</span> will be updated,and the exchange value for the target particle will be kept; otherwise, the original <span class="math inline">\(LowerBound\)</span> and <span class="math inline">\(UpperBound\)</span> values will be positioned back to the target particle.</p>
-<div class="figure">
-<img src="/Assets/BlogImg/ELS.png" alt="The process of the ELS">
-<p class="caption">The process of the ELS</p>
-</div>
-<div class="figure">
-<img src="/Assets/BlogImg/exchange%20Attribute.png" alt="The UpperBound and LowerBound exchange strategy for one selected attribute in each generation (note: UB = UpperBound, LB = LowerBound)">
-<p class="caption">The UpperBound and LowerBound exchange strategy for one selected attribute in each generation (note: UB = UpperBound, LB = LowerBound)</p>
-</div>
+<figure>
+<img src="/Assets/BlogImg/ELS.png" alt><figcaption>The process of the ELS</figcaption>
+</figure>
+<figure>
+<img src="/Assets/BlogImg/exchange%20Attribute.png" alt><figcaption>The UpperBound and LowerBound exchange strategy for one selected attribute in each generation (note: UB = UpperBound, LB = LowerBound)</figcaption>
+</figure>
 <h1 id="conclusions">Conclusions</h1>
 <p>The main idea of exchange local search is to improve and refine the searching process by exchanging the <span class="math inline">\(LowerBound\)</span> and <span class="math inline">\(UpperBound\)</span> for one selected attribute into the <span class="math inline">\(LowerBound\)</span> and <span class="math inline">\(UpperBound\)</span> of the corresponding target particle.</p>
 <p>reference</p>
@@ -437,8 +433,8 @@ Prediction\quad value +=a*rule\quad quality +\beta*percentage\quad of\quad the \
     </a>
   
   
-    <a href="/2019/09/01/粒子群算法PSO/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">粒子群算法</div>
+    <a href="/2019/09/01/梯度消失与梯度爆炸/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">梯度消失与梯度爆炸</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -624,11 +620,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">De-rain</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">图像处理</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">单幅图像去雨</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">网络结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">理财</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -644,15 +656,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Structure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">attention</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">autoencoder，算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">De-rain</a>
               </li>
              
               <li class="article-tag-list-item">

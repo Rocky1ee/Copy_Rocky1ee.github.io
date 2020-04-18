@@ -253,10 +253,9 @@ var _hmt = _hmt || [];
 <p>简单说来就是：选择优良父代进行繁殖，期间会发生基因交叉( Crossover ) ，基因突变 ( Mutation ) ，适应度( Fitness )低的个体会被逐步淘汰，而适应度高的个体会越来越多。那么经过N代的自然选择后，保存下来的个体都是适应度很高的，其中很可能包含史上产生的适应度最高的个体。</p>
 <h1 id="算法流程">算法流程</h1>
 <h2 id="总体流程">总体流程</h2>
-<div class="figure">
-<img src="/Assets/BlogImg/GA1.jpg" alt="The process of GA">
-<p class="caption">The process of GA</p>
-</div>
+<figure>
+<img src="/Assets/BlogImg/GA1.jpg" alt><figcaption>The process of GA</figcaption>
+</figure>
 <a id="more"></a>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">begin</span><br><span class="line">       initialize P(0);      </span><br><span class="line">       t = 0;             //t是进化的代数，一代、二代、三代...</span><br><span class="line"></span><br><span class="line">       while(t &lt;= T) do</span><br><span class="line">              for i = 1 to M  do     //M是初始种群的个体数</span><br><span class="line">                     Evaluate fitness of P(t);  //计算P（t）中各个个体的适应度</span><br><span class="line">              end for</span><br><span class="line"></span><br><span class="line">              for i = 1 to M  do</span><br><span class="line">                     Select operation to P(t);  //将选择算子作用于群体</span><br><span class="line">              end for</span><br><span class="line"></span><br><span class="line">              for i = 1 to M/2  do</span><br><span class="line">                     Crossover operation to P(t); //将交叉算子作用于群体</span><br><span class="line">              end for</span><br><span class="line"></span><br><span class="line">              for i = 1 to M  do</span><br><span class="line">                     Mutation operation to P(t);  //将变异算子作用于群体</span><br><span class="line">              end for</span><br><span class="line"></span><br><span class="line">              for i = 1 to M  do</span><br><span class="line">                     P(t+1) = P(t);      //得到下一代群体P（t + 1）</span><br><span class="line">              end for</span><br><span class="line">              </span><br><span class="line">              t = t + 1;      //终止条件判断  t≦T：t← t+1 转到步骤2</span><br><span class="line"></span><br><span class="line">       end while</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 <h2 id="编码">编码</h2>
@@ -271,10 +270,9 @@ P(x_i)=\frac{f(x_i)}{\sum\limits_{j=1}^Nf(x_j)}\qquad(1)
 \]</span> <span class="math inline">\(x_i\)</span>:个体<span class="math inline">\(i，i \in[1,N]\)</span>,<span class="math inline">\(f()\)</span>:适应度函数,<span class="math inline">\(P(x_i)\)</span>:选择个体<span class="math inline">\(i\)</span>的概率。 <span class="math display">\[
 q_i = \sum\limits_{j=1}^iP(x_j)\qquad (2)
 \]</span> <span class="math inline">\(q_i\)</span>为累积概率。</p>
-<div class="figure">
-<img src="/Assets/BlogImg/轮盘赌选择法.jpeg" alt="轮盘赌法">
-<p class="caption">轮盘赌法</p>
-</div>
+<figure>
+<img src="/Assets/BlogImg/轮盘赌选择法.jpeg" alt><figcaption>轮盘赌法</figcaption>
+</figure>
 <p>生成随机数<span class="math inline">\(r_k \in[0,1],k =1,2,3...N\)</span>,<span class="math inline">\(N\)</span>为选择个体总数。假设<span class="math inline">\(r_1=0.4\)</span>,则选择<span class="math inline">\(个体3\)</span>,即选择<span class="math inline">\(q_i \geq r_1\)</span>的第首个个体。</p>
 <h2 id="交叉">交叉</h2>
 <p>染色体交叉是以一定的概率发生的，这个概率记为$P_c $。交叉的方法有很多种，这里用的是单点交叉</p>
@@ -744,11 +742,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">De-rain</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">图像处理</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">单幅图像去雨</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">网络结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">理财</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -764,15 +778,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Structure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">attention</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">autoencoder，算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">De-rain</a>
               </li>
              
               <li class="article-tag-list-item">

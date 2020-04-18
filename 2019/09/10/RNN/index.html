@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="//Rocky1ee.github.io">
   <title>RNN，LSTM | Rocky1ee的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="RNN Recurrent Neural Networks:将神经网络中前层获得的信息传递到后层   RNN structure    standard RNN  RNN的问题：随着层数的增长对于有用信息\(x_0,x_1\)的记忆越弱   drawback of RNN  LSTM 介绍 Long Short Term Memory networks :可以记忆">
+  <meta name="description" content="RNN Recurrent Neural Networks:将神经网络中前层获得的信息传递到后层  RNN structure   standard RNN  RNN的问题：随着层数的增长对于有用信息\(x_0,x_1\)的记忆越弱  drawback of RNN  LSTM 介绍 Long Short Term Memory networks :可以记忆久远的的有用">
 <meta name="keywords" content="神经网络,循环神经网络">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RNN，LSTM">
 <meta property="og:url" content="//Rocky1ee.github.io/2019/09/10/RNN/index.html">
 <meta property="og:site_name" content="Rocky1ee的博客">
-<meta property="og:description" content="RNN Recurrent Neural Networks:将神经网络中前层获得的信息传递到后层   RNN structure    standard RNN  RNN的问题：随着层数的增长对于有用信息\(x_0,x_1\)的记忆越弱   drawback of RNN  LSTM 介绍 Long Short Term Memory networks :可以记忆">
+<meta property="og:description" content="RNN Recurrent Neural Networks:将神经网络中前层获得的信息传递到后层  RNN structure   standard RNN  RNN的问题：随着层数的增长对于有用信息\(x_0,x_1\)的记忆越弱  drawback of RNN  LSTM 介绍 Long Short Term Memory networks :可以记忆久远的的有用">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/RNN.png">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/standard_RNN.png">
@@ -31,7 +31,7 @@
 <meta property="og:updated_time" content="2020-01-07T00:50:31.328Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RNN，LSTM">
-<meta name="twitter:description" content="RNN Recurrent Neural Networks:将神经网络中前层获得的信息传递到后层   RNN structure    standard RNN  RNN的问题：随着层数的增长对于有用信息\(x_0,x_1\)的记忆越弱   drawback of RNN  LSTM 介绍 Long Short Term Memory networks :可以记忆">
+<meta name="twitter:description" content="RNN Recurrent Neural Networks:将神经网络中前层获得的信息传递到后层  RNN structure   standard RNN  RNN的问题：随着层数的增长对于有用信息\(x_0,x_1\)的记忆越弱  drawback of RNN  LSTM 介绍 Long Short Term Memory networks :可以记忆久远的的有用">
 <meta name="twitter:image" content="//rocky1ee.github.io/Assets/BlogImg/RNN.png">
   
     <link rel="alternative" href="/atom.xml" title="Rocky1ee的博客" type="application/atom+xml">
@@ -252,19 +252,16 @@ var _hmt = _hmt || [];
       
         <h1 id="rnn">RNN</h1>
 <p>Recurrent Neural Networks:将神经网络中前层获得的信息传递到后层</p>
-<div class="figure">
-<img src="/Assets/BlogImg/RNN.png" alt="RNN structure">
-<p class="caption">RNN structure</p>
-</div>
-<div class="figure">
-<img src="/Assets/BlogImg/standard_RNN.png" alt="standard RNN">
-<p class="caption">standard RNN</p>
-</div>
+<figure>
+<img src="/Assets/BlogImg/RNN.png" alt><figcaption>RNN structure</figcaption>
+</figure>
+<figure>
+<img src="/Assets/BlogImg/standard_RNN.png" alt><figcaption>standard RNN</figcaption>
+</figure>
 <p>RNN的问题：随着层数的增长对于有用信息<span class="math inline">\(x_0,x_1\)</span>的记忆越弱</p>
-<div class="figure">
-<img src="/Assets/BlogImg/RNN_problem.png" alt="drawback of RNN">
-<p class="caption">drawback of RNN</p>
-</div>
+<figure>
+<img src="/Assets/BlogImg/RNN_problem.png" alt><figcaption>drawback of RNN</figcaption>
+</figure>
 <h1 id="lstm">LSTM</h1>
 <h2 id="介绍">介绍</h2>
 <p>Long Short Term Memory networks :可以记忆久远的的有用信息</p>
@@ -278,48 +275,40 @@ o_t&amp;=\sigma(W_o[h_{t-1},x_t]+b_o)\\
 h_t&amp;=o_t*tanh(C_t)
 \end{aligned}
 \]</span> 主线信息贯穿整个网络</p>
-<div class="figure">
-<img src="/Assets/BlogImg/main_line.png" alt="cell state">
-<p class="caption">cell state</p>
-</div>
+<figure>
+<img src="/Assets/BlogImg/main_line.png" alt><figcaption>cell state</figcaption>
+</figure>
 <a id="more"></a>
 <h2 id="逐步分析">逐步分析</h2>
 <p>forget gate layer：决定<span class="math inline">\(C_{t-1}\)</span>中的那些信息保留下来，那些信息丢掉。对输入<span class="math inline">\(x_t\)</span>和<span class="math inline">\(h_{t-1}\)</span>的组合进行sigmoid mapping为<span class="math inline">\(C_{t-1}\)</span>中的每个元素产生对应的output，output<span class="math inline">\(\in [0,1]\)</span>，0指丢弃当前信息，1指保留当前信息。</p>
-<div class="figure">
-<img src="/Assets/BlogImg/forget_gate.png" alt="forget_gate">
-<p class="caption">forget_gate</p>
-</div>
+<figure>
+<img src="/Assets/BlogImg/forget_gate.png" alt><figcaption>forget_gate</figcaption>
+</figure>
 <p>input gate layer: 决定将<span class="math inline">\(\widetilde{C_t}\)</span>中的哪些信息加入到主线信息。</p>
-<div class="figure">
-<img src="/Assets/BlogImg/input_gate.png" alt="input gate">
-<p class="caption">input gate</p>
-</div>
+<figure>
+<img src="/Assets/BlogImg/input_gate.png" alt><figcaption>input gate</figcaption>
+</figure>
 <p>主线信息的更新：用<span class="math inline">\(f_t\)</span>决定主线中哪些信息保留，哪些信息丢弃。用<span class="math inline">\(i_t\)</span>决定添加哪些新信息到主线。</p>
-<div class="figure">
-<img src="/Assets/BlogImg/update_cell_state.png" alt="update cell state">
-<p class="caption">update cell state</p>
-</div>
+<figure>
+<img src="/Assets/BlogImg/update_cell_state.png" alt><figcaption>update cell state</figcaption>
+</figure>
 <p>output gate layer：决定<span class="math inline">\(C_t\)</span>主线中输出的信息。</p>
-<div class="figure">
-<img src="/Assets/BlogImg/output_gate_layer.png" alt="output gate layer">
-<p class="caption">output gate layer</p>
-</div>
+<figure>
+<img src="/Assets/BlogImg/output_gate_layer.png" alt><figcaption>output gate layer</figcaption>
+</figure>
 <h2 id="变体">变体</h2>
 <p>将主线信息加入到门判断中</p>
-<div class="figure">
-<img src="/Assets/BlogImg/cell_state_add_to_%20all_gate.png" alt="adding cell state to all gate">
-<p class="caption">adding cell state to all gate</p>
-</div>
+<figure>
+<img src="/Assets/BlogImg/cell_state_add_to_%20all_gate.png" alt><figcaption>adding cell state to all gate</figcaption>
+</figure>
 <p>用coupled forget 即一个门<span class="math inline">\(f_t\)</span>,<span class="math inline">\(1-f_t\)</span>判断主线信息的更新</p>
-<div class="figure">
-<img src="/Assets/BlogImg/coupled_forget.png" alt="coupled forget">
-<p class="caption">coupled forget</p>
-</div>
+<figure>
+<img src="/Assets/BlogImg/coupled_forget.png" alt><figcaption>coupled forget</figcaption>
+</figure>
 <p>Gated Recurrent Unit (GRU)</p>
-<div class="figure">
-<img src="/Assets/BlogImg/GRU.png" alt="structure of GRU">
-<p class="caption">structure of GRU</p>
-</div>
+<figure>
+<img src="/Assets/BlogImg/GRU.png" alt><figcaption>structure of GRU</figcaption>
+</figure>
 
       
 
@@ -615,11 +604,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">De-rain</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">图像处理</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">单幅图像去雨</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">网络结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">理财</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -635,15 +640,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Structure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">attention</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">autoencoder，算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">De-rain</a>
               </li>
              
               <li class="article-tag-list-item">

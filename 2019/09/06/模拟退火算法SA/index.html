@@ -246,10 +246,9 @@ var _hmt = _hmt || [];
 <h2 id="爬山算法">爬山算法</h2>
 <p><strong>爬山算法</strong>是一种简单的<strong>贪心搜索算法</strong>，它每次都<strong>鼠目寸光</strong>地从当前解临近的解空间中选择一个更优解代替当前解，直到得到一个局部最优解。</p>
 <p>如图1所示：假设C点为当前解，爬山算法搜索到A点这个局部最优解后就会停止搜索，因为在A点无论向那个方向小幅度移动都不能得到更优的解。因此，爬山算法只能搜索到局部最优值，而不一定能搜索到全局最优解。</p>
-<div class="figure">
-<img src="/Assets/BlogImg/SA.jpg" alt="图 1">
-<p class="caption">图 1</p>
-</div>
+<figure>
+<img src="/Assets/BlogImg/SA.jpg" alt><figcaption>图 1</figcaption>
+</figure>
 <h2 id="模拟退火算法">模拟退火算法</h2>
 <p>模拟退火算法其实也是一种贪心算法，但是它的搜索过程引入了随机因素。模拟退火算法<strong>以一定的概率</strong>来接受一个比当前解要差的解，因此<strong>有可能</strong>会跳出这个局部的最优解，达到全局的最优解。</p>
 <p>以图1为例，模拟退火算法在搜索到局部最优解A后，会<strong>以一定的概率</strong>向E的移动。可能经过几次这样的不是局部最优的移动后会到达D点，于是就跳出了局部最大值A。模拟退火算法是一种随机算法，并不一定能找到全局的最优解，但可以比较快的找到问题的近似最优解。</p>
@@ -259,8 +258,7 @@ var _hmt = _hmt || [];
 <h2 id="初始化">初始化</h2>
 <p>模拟退火时需设定三个参数：一个比较大初始温度<span class="math inline">\(T_0\)</span> ，降温系数<span class="math inline">\(d\)</span> 非常接近但小于<span class="math inline">\(1\)</span>，终止温度 <span class="math inline">\(T_k\)</span>是一个接近<span class="math inline">\(0\)</span>的正数。</p>
 <h2 id="metropolis准则">Metropolis准则</h2>
-解的替换按照Metropolis准则进行，假设前一状态为 <span class="math inline">\(f(x_n)\)</span>，系统受到一定扰动，状态变为 <span class="math inline">\(f(x_{n+1})\)</span>，相应地，系统能量由 <span class="math inline">\(E(x_n)\)</span> 变为 <span class="math inline">\(E(x_{n+1})\)</span>。 定义系统由 <span class="math inline">\(f(x_n)\)</span> 变为$f(x_{n+1}) $的接收概率为 <span class="math inline">\(p\)</span>（probability of acceptance）： $$
-<span class="math display">\[\begin{equation}
+<p>解的替换按照Metropolis准则进行，假设前一状态为 <span class="math inline">\(f(x_n)\)</span>，系统受到一定扰动，状态变为 <span class="math inline">\(f(x_{n+1})\)</span>，相应地，系统能量由 <span class="math inline">\(E(x_n)\)</span> 变为 <span class="math inline">\(E(x_{n+1})\)</span>。 定义系统由 <span class="math inline">\(f(x_n)\)</span> 变为$f(x_{n+1}) $的接收概率为 <span class="math inline">\(p\)</span>（probability of acceptance）： $$ <span class="math display">\[\begin{equation}
 p=
 \begin{cases}
 
@@ -268,10 +266,9 @@ p=
 e^{-\frac{E(x_{n+1})-E(x_n)}{T}} \quad &amp;if \quad E(x_{n+1})\geq E(x_n)
 
 \end{cases}
-\end{equation}\]</span>
-<p>$$</p>
+\end{equation}\]</span> $$</p>
 <p>通俗解释为：</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li>在高温下可接受与当前状态能量差较大的新状态；</li>
 <li>在低温下基本只接受与当前能量差较小的新状态；</li>
 <li>当温度趋于零时，就不能接受比当前状态能量高的新状态。</li>
@@ -280,10 +277,9 @@ e^{-\frac{E(x_{n+1})-E(x_n)}{T}} \quad &amp;if \quad E(x_{n+1})\geq E(x_n)
 <h2 id="迭代更新">迭代更新</h2>
 <p>首先让温度 <span class="math inline">\(T=T_0\)</span>，然后按照上述Metroplis准则对解进行更新，再让<span class="math inline">\(T=d \times T\)</span>。当<span class="math inline">\(T&lt;T_k\)</span>时模拟退火过程结束，当前最优解即为最终的最优解。</p>
 <p>直观表示如下图：随着温度的降低，跳跃越来越不随机，最优解也越来越稳定。</p>
-<div class="figure">
-<img src="/Assets/BlogImg/SA3.gif" alt="退火算法求解过程">
-<p class="caption">退火算法求解过程</p>
-</div>
+<figure>
+<img src="/Assets/BlogImg/SA3.gif" alt><figcaption>退火算法求解过程</figcaption>
+</figure>
 <h1 id="算法实例">算法实例</h1>
 <h1 id="references">references</h1>
 <p>OI Wiki 习题https://oi-wiki.org/misc/simulated-annealing/</p>
@@ -583,11 +579,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">De-rain</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">图像处理</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">单幅图像去雨</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">网络结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">理财</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -603,15 +615,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Structure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">attention</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">autoencoder，算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">De-rain</a>
               </li>
              
               <li class="article-tag-list-item">

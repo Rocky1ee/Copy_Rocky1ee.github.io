@@ -248,10 +248,9 @@ var _hmt = _hmt || [];
 <p>解决方法：在G和D中加入visual attention模块，用于学习雨滴区域及其背景。这样的话G可以更多关注于学习到的区域及其背景结构，D可以以该区域为判别真伪的重要依据。</p>
 <h1 id="introduction">Introduction</h1>
 <p>G由attentive-recurrent-network 和 auto-encoder构成：</p>
-<div class="figure">
-<img src="/Assets/Img/attention%20gan%20rain%20drop.png" alt="the structure of AGAN">
-<p class="caption">the structure of AGAN</p>
-</div>
+<figure>
+<img src="/Assets/Img/attention%20gan%20rain%20drop.png" alt><figcaption>the structure of AGAN</figcaption>
+</figure>
 <p>attentive-recurrent network：由ResNet构造的RNN，LSTM和Conv组成，用于生成attention mapping。</p>
 <p>contextual auto-encoder：在decoder端使用了multi-scale loss，每个loss去评估相应尺寸的feature map和ground truth pairs，用此模块获取更多纹理信息。auto-encoder用perceptual loss评估最后结果与ground truth的整体相似度。</p>
 <a id="more"></a>
@@ -273,10 +272,9 @@ M(x)=
 <h2 id="generative-network">Generative Network</h2>
 <h3 id="attentive-recurrent-network">Attentive-Recurrent Network</h3>
 <p>用于寻找输入图像中需要关注的区域（雨点区域及其周边信息），结构如下：</p>
-<div class="figure">
-<img src="/Assets/Img/agan2.png" alt="construction of ARN">
-<p class="caption">construction of ARN</p>
-</div>
+<figure>
+<img src="/Assets/Img/agan2.png" alt><figcaption>construction of ARN</figcaption>
+</figure>
 <p>每个block（time step）由5个ResNet（提取特征），LSTM和Conv（生成attention mapping）组成。</p>
 <p>attention mapping是一个matrix，<span class="math inline">\(x in matrix,x \ in [0,1]\)</span>, 数值越大代表关注越强，从无雨点区域到有雨点区域取值不断变大。</p>
 <p>LSTM部分？？？</p>
@@ -602,11 +600,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">De-rain</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">图像处理</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">单幅图像去雨</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">网络结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">理财</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -622,15 +636,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Structure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">attention</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">autoencoder，算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">De-rain</a>
               </li>
              
               <li class="article-tag-list-item">

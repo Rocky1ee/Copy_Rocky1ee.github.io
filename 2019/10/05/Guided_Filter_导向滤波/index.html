@@ -237,13 +237,10 @@ var _hmt = _hmt || [];
 <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
-        <div class="figure">
-<img src="/Assets/Img/Guaded_filter2.jpeg">
-
-</div>
+        <p><img src="/Assets/Img/Guaded_filter2.jpeg"></p>
 <a id="more"></a>
 <h1 id="数学推导">数学推导</h1>
-输入图像为P，引导图像为G,输出图像为Q。导向滤波目标一：尽可能使P和Q相同，即噪声越小越好，数学表达为： <span class="math display">\[
+<p>输入图像为P，引导图像为G,输出图像为Q。导向滤波目标一：尽可能使P和Q相同，即噪声越小越好，数学表达为： <span class="math display">\[
 Min(Q-P)^2 \qquad*
 \]</span> 导向滤波目标二：保存edge，尽量使Q与G的纹理相似，数学表达为： <span class="math display">\[
 \nabla{Q}=a\nabla{G}
@@ -253,44 +250,36 @@ Q=aG+b
 q_i=a_kg_i+b_k\qquad i\in W_k \qquad(1)
 \]</span> 将（1）带入*式，同时对<span class="math inline">\(a_k\)</span>进行正则化： <span class="math display">\[
 E(a_k,b_k)=\sum_{i \in W_k}((a_kg_i+b_k-p_i)^2+\varepsilon a_k^2) \qquad(2)
-\]</span> 使（2）最小化需满足： $$
-<span class="math display">\[\begin{equation}
+\]</span> 使（2）最小化需满足： $$ <span class="math display">\[\begin{equation}
 \begin{aligned}
 
 \frac{\partial E}{\partial a_k}&amp;=\sum_{i \in W_k}(2g_i(g_ia_k+b_k-p_i)+2\varepsilon a_k)=0\\
 \frac{\partial E}{\partial b_k}&amp;=\sum_{i \in W_k}(2(g_ia_k+b_k-p_i))=0
 
 \end{aligned}
-\end{equation}\]</span>
-<span class="math display">\[
+\end{equation}\]</span> <span class="math display">\[
 化简得：
-\]</span>
-<span class="math display">\[\begin{equation}
+\]</span> <span class="math display">\[\begin{equation}
 \begin{aligned}
 (\sum_{i \in W_k}g_i^2+\varepsilon |W|)a_k+\sum_{i \in W_k}g_ib_k-\sum_{i \in W_k}p_ig_i&amp;=0\\
 \sum_{i \in W_k}g_ia_k+|W|b_k-\sum_{i \in W_k}p_i&amp;=0
 
 \end{aligned}
-\end{equation}\]</span>
-<span class="math display">\[
+\end{equation}\]</span> <span class="math display">\[
 其中|W|为$W_k$内pixel总数。解得：
-\]</span>
-<span class="math display">\[\begin{equation}
+\]</span> <span class="math display">\[\begin{equation}
 \begin{aligned}
 a_k&amp;=\frac{|W|\sum_{i \in W_k}p_ig_i-\sum_{i \in W_k}p_i\sum_{i \in W_k}g_i}{|W|\sum_{i \in W_k}g_i^2+\varepsilon|W|^2-(\sum_{i \in W_k}g_i)^2}\quad (3)\\
 b_k&amp;=\frac{\sum_{i \in W_k}p_i-a_k\sum_{i \in W_k}g_i}{|W|}\quad(4)
 \end{aligned}
-\end{equation}\]</span>
-<span class="math display">\[
+\end{equation}\]</span> <span class="math display">\[
 化简得：
-\]</span>
-<span class="math display">\[\begin{equation}
+\]</span> <span class="math display">\[\begin{equation}
 \begin{aligned}
 a_k&amp;=\frac{\frac{1}{|W|}\sum_{i \in W_k}p_ig_i-\bar{p_k}\mu_k}{\sigma^2_k+\varepsilon}=\frac{Cov(p_k,g_k)}{\sigma^2_k+\varepsilon}\quad(5) \\
 b_k&amp;=\bar{p_k}-\mu_ka_k\quad(6)
 \end{aligned}
-\end{equation}\]</span>
-<p><span class="math inline">\($ 其中\)</span> {p_k}<span class="math inline">\(为P的pixel在\)</span>W_k<span class="math inline">\(内均值，\)</span>_k和<span class="math inline">\(为G的pixel在\)</span>W_k$内均值和方差。</p>
+\end{equation}\]</span> $$ 其中$ {p_k}<span class="math inline">\(为P的pixel在\)</span>W_k<span class="math inline">\(内均值，\)</span>_k和<span class="math inline">\(为G的pixel在\)</span>W_k$内均值和方差。</p>
 <p>覆盖pixel i 的窗口有|W|个，对应不同的窗口<span class="math inline">\(W_k\)</span>，根据<span class="math inline">\(a_k,b_k\)</span>可以求出不同的<span class="math inline">\(q_i\)</span>,因此我们对|W|个窗口对应的<span class="math inline">\(q_i\)</span>求均值: <span class="math display">\[
 \begin{equation}
 \begin{aligned}
@@ -309,10 +298,7 @@ a_k=\frac{\sigma^2_k}{\sigma_k^2+\varepsilon},b_k=\mu_k(1-a_k)
 <p>如果<span class="math inline">\(\varepsilon &gt;0,且\sigma_k^2&lt;&lt;\varepsilon\)</span>时,即P在窗口<span class="math inline">\(W_k\)</span>内很平坦。则有<span class="math inline">\(a_k \approx 0,b_k \approx \mu_k\)</span>，即在平坦块中进行均值滤波。</p>
 <p>这样，当一个像素在高方差的窗口中时，它的输出值是不变的。在平坦区域中，它的输出值变成周围窗口像素的平均值。</p>
 <p>具体的，高方差和平坦的标准是由正则系数ε控制的。如果窗口的方差比ε小的多则被平滑，如果方差比ε大得多的则被保留。而窗口的半径r决定参考周围多大范围内的pixel来计算方差和均值。</p>
-<div class="figure">
-<img src="/Assets/Img/guided_filter.jpeg">
-
-</div>
+<p><img src="/Assets/Img/guided_filter.jpeg"></p>
 
       
 
@@ -411,18 +397,18 @@ a_k=\frac{\sigma^2_k}{\sigma_k^2+\varepsilon},b_k=\mu_k(1-a_k)
   
 <nav id="article-nav">
   
-    <a href="/2020/01/04/人生的智慧-叔本华/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/10/29/SSIM的原理和代码/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          (no title)
+          SSIM的原理和代码
         
       </div>
     </a>
   
   
-    <a href="/2019/10/04/Removing rain from single images via a deep detail network/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Removing rain from single images via a deep detail network</div>
+    <a href="/2019/09/20/autoencoder/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">autoencoder</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -608,11 +594,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">De-rain</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">图像处理</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">单幅图像去雨</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">网络结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">理财</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -628,15 +630,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Structure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">attention</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">autoencoder，算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">De-rain</a>
               </li>
              
               <li class="article-tag-list-item">

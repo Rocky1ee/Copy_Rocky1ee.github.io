@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="//Rocky1ee.github.io">
   <title>蚁群算法 | Rocky1ee的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="基本原理   蚁群算法1    蚁群算法2    蚁群算法3">
+  <meta name="description" content="基本原理  蚁群算法1   蚁群算法2   蚁群算法3">
 <meta name="keywords" content="智能算法,蚁群算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="蚁群算法">
 <meta property="og:url" content="//Rocky1ee.github.io/2019/08/31/蚁群算法(ACO)/index.html">
 <meta property="og:site_name" content="Rocky1ee的博客">
-<meta property="og:description" content="基本原理   蚁群算法1    蚁群算法2    蚁群算法3">
+<meta property="og:description" content="基本原理  蚁群算法1   蚁群算法2   蚁群算法3">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/蚁群算法.png">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/蚁群算法1.png">
@@ -24,7 +24,7 @@
 <meta property="og:updated_time" content="2019-12-10T07:45:43.146Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="蚁群算法">
-<meta name="twitter:description" content="基本原理   蚁群算法1    蚁群算法2    蚁群算法3">
+<meta name="twitter:description" content="基本原理  蚁群算法1   蚁群算法2   蚁群算法3">
 <meta name="twitter:image" content="//rocky1ee.github.io/Assets/BlogImg/蚁群算法.png">
   
     <link rel="alternative" href="/atom.xml" title="Rocky1ee的博客" type="application/atom+xml">
@@ -244,18 +244,15 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="基本原理">基本原理</h1>
-<div class="figure">
-<img src="/Assets/BlogImg/蚁群算法.png" alt="蚁群算法1">
-<p class="caption">蚁群算法1</p>
-</div>
-<div class="figure">
-<img src="/Assets/BlogImg/蚁群算法1.png" alt="蚁群算法2">
-<p class="caption">蚁群算法2</p>
-</div>
-<div class="figure">
-<img src="/Assets/BlogImg/蚁群算法2.png" alt="蚁群算法3">
-<p class="caption">蚁群算法3</p>
-</div>
+<figure>
+<img src="/Assets/BlogImg/蚁群算法.png" alt><figcaption>蚁群算法1</figcaption>
+</figure>
+<figure>
+<img src="/Assets/BlogImg/蚁群算法1.png" alt><figcaption>蚁群算法2</figcaption>
+</figure>
+<figure>
+<img src="/Assets/BlogImg/蚁群算法2.png" alt><figcaption>蚁群算法3</figcaption>
+</figure>
 <a id="more"></a>
 <h1 id="基本流程">基本流程</h1>
 <h2 id="路径构建">路径构建</h2>
@@ -299,10 +296,9 @@ var _hmt = _hmt || [];
 <p>算法每次迭代：<strong>每次迭代的m只蚂蚁都完成了自己的路径过程，回到原点后的整个过程。</strong></p>
 <p>停止：指定迭代次数或达成指定的最优解条件</p>
 <h1 id="蚁群算法的实例">蚁群算法的实例</h1>
-<div class="figure">
-<img src="/Assets/BlogImg/蚁群算法4.png" alt="蚁群算法4">
-<p class="caption">蚁群算法4</p>
-</div>
+<figure>
+<img src="/Assets/BlogImg/蚁群算法4.png" alt><figcaption>蚁群算法4</figcaption>
+</figure>
 <p>假设共<span class="math inline">\(m=3\)</span>只蚂蚁，参数<span class="math inline">\(\alpha=1,\beta=2,\rho=0.5\)</span></p>
 <h2 id="初始化">初始化</h2>
 <p>首先使用贪婪算法得到路径的<strong>(ACDBA)</strong>, 则<span class="math inline">\(C_{nn}=1+2+4+3=10\)</span>,求得<span class="math inline">\(\tau_0=m\div C_{nn}=0.3\)</span> <span class="math display">\[
@@ -331,10 +327,9 @@ P(B)=\frac{0.033}{0.033+0.3+0.075}=0.08 \\\\
 P(C)=\frac{0.03}{0.033+0.3+0.075}=0.74 \\\\
 P(D)=\frac{0.075}{0.033+0.3+0.075}=0.1
 \]</span></p>
-<div class="figure">
-<img src="/Assets/BlogImg/轮盘赌选择法.jpeg" alt="轮盘赌选择法">
-<p class="caption">轮盘赌选择法</p>
-</div>
+<figure>
+<img src="/Assets/BlogImg/轮盘赌选择法.jpeg" alt><figcaption>轮盘赌选择法</figcaption>
+</figure>
 <p>轮盘赌选择法：选择累积概率超过随机值的第一个个体。</p>
 <p>用轮盘赌法选择下一个访问城市。假设产生的随机值<span class="math inline">\(r=0.05\)</span>，则蚂蚁<strong>1</strong>会选择城市<strong>B</strong> 同样，假设蚂蚁<strong>2</strong>选择城市<strong>D</strong>，蚂蚁<strong>3</strong>选择城市<strong>A</strong>。</p>
 <p>现在蚂蚁<strong>1</strong>已经来到<strong>B</strong>了，路径记忆向量<span class="math inline">\(R^l=(AB)\)</span>,可访问城市集合<span class="math inline">\(J_i(i)={C,D}\)</span></p>
@@ -471,8 +466,8 @@ P(D)=\frac{0.019}{0.012+0.019}=0.61
     </a>
   
   
-    <a href="/2019/07/31/条件GAN去雨/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">conditional GAN De-raining</div>
+    <a href="/2019/01/30/Spatial Attentive Single-Image Deraining with a High Quality Real Rain Dataset/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spatial Attentive Single-Image Deraining with a High Quality Real Rain Dataset</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -658,11 +653,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">De-rain</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">图像处理</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">单幅图像去雨</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">网络结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">理财</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -678,15 +689,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Structure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">attention</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">autoencoder，算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">De-rain</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="//Rocky1ee.github.io">
   <title>autoencoder | Rocky1ee的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Introduction 用encoder将输入压缩成一个低维的code（输入的总结），然后用decoder将code重建成输入。     autoencoder的特点是： Data-specific：只能压缩训练过的或类似的数据。 Lossy：输入和输出并不完全一致，不适合无损压缩问题。 Unsupervised：self-supervised 其label为输入数据自身。">
+  <meta name="description" content="Introduction 用encoder将输入压缩成一个低维的code（输入的总结），然后用decoder将code重建成输入。  autoencoder的特点是： Data-specific：只能压缩训练过的或类似的数据。 Lossy：输入和输出并不完全一致，不适合无损压缩问题。 Unsupervised：self-supervised 其label为输入数据自身。">
 <meta name="keywords" content="深度学习,autoencoder，算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="autoencoder">
 <meta property="og:url" content="//Rocky1ee.github.io/2019/09/20/autoencoder/index.html">
 <meta property="og:site_name" content="Rocky1ee的博客">
-<meta property="og:description" content="Introduction 用encoder将输入压缩成一个低维的code（输入的总结），然后用decoder将code重建成输入。     autoencoder的特点是： Data-specific：只能压缩训练过的或类似的数据。 Lossy：输入和输出并不完全一致，不适合无损压缩问题。 Unsupervised：self-supervised 其label为输入数据自身。">
+<meta property="og:description" content="Introduction 用encoder将输入压缩成一个低维的code（输入的总结），然后用decoder将code重建成输入。  autoencoder的特点是： Data-specific：只能压缩训练过的或类似的数据。 Lossy：输入和输出并不完全一致，不适合无损压缩问题。 Unsupervised：self-supervised 其label为输入数据自身。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/autoencode.png">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/ANN%20structure%20of%20autoencode.png">
@@ -24,7 +24,7 @@
 <meta property="og:updated_time" content="2020-01-04T00:12:22.538Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="autoencoder">
-<meta name="twitter:description" content="Introduction 用encoder将输入压缩成一个低维的code（输入的总结），然后用decoder将code重建成输入。     autoencoder的特点是： Data-specific：只能压缩训练过的或类似的数据。 Lossy：输入和输出并不完全一致，不适合无损压缩问题。 Unsupervised：self-supervised 其label为输入数据自身。">
+<meta name="twitter:description" content="Introduction 用encoder将输入压缩成一个低维的code（输入的总结），然后用decoder将code重建成输入。  autoencoder的特点是： Data-specific：只能压缩训练过的或类似的数据。 Lossy：输入和输出并不完全一致，不适合无损压缩问题。 Unsupervised：self-supervised 其label为输入数据自身。">
 <meta name="twitter:image" content="//rocky1ee.github.io/Assets/BlogImg/autoencode.png">
   
     <link rel="alternative" href="/atom.xml" title="Rocky1ee的博客" type="application/atom+xml">
@@ -245,10 +245,7 @@ var _hmt = _hmt || [];
       
         <h1 id="introduction">Introduction</h1>
 <p>用encoder将输入压缩成一个低维的code（输入的总结），然后用decoder将code重建成输入。</p>
-<div class="figure">
-<img src="/Assets/BlogImg/autoencode.png">
-
-</div>
+<p><img src="/Assets/BlogImg/autoencode.png"></p>
 <p>autoencoder的特点是：</p>
 <p>Data-specific：只能压缩训练过的或类似的数据。</p>
 <p>Lossy：输入和输出并不完全一致，不适合无损压缩问题。</p>
@@ -256,10 +253,7 @@ var _hmt = _hmt || [];
 <a id="more"></a>
 <h1 id="architecture">Architecture</h1>
 <p>标准的encoder和decoder都是由fully-connected neural network 构成。decoder与encoder的结构一般具有镜面对称性，输入和输出尺寸一致。</p>
-<div class="figure">
-<img src="/Assets/BlogImg/ANN%20structure%20of%20autoencode.png">
-
-</div>
+<p><img src="/Assets/BlogImg/ANN%20structure%20of%20autoencode.png"></p>
 <p>训练时需要设置的超参数：</p>
 <p>Code size：code的尺寸。</p>
 <p>Number of layers: encoder 和decoder的层数，如上为2。</p>
@@ -269,22 +263,13 @@ var _hmt = _hmt || [];
 <p>用keras在MNIST数据集上建立一个一层的autoencode</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">input_size = <span class="number">784</span></span><br><span class="line">hidden_size = <span class="number">128</span></span><br><span class="line">code_size = <span class="number">32</span></span><br><span class="line"></span><br><span class="line">input_img = Input(shape=(input_size,))</span><br><span class="line">hidden_1 = Dense(hidden_size,activation=<span class="string">'relu'</span>)(input_img)</span><br><span class="line">code = Dense(code_size,activation=<span class="string">'relu'</span>)(hidden_1)</span><br><span class="line">hidden_2 = Dense(hidden_size,activation=<span class="string">'relu'</span>)(code)</span><br><span class="line">output_img = Dense(input_size,activatoin=<span class="string">'sigmoid'</span>)(hidden_2)</span><br><span class="line"></span><br><span class="line">autoencoder = Model(input_img,output_img)</span><br><span class="line">autoencoder.complie(optimizer=<span class="string">'adam'</span>,loss=<span class="string">'binary_crossentropy'</span>)</span><br><span class="line">autoencoder.fit(x_train,x_train,epochs=<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
 <h1 id="visualization">Visualization</h1>
-<div class="figure">
-<img src="/Assets/BlogImg/autoencode%20result.png">
-
-</div>
+<p><img src="/Assets/BlogImg/autoencode%20result.png"></p>
 <p>我们可以通过增加hyperparameters数量去增强autoencode的能力。如果autoencod太强过拟合了，就只能copy训练过的input。code的size决定了其被压缩的程度。</p>
 <h1 id="denoising-autoencoders">Denoising Autoencoders</h1>
 <p>用autoencode去除图像上的噪声：</p>
-<div class="figure">
-<img src="/Assets/BlogImg/Denoising_auto.png">
-
-</div>
+<p><img src="/Assets/BlogImg/Denoising_auto.png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">autoencoder.fit(x_train_noisy,x_train)</span><br></pre></td></tr></table></figure>
-<div class="figure">
-<img src="/Assets/BlogImg/denoising_results.png">
-
-</div>
+<p><img src="/Assets/BlogImg/denoising_results.png"></p>
 <h1 id="sparse-autoencoders">Sparse Autoencoders</h1>
 <p>只激活部分nodes（激活即nodes输入不为0），在loss function中加入penalty term</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">code = Dense(code_size,activation=<span class="string">'relu'</span>)(input_img)</span><br><span class="line">code = Dense(code_size,activation=<span class="string">'relu'</span>,activity_regularizer=l1)(input_img)</span><br></pre></td></tr></table></figure>
@@ -395,11 +380,11 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2019/10/04/Removing rain from single images via a deep detail network/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/10/05/Guided_Filter_导向滤波/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Removing rain from single images via a deep detail network
+          Guided Filter 导向滤波
         
       </div>
     </a>
@@ -592,11 +577,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">De-rain</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">图像处理</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">单幅图像去雨</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">网络结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">理财</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -612,15 +613,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Structure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">attention</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">autoencoder，算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">De-rain</a>
               </li>
              
               <li class="article-tag-list-item">

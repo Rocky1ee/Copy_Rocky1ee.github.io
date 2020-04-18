@@ -8,22 +8,22 @@
   <link rel="dns-prefetch" href="//Rocky1ee.github.io">
   <title>反卷积(Transposed Conv)和空洞卷积(Dilated conv) | Rocky1ee的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="卷积 假设输入图像\(input,size = 4 x 4\),表示如下： $$ \[\begin{equation} input =  \begin{bmatrix}  x_1&amp;amp; x_2 &amp;amp; x_3 &amp;amp;x_4 \\   x_5&amp;amp; x_6 &amp;amp; x_7 &amp;amp;x_8 \\   x_9&amp;amp; x_{10} &amp;amp; x_{11} &amp;amp">
+  <meta name="description" content="卷积 假设输入图像\(input,size = 4 x 4\),表示如下： $$ \[\begin{equation} input =  \begin{bmatrix}  x_1&amp;amp; x_2 &amp;amp; x_3 &amp;amp;x_4 \\   x_5&amp;amp; x_6 &amp;amp; x_7 &amp;amp;x_8 \\   x_9&amp;amp; x_{10} &amp;amp; x_{11} &amp;amp;">
 <meta name="keywords" content="深度学习,upsampling，卷积">
 <meta property="og:type" content="article">
 <meta property="og:title" content="反卷积(Transposed Conv)和空洞卷积(Dilated conv)">
 <meta property="og:url" content="//Rocky1ee.github.io/2019/09/10/转置卷积和膨胀卷积/index.html">
 <meta property="og:site_name" content="Rocky1ee的博客">
-<meta property="og:description" content="卷积 假设输入图像\(input,size = 4 x 4\),表示如下： $$ \[\begin{equation} input =  \begin{bmatrix}  x_1&amp;amp; x_2 &amp;amp; x_3 &amp;amp;x_4 \\   x_5&amp;amp; x_6 &amp;amp; x_7 &amp;amp;x_8 \\   x_9&amp;amp; x_{10} &amp;amp; x_{11} &amp;amp">
+<meta property="og:description" content="卷积 假设输入图像\(input,size = 4 x 4\),表示如下： $$ \[\begin{equation} input =  \begin{bmatrix}  x_1&amp;amp; x_2 &amp;amp; x_3 &amp;amp;x_4 \\   x_5&amp;amp; x_6 &amp;amp; x_7 &amp;amp;x_8 \\   x_9&amp;amp; x_{10} &amp;amp; x_{11} &amp;amp;">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/conv.gif">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/Tconv.gif">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/dilated.gif">
 <meta property="og:image" content="//rocky1ee.github.io/Assets/BlogImg/dilated%20conv.jpg">
-<meta property="og:updated_time" content="2020-01-14T08:01:40.365Z">
+<meta property="og:updated_time" content="2020-01-14T08:04:15.475Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="反卷积(Transposed Conv)和空洞卷积(Dilated conv)">
-<meta name="twitter:description" content="卷积 假设输入图像\(input,size = 4 x 4\),表示如下： $$ \[\begin{equation} input =  \begin{bmatrix}  x_1&amp;amp; x_2 &amp;amp; x_3 &amp;amp;x_4 \\   x_5&amp;amp; x_6 &amp;amp; x_7 &amp;amp;x_8 \\   x_9&amp;amp; x_{10} &amp;amp; x_{11} &amp;amp">
+<meta name="twitter:description" content="卷积 假设输入图像\(input,size = 4 x 4\),表示如下： $$ \[\begin{equation} input =  \begin{bmatrix}  x_1&amp;amp; x_2 &amp;amp; x_3 &amp;amp;x_4 \\   x_5&amp;amp; x_6 &amp;amp; x_7 &amp;amp;x_8 \\   x_9&amp;amp; x_{10} &amp;amp; x_{11} &amp;amp;">
 <meta name="twitter:image" content="//rocky1ee.github.io/Assets/BlogImg/conv.gif">
   
     <link rel="alternative" href="/atom.xml" title="Rocky1ee的博客" type="application/atom+xml">
@@ -195,7 +195,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">875字</span>
+        <span class="post-count">873字</span>
       </span>
     </span>
 
@@ -243,8 +243,7 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="卷积">卷积</h1>
-假设输入图像<span class="math inline">\(input,size = 4 x 4\)</span>,表示如下： $$
-<span class="math display">\[\begin{equation}
+<p>假设输入图像<span class="math inline">\(input,size = 4 x 4\)</span>,表示如下： $$ <span class="math display">\[\begin{equation}
 input = 
 \begin{bmatrix}
  x_1&amp; x_2 &amp; x_3 &amp;x_4 \\ 
@@ -253,16 +252,9 @@ input =
  x_{13}&amp; x_{14} &amp; x_{15} &amp; x_{16}
 \end{bmatrix}
 
-\end{equation}\]</span>
-<span class="math display">\[
+\end{equation}\]</span> <span class="math display">\[
 $kernel, size =3 x 3$,表示如下：
-\]</span>
-<span class="math display">\[\begin{bmatrix}
- w_{0,0}&amp; w_{0,1}  &amp; w_{0,2} \\ 
- w_{1,0}&amp; w_{1,1}  &amp; w_{1,2} \\ 
- w_{2,0}&amp; w_{2,1}  &amp; w_{2,2}
-\end{bmatrix}\]</span>
-<p><span class="math inline">\($ 按照卷积公式\)</span>o=+1<span class="math inline">\(得出输出特征图\)</span>output size = 2 x 2$</p>
+\]</span> \begin{bmatrix} w_{0,0}&amp; w_{0,1} &amp; w_{0,2} \ w_{1,0}&amp; w_{1,1} &amp; w_{1,2} \ w_{2,0}&amp; w_{2,1} &amp; w_{2,2} \end{bmatrix} $$ 按照卷积公式<span class="math inline">\(o=\frac{i+2p-k}{s}+1\)</span>得出输出特征图<span class="math inline">\(output size = 2 x 2\)</span></p>
 <p>卷积过程用矩阵乘法描述为<span class="math inline">\(Y=CX\)</span> <span class="math display">\[
 X = [x_1,x_2,x_3,x_4,
  x_5,x_6,x_7,x_8, 
@@ -277,10 +269,9 @@ C = \begin{bmatrix}
  0 &amp;0 &amp;0 &amp;0 &amp;0 &amp;w_{0,0}&amp;w_{0,1}  &amp;w_{0,2}  &amp;0  &amp;w_{1,0}  &amp;w_{1,1}  &amp;w_{1,2}  &amp;0  &amp;w_{2,0}  &amp;w_{2,1}  &amp;w_{2,2}   
 \end{bmatrix}
 \]</span></p>
-<div class="figure">
-<img src="/Assets/BlogImg/conv.gif" alt="convelution">
-<p class="caption">convelution</p>
-</div>
+<figure>
+<img src="/Assets/BlogImg/conv.gif" alt><figcaption>convelution</figcaption>
+</figure>
 <a id="more"></a>
 <h1 id="反卷积">反卷积</h1>
 <p>反卷积的操作就是要对这个矩阵运算过程进行逆运算，即通过 <span class="math inline">\(C\)</span>和<span class="math inline">\(Y\)</span>得到<span class="math inline">\(X\)</span>,反卷积操作可以表示为：</p>
@@ -318,24 +309,17 @@ s(i-1)-2p+k,\quad &amp;if \quad(o+2p-k)\%s=0 \\
 s(i-1)-2p+k+(o+2p-k)\%s,\quad &amp;if \quad (o+2p-k)\%s\neq0
 
 \end{cases}\]</span>
-<span class="math display">\[
+<p><span class="math display">\[
 代码中的stride的计算方法为：
-\]</span> o=
-<span class="math display">\[\begin{cases}
-stride=output_{size}\div(input_{size}-1),\quad &amp;if \quad padding为SAME \\
-stride=（output_{size}-kernel + 1）\div(input_{size}-1),\quad &amp;if \quad padding为VALID
-
-\end{cases}\]</span>
-<p>$$ <img src="/Assets/BlogImg/Tconv.gif" alt="Transform Convelution"></p>
+\]</span> \begin{cases} stride=output_{size}(input_{size}-1),&amp;if padding为SAME \ stride=（output_{size}-kernel + 1）(input_{size}-1),&amp;if padding为VALID</p>
+<p>\end{cases} $$ <img src="/Assets/BlogImg/Tconv.gif" alt="Transform Convelution"></p>
 <h1 id="空洞卷积">空洞卷积</h1>
-<div class="figure">
-<img src="/Assets/BlogImg/dilated.gif" alt="dilated conv">
-<p class="caption">dilated conv</p>
-</div>
-<div class="figure">
-<img src="/Assets/BlogImg/dilated%20conv.jpg" alt="论文实例">
-<p class="caption">论文实例</p>
-</div>
+<figure>
+<img src="/Assets/BlogImg/dilated.gif" alt><figcaption>dilated conv</figcaption>
+</figure>
+<figure>
+<img src="/Assets/BlogImg/dilated%20conv.jpg" alt><figcaption>论文实例</figcaption>
+</figure>
 <p>(a):3x3,1-dilated conv,其效果和普通卷积一样。</p>
 <p>(b):3x3,2dilated conv,其效果为非红点pixel取0的7x7普通卷积。</p>
 <p>(c):3x3,4dilated conv,其效果为非红点pixel取0的15x15普通卷积</p>
@@ -637,11 +621,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">De-rain</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">图像处理</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">单幅图像去雨</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">网络结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">理财</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -657,15 +657,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Structure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">attention</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">autoencoder，算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">De-rain</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -270,10 +270,9 @@ X_i = X_i+V_i\qquad 公式(2)
 <p>第二部分称为<strong>自身认知项</strong>，是从当前点指向粒子自身最好点的一个矢量，粒子自身经验所决定的运动；</p>
 <p>第三部分称为<strong>群体认知项</strong>，是从当前点指向种群最好点的矢量，反映了粒子间的协同合作。</p>
 <p>粒子通过自身的经验和同伴中最好的经验来决定下一步的运动。</p>
-<div class="figure">
-<img src="/Assets/BlogImg/粒子群算法1.png" alt="粒子群算法1">
-<p class="caption">粒子群算法1</p>
-</div>
+<figure>
+<img src="/Assets/BlogImg/粒子群算法1.png" alt><figcaption>粒子群算法1</figcaption>
+</figure>
 <h2 id="引入惯性权重因子">引入惯性权重因子</h2>
 <p>为了完善算法引入惯性权重因子:<span class="math inline">\(\omega \geq 0\)</span>,公式(2)变为： <span class="math display">\[
 V_i = \omega \times V_i+c_1\times rand()\times(pbest_i-X_i) + c_2\times rand()\times(gbest-X_i)\qquad公式(3)
@@ -294,10 +293,9 @@ V_i = \omega \times V_i + c_2\times rand()\times(gbest-X_i)\qquad公式(4)
 V_i = \omega \times V_i+c_1\times rand()\times(pbest_i-X_i) \qquad公式(5)
 \]</span> 被称为<strong>局部PSO算法</strong>。由于个体之间没有信息的交流，整个群体相当于多个粒子进行盲目的随机搜索，收敛速度慢，因而得到最优解的可能性小。</p>
 <h2 id="算法流程">算法流程</h2>
-<div class="figure">
-<img src="/Assets/BlogImg/粒子群算法2.png" alt="粒子群算法2">
-<p class="caption">粒子群算法2</p>
-</div>
+<figure>
+<img src="/Assets/BlogImg/粒子群算法2.png" alt><figcaption>粒子群算法2</figcaption>
+</figure>
 <h1 id="实例应用">实例应用</h1>
 <p>用粒子群算法求解<span class="math inline">\(y=f(x_1,x_2)=x_1^2+x_2^2,-10&lt;x_1,x_2&lt;10\)</span>的最小值。已知当<span class="math inline">\(x_1=x_2=0\)</span>时<span class="math inline">\(y\)</span>取最小值。现在用粒子群算法求解。</p>
 <h2 id="初始化-1">初始化</h2>
@@ -489,11 +487,11 @@ gbest=pbest_3=(4.5,-4.7)
   
 <nav id="article-nav">
   
-    <a href="/2019/09/03/简化群优化SSO/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/09/01/梯度消失与梯度爆炸/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          简化粒子群
+          梯度消失与梯度爆炸
         
       </div>
     </a>
@@ -686,11 +684,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">De-rain</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">图像处理</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">单幅图像去雨</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">网络结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">理财</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -706,15 +720,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Structure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">attention</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">autoencoder，算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">智能算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">De-rain</a>
               </li>
              
               <li class="article-tag-list-item">
