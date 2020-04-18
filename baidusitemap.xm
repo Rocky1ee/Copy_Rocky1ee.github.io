@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>//Rocky1ee.github.io/2020/04/05/%E4%BA%BA%E7%94%9F%E7%9A%84%E6%99%BA%E6%85%A7-%E5%8F%94%E6%9C%AC%E5%8D%8E/</loc>
+    <lastmod>2020-04-18</lastmod>
+  </url>  <url>
     <loc>//Rocky1ee.github.io/2019/11/13/Density-aware%20Single%20Image%20De-raining%20using%20a%20Multi-stream%20Dense%20Network/</loc>
     <lastmod>2020-04-18</lastmod>
   </url>  <url>
@@ -83,9 +86,6 @@
     <lastmod>2020-01-14</lastmod>
   </url>  <url>
     <loc>//Rocky1ee.github.io/2019/09/10/RNN/</loc>
-    <lastmod>2020-01-07</lastmod>
-  </url>  <url>
-    <loc>//Rocky1ee.github.io/2020/01/04/%E4%BA%BA%E7%94%9F%E7%9A%84%E6%99%BA%E6%85%A7-%E5%8F%94%E6%9C%AC%E5%8D%8E/</loc>
     <lastmod>2020-01-07</lastmod>
   </url>  <url>
     <loc>//Rocky1ee.github.io/2019/09/20/autoencoder/</loc>
